@@ -54,7 +54,7 @@ all_roofs        = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_
 # Get Type Elements with OfCategory
 all_window_types = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Windows).WhereElementIsElementType().ToElements()
 all_door_types   = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).WhereElementIsElementType().ToElements()
-all_floot_types  = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsElementType().ToElements()
+all_floor_types  = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsElementType().ToElements()
 #...
 
 # Get Instance Elements with OfClass
