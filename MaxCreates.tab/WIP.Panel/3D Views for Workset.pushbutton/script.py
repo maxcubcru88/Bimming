@@ -28,22 +28,19 @@ Last Updates:
 ________________________________________________________________
 Author: Maximo Cubero"""
 
+#from symbol import continue_stmt
+
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝
 #==================================================
 from Autodesk.Revit.DB import *
-
 # pyRevit
 from pyrevit import revit, forms
-
 import sys
-
 #.NET Imports
 import clr
 clr.AddReference('System')
-from System.Collections.Generic import List
-
 
 # ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
 # ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
@@ -53,11 +50,13 @@ app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
 
-
 # ╔╦╗╔═╗╦╔╗╔
 # ║║║╠═╣║║║║
 # ╩ ╩╩ ╩╩╝╚╝
 #==================================================
+
+if forms.check_workshared(doc): pass
+else: sys.exit()
 
 t = Transaction(doc, 'MC-Audit Worksets Create 3D Views')
 t.Start()
@@ -81,7 +80,6 @@ if existing_view_type:
     existing_view_type_name = existing_view_type.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString()
     #print("3D View Type '{new_view_type_name}' already exists.".format(new_view_type_name=existing_view_type_name))
     new_view_type = existing_view_type
-    new_view_type_boolean = False
 else:
     # Find the base 3D ViewFamilyType to duplicate
     base_3d_view_type_id = doc.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D)
@@ -89,10 +87,9 @@ else:
     # Duplicate the existing 3D View Type to create a new one
     new_view_type = base_3d_view_type.Duplicate(new_view_type_name)
     #print("Created new 3D View Type '{}'.".format(new_view_type_name))
-    new_view_type_boolean = True
 
 if doc.ActiveView.GetTypeId() == new_view_type.Id:
-    forms.alert('The current view has to be deleted.\nPlease go to another view.')
+    forms.alert("Please switch to a different view. The current view needs to be deleted, and it must not be one of the 3D 'Audit_Workset' view types.")
 
 else:
     # Delete all views in the new 3D View Type
@@ -103,7 +100,6 @@ else:
         if view.GetTypeId() == new_view_type.Id:
             doc.Delete(view.Id)
             #print("Deleted existing 3D View '{}'.".format(view.Id))
-
 
     all_worksets     = FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset)
     all_worksets_2   = list(all_worksets)   #Created for the 2nd loop within the 1st loop
@@ -128,11 +124,6 @@ else:
             else:
                 view_3d_iso.SetWorksetVisibility(w.Id, WorksetVisibility.Hidden)
 
-    if new_view_type_boolean:
-        forms.alert("A new 3D View Family Type {} has been created.".format(new_view_type_name))
-    else:
-        forms.alert("The views int the 3D View Family Type {} has been updated.".format(new_view_type_name))
+    forms.alert("Job done! New 'Audit Workset'\nviews created/updated.")
 
 t.Commit()
-
-
