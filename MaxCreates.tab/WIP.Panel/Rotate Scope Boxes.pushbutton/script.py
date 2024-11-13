@@ -59,67 +59,8 @@ doc    = __revit__.ActiveUIDocument.Document #type:Document
 # ║║║╠═╣║║║║
 # ╩ ╩╩ ╩╩╝╚╝
 #==================================================
-"""
-# Step 1: Collect all Scope Boxes in the project
-scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElements()
 
-# Step 2: Collect all views and elements that might reference scope boxes
-views = FilteredElementCollector(doc).OfClass(View).ToElements()
-grids = FilteredElementCollector(doc).OfClass(Grid).ToElements()
-reference_planes = FilteredElementCollector(doc).OfClass(ReferencePlane).ToElements()
-
-# Set to store used scope box IDs
-used_scope_box_ids = set()
-
-# Step 3: Check which scope boxes are being used
-# Check views
-for view in views:
-    if view.IsTemplate:  # Skip view templates
-        continue
-    try:
-        scope_box_id = view.get_Parameter(BuiltInParameter.VIEWER_VOLUME_OF_INTEREST_CROP).AsElementId()
-        used_scope_box_ids.add(scope_box_id)
-    except:
-        continue
-
-# Check grids
-for grid in grids:
-    try:
-        scope_box_id = grid.get_Parameter(BuiltInParameter.DATUM_VOLUME_OF_INTEREST).AsElementId()
-        used_scope_box_ids.add(scope_box_id)
-    except:
-        continue
-
-# Check reference planes
-for ref_plane in reference_planes:
-    try:
-        scope_box_id = ref_plane.get_Parameter(BuiltInParameter.DATUM_VOLUME_OF_INTEREST).AsElementId()
-        used_scope_box_ids.add(scope_box_id)
-    except:
-        continue
-
-# Step 4: Delete unused Scope Boxes
-unused_scope_boxes = [scope_box for scope_box in scope_boxes if scope_box.Id not in used_scope_box_ids]
-
-if unused_scope_boxes:
-    t = Transaction(doc, 'MC-Delete Unused Scope Boxes')
-    t.Start()
-    counter = 0
-    for scope_box in unused_scope_boxes:
-        try:
-            print("Deleted unused Scope Box: {scope_box.Name}".format(scope_box=scope_box))
-            scope_box.Pinned = False
-            doc.Delete(scope_box.Id)
-            counter += 1
-        except Exception as e:
-            print("Error deleting Scope Box {scope_box.Name}: {e}".format(scope_box=scope_box, e=e))
-    forms.alert("{} Scope Boxes Deleted.".format(len(unused_scope_boxes)))
-    t.Commit()
-else:
-    forms.alert("No unused Scope Boxes found.")
-"""
-
-#1️⃣ Select Views
+#1️⃣ Select Scope Boxes
 
 scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElementIds()
 
@@ -128,7 +69,7 @@ sel_el_ids          = uidoc.Selection.GetElementIds()
 sel_elem            = [doc.GetElement(e_id) for e_id in sel_el_ids]
 sel_scope_boxes      = [el for el in sel_elem if el.Id in scope_boxes]
 
-# If None Selected - Promp SelectViews from pyrevit.forms.select_views()
+# If None Selected - Prompt SelectViews from pyrevit.forms.select_views()
 if not sel_scope_boxes:
     sel_views = forms.select_views()
 
@@ -229,3 +170,40 @@ OUT = sb
 
 
 t.Commit()
+
+
+# items = [{'item 1','test'}, 'item 2', 'item 3']
+# res = forms.SelectFromList.show(context = items, multiselect = True, title = 'Select Scope Boxes', button_name = 'Select Scope Boxes')
+
+class MyOption(forms.TemplateListItem):
+    def __init__(self, angle, item, checked=False):
+        self.angle = angle
+        self.item = item
+        self.checked = checked
+
+    @property
+    def name(self):
+        return "Angle: {}  |  Name: {}".format(self.angle, self.item)
+
+# Creating instances of MyOption with the required arguments
+ops = [
+    MyOption('15.00000', 'op1'),
+    MyOption('20.00000', 'op2', checked=True),
+    MyOption('5.00000  ' , 'op3')
+    ]
+
+# Using the SelectFromList method to display options
+res = forms.SelectFromList.show(ops, multiselect=True, button_name='Select Item')
+
+if res:
+    UI_angle = forms.ask_for_string(            # User Input (UI)
+        default='30.0',
+        prompt='Enter an angle: [degrees]',
+        title='Rotate Scope Boxes'
+    )
+    try:
+        UI_angle_float = float(UI_angle.replace(',', '.'))
+        print(UI_angle_float)
+    except:
+        forms.alert("Please enter a number.\nA ',' or '.' can be used to separate the decimals. e.g. 30.5 or 30,5", exitscript=True)
+
