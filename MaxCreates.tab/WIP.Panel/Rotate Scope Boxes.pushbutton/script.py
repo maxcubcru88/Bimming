@@ -60,25 +60,17 @@ doc    = __revit__.ActiveUIDocument.Document #type:Document
 # ╩ ╩╩ ╩╩╝╚╝
 #==================================================
 
-#1️⃣ Select Scope Boxes
+class MyOption(forms.TemplateListItem):
+    def __init__(self, item, el_name, angle, checked=False):
+        self.item = item #Id of the element
+        self.el_name = el_name
+        self.angle = angle
+        self.checked = checked
 
-scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElementIds()
-
-# Get Views - Selected in a projectBrowser
-sel_el_ids          = uidoc.Selection.GetElementIds()
-sel_elem            = [doc.GetElement(e_id) for e_id in sel_el_ids]
-sel_scope_boxes      = [el for el in sel_elem if el.Id in scope_boxes]
-
-# If None Selected - Prompt SelectViews from pyrevit.forms.select_views()
-if not sel_scope_boxes:
-    sel_views = forms.select_views()
-
-# Ensure Views Selected
-if not sel_scope_boxes:
-    forms.alert('No Views Selected. Please Try Again', exitscript=True)
-
-#print([e for e in sel_scope_boxes])
-
+    @property
+    def name(self):
+        el_id = str(self.item)
+        return "Angle: {}  |  Name: {}".format(self.angle, self.el_name)
 
 # Define a function to check if a vector is parallel to the Z-axis
 def is_parallel_to_z(vector):
@@ -93,7 +85,6 @@ def is_parallel_to_z(vector):
         return True
     else:
         return False
-
 
 def get_angles_against_x(vectors):
     angles = []
@@ -112,6 +103,20 @@ def get_angles_against_x(vectors):
 
     return angles
 
+def get_scope_box_angle(scope_box):
+    options = Options()
+    options.DetailLevel = ViewDetailLevel.Undefined
+
+    geom = scope_box.Geometry[options]
+
+    direction = []
+    for line in geom:
+        vector = line.Direction
+        if not (is_parallel_to_z(vector)):
+            direction.append(vector)
+
+    scope_box_angle = get_angles_against_x(direction)[4]
+    return scope_box_angle
 
 # Function to rotate scope box
 def rotate_scope_box(scope_box, angle_degrees):
@@ -131,79 +136,58 @@ def rotate_scope_box(scope_box, angle_degrees):
     # Rotate the scope box
     ElementTransformUtils.RotateElement(doc, scope_box.Id, axis, angle_radians)
 
+#1️⃣ Select Scope Boxes
 
-# Get all scope boxes in the document
-scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).ToElements()
+scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElements()
+scope_boxes_ids = [sb.Id for sb in scope_boxes]
 
-t = Transaction(doc, 'MC-Rotate Scope Boxes')
-t.Start()
+# Get Scope Boxes - Selected in the model
+sel_el_ids          = uidoc.Selection.GetElementIds()
+sel_elem            = [doc.GetElement(e_id) for e_id in sel_el_ids]
+sel_elem_ids = [el.Id for el in sel_elem if el.Id in scope_boxes_ids]
 
-sb = sel_scope_boxes[0]
-# rotate_scope_box(sb, -5)
+#2️⃣ WPF Form to select scope boxes
+scope_box_list = []
+for sb in scope_boxes:
+    scope_box_id = sb.Id
+    scope_box_name = sb.Name
+    scope_box_angle = get_scope_box_angle(sb)
+    if sb.Id in sel_elem_ids:
+        scope_box_checked = True
+    else:
+        scope_box_checked = False
+    option = MyOption(scope_box_id, scope_box_name, scope_box_angle, scope_box_checked)
+    scope_box_list.append(option)
 
-angle = -30
-
-# Iterate over each scope box and rotate by 5 degrees
-# for scope_box in scope_boxes:
-#    rotate_scope_box(scope_box, 5)
-
-# Define options
-options = Options()
-options.DetailLevel = ViewDetailLevel.Undefined
-
-geom = sb.Geometry[options]
-
-direction = []
-for line in geom:
-    vector = line.Direction
-    if not (is_parallel_to_z(vector)):
-        direction.append(vector)
-
-scope_box_angle = get_angles_against_x(direction)[4]
-
-angle_to_be_rotated = angle - scope_box_angle
-
-rotate_scope_box(sb, angle_to_be_rotated)
-
-# Output the rotated scope boxes
-OUT = sb
+res = forms.SelectFromList.show(scope_box_list, title='Scope Boxes List', multiselect=True, button_name='Select Item', map=lambda x: x)
 
 
-t.Commit()
-
-
-# items = [{'item 1','test'}, 'item 2', 'item 3']
-# res = forms.SelectFromList.show(context = items, multiselect = True, title = 'Select Scope Boxes', button_name = 'Select Scope Boxes')
-
-class MyOption(forms.TemplateListItem):
-    def __init__(self, angle, item, checked=False):
-        self.angle = angle
-        self.item = item
-        self.checked = checked
-
-    @property
-    def name(self):
-        return "Angle: {}  |  Name: {}".format(self.angle, self.item)
-
-# Creating instances of MyOption with the required arguments
-ops = [
-    MyOption('15.00000', 'op1'),
-    MyOption('20.00000', 'op2', checked=True),
-    MyOption('5.00000  ' , 'op3')
-    ]
-
-# Using the SelectFromList method to display options
-res = forms.SelectFromList.show(ops, multiselect=True, button_name='Select Item')
-
+#3️⃣ WPF Form to set the angle if any scope box is selected
 if res:
     UI_angle = forms.ask_for_string(            # User Input (UI)
         default='30.0',
         prompt='Enter an angle: [degrees]',
-        title='Rotate Scope Boxes'
-    )
+        title='Rotate Scope Boxes')
     try:
         UI_angle_float = float(UI_angle.replace(',', '.'))
-        print(UI_angle_float)
     except:
-        forms.alert("Please enter a number.\nA ',' or '.' can be used to separate the decimals. e.g. 30.5 or 30,5", exitscript=True)
+        forms.alert("Please enter a number and press 'OK'.\n\nSeparate the decimals with a ',' or '.'\n\ne.g. 30.5 or 30,5", exitscript=True)
+else:
+    forms.alert("No Scope Boxes selected. Try again.", exitscript=True)
 
+t = Transaction(doc, 'MC-Rotate Scope Boxes')
+t.Start()
+
+scope_box_selected = [doc.GetElement(sb) for sb in res]
+
+for scope_box in scope_box_selected:
+    try:
+        scope_box.Pinned = False
+        scope_box_angle = get_scope_box_angle(scope_box)
+        angle_to_be_rotated = UI_angle_float - scope_box_angle
+        rotate_scope_box(scope_box, angle_to_be_rotated)
+        scope_box.Pinned = True
+    except:
+        print("There was a problem rotating scope box: {}\nTry again.".format(scope_box.Name))
+
+t.Commit()
