@@ -139,7 +139,10 @@ def rotate_scope_box(scope_box, angle_degrees):
 #1️⃣ Select Scope Boxes
 
 scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElements()
+scope_boxes_sorted = sorted(scope_boxes, key=lambda sb: get_scope_box_angle(sb))
 scope_boxes_ids = [sb.Id for sb in scope_boxes]
+
+#print([get_scope_box_angle(sb) for sb in scope_boxes_sorted])
 
 # Get Scope Boxes - Selected in the model
 sel_el_ids          = uidoc.Selection.GetElementIds()
@@ -148,7 +151,7 @@ sel_elem_ids = [el.Id for el in sel_elem if el.Id in scope_boxes_ids]
 
 #2️⃣ WPF Form to select scope boxes
 scope_box_list = []
-for sb in scope_boxes:
+for sb in scope_boxes_sorted:
     scope_box_id = sb.Id
     scope_box_name = sb.Name
     scope_box_angle = get_scope_box_angle(sb)
@@ -159,8 +162,7 @@ for sb in scope_boxes:
     option = MyOption(scope_box_id, scope_box_name, scope_box_angle, scope_box_checked)
     scope_box_list.append(option)
 
-res = forms.SelectFromList.show(scope_box_list, title='Scope Boxes List', multiselect=True, button_name='Select Item', map=lambda x: x)
-
+res = forms.SelectFromList.show(scope_box_list, title='Scope Boxes List', multiselect=True, button_name='Select Item')
 
 #3️⃣ WPF Form to set the angle if any scope box is selected
 if res:
@@ -174,6 +176,8 @@ if res:
         forms.alert("Please enter a number and press 'OK'.\n\nSeparate the decimals with a ',' or '.'\n\ne.g. 30.5 or 30,5", exitscript=True)
 else:
     forms.alert("No Scope Boxes selected. Try again.", exitscript=True)
+
+# 4️⃣ Rotate the specified angle the scope box selected
 
 t = Transaction(doc, 'MC-Rotate Scope Boxes')
 t.Start()
