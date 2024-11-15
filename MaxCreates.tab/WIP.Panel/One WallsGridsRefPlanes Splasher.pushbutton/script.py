@@ -97,7 +97,7 @@ def group_walls_by_direction(walls, directions):
 
     return grouped_walls
 
-def are_vectors_parallel(norm_vec1, norm_vec2, tolerance=1e-9):
+def are_vectors_parallel(norm_vec1, norm_vec2, tolerance=1e-14):
     # Check if they are parallel or antiparallel by comparing normalized vectors
     return norm_vec1.IsAlmostEqualTo(norm_vec2, tolerance) or norm_vec1.IsAlmostEqualTo(-norm_vec2, tolerance)
 
