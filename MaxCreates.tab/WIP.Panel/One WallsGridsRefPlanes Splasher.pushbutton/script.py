@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Direction\nSplasher"
+__title__ = "One Direction\nSplasher"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -17,8 +17,7 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-import random
-import math
+
 
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
@@ -27,8 +26,13 @@ import math
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 
+from Autodesk.Revit.UI.Selection import ObjectType
+import random
+import math
+
 # pyRevit
 from pyrevit import revit, forms
+from rpw.ui import Selection
 
 # ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
 # ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
@@ -96,6 +100,19 @@ def group_walls_by_direction(walls, directions):
 def are_vectors_parallel(norm_vec1, norm_vec2, tolerance=1e-9):
     # Check if they are parallel or antiparallel by comparing normalized vectors
     return norm_vec1.IsAlmostEqualTo(norm_vec2, tolerance) or norm_vec1.IsAlmostEqualTo(-norm_vec2, tolerance)
+
+def move_vector_to_first_quadrant(direction):
+    if direction.X < 0 and direction.Y > 0:                         # second quadrant - The vector is rotated -90 degrees
+        direction = rotate_vector_with_transform(vector=direction, axis=XYZ(0, 0, 1), angle=math.radians(-90))
+        #print(direction)
+    elif direction.X < 0 and direction.Y < 0:                       # third quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
+        direction = XYZ(-direction.X, -direction.Y, direction.Z)
+        #print(direction)
+    elif direction.X > 0 and direction.Y < 0:                       # fourth quadrant - The vector is rotated 90 degrees
+        direction = rotate_vector_with_transform(vector=direction, axis=XYZ(0, 0, 1), angle=math.radians(90))
+        #print(direction)
+    else: pass
+    return direction
 
 def set_graphics_override_direction(line_weight = -1 ,
                                     color_lines = Color.InvalidColorValue,
@@ -173,14 +190,26 @@ def lighten_color(color, factor=0.2):
 # sel_el_ids  = uidoc.Selection.GetElementIds()
 # sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
 # sel_views   = [el for el in sel_elem if issubclass(type(el), View)]
-#
-# # If None Selected - Promp SelectViews from pyrevit.forms.select_views()
-# if not sel_views:
-#     sel_views = forms.select_views()
-#
-# # Ensure Views Selected
-# if not sel_views:
-#     forms.alert('No Views Selected. Please Try Again', exitscript=True)
+
+try:
+    # Get Views - Selected in a projectBrowser
+    sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element, "Select elements")
+    sel_elem_id = sel_elem_reference.ElementId
+    sel_elem = doc.GetElement(sel_elem_id)
+except:
+    # If None Selected - Promp SelectViews from pyrevit.forms.select_views()
+    forms.alert('No Elements Selected. Please Try Again', exitscript=True)
+
+if isinstance(sel_elem, Wall):
+    sel_elem_direction = sel_elem.Location.Curve.Direction
+elif isinstance(sel_elem, Grid):
+    sel_elem_direction = sel_elem.Curve.Direction
+elif isinstance(sel_elem, ReferencePlane):
+    sel_elem_direction = sel_elem.Direction
+else:
+    pass
+
+sel_elem_direction_first_quadrant = move_vector_to_first_quadrant(sel_elem_direction)
 
 all_walls        = FilteredElementCollector(doc).OfClass(Wall).ToElements()
 all_grids        = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
@@ -191,8 +220,8 @@ collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
 # GROUPING PARALLEL AND PERPENDICULAR ELEMENTS USING THEIR VECTOR DIRECTION
 # MOVING ALL THE VECTORS TO THE 1ST QUADRANT
 
-items = []
-vectors = []
+items_parallels_perpendicular = []
+items_NO_parallels_perpendicular = []
 
 for element in collector:
 
@@ -205,36 +234,29 @@ for element in collector:
     else:
         continue
 
-    if direction.X < 0 and direction.Y > 0:                         # second quadrant - The vector is rotated -90 degrees
-        direction = rotate_vector_with_transform(vector=direction, axis=XYZ(0, 0, 1), angle=math.radians(-90))
-        #print(direction)
-    elif direction.X < 0 and direction.Y < 0:                       # third quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
-        direction = XYZ(-direction.X, -direction.Y, direction.Z)
-        #print(direction)
-    elif direction.X > 0 and direction.Y < 0:                       # fourth quadrant - The vector is rotated 90 degrees
-        direction = rotate_vector_with_transform(vector=direction, axis=XYZ(0, 0, 1), angle=math.radians(90))
-        #print(direction)
-    else: pass
+    direction_first_quadrant = move_vector_to_first_quadrant(direction)
 
-    items.append(element)
-    vectors.append(direction)
-
-#GROUPING BY THEIR DIRECTION
-groups = (group_walls_by_direction(items, vectors))
+    if are_vectors_parallel(sel_elem_direction_first_quadrant, direction_first_quadrant):
+        items_parallels_perpendicular.append(element)
+    else:
+        items_NO_parallels_perpendicular.append(element)
 
 # OVERRIDING THE ELEMENTS
-colors = generate_random_colors(len(groups))
+#colors = generate_random_colors(len(groups))
+color_green = Color(0, 210, 0)
+color_red   = Color(255, 0, 0)
 
-t = Transaction(doc, 'MC-Elements Splasher')
+t = Transaction(doc, 'MC-One Elements Splasher')
 t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id
 
-for group, color in zip(groups, colors):
-    settings = set_graphics_override_direction(line_weight=5, color_lines=color, color_surfaces=lighten_color(color,0.45), fill_pattern_id=solid_fill_pattern)
-    for el in group:
-        # print(el.Id)
-        # print(settings)
-        doc.ActiveView.SetElementOverrides(el.Id, settings)
+for element in items_parallels_perpendicular:
+    settings = set_graphics_override_direction(line_weight=5, color_lines=color_green, color_surfaces=lighten_color(color_green,0.45), fill_pattern_id=solid_fill_pattern)
+    doc.ActiveView.SetElementOverrides(element.Id, settings)
+
+for element in items_NO_parallels_perpendicular:
+    settings = set_graphics_override_direction(line_weight=5, color_lines=color_red, color_surfaces=lighten_color(color_red,0.45), fill_pattern_id=solid_fill_pattern)
+    doc.ActiveView.SetElementOverrides(element.Id, settings)
 
 t.Commit()
