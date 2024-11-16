@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "One Direction\nSplasher"
+__title__ = "Accuracy\nPrecision"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -30,6 +30,10 @@ from Autodesk.Revit.UI.Selection import ObjectType
 
 # pyRevit
 from pyrevit import forms
+from pyrevit.revit.report import print_view
+
+#Others
+import math
 
 # ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
 # ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
@@ -44,35 +48,17 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
-#1️⃣ Select Wall, Grid or Ref Planes
-# Get Views - Selected in a projectBrowser
-sel_el_ids      = uidoc.Selection.GetElementIds()
-sel_elem        = [doc.GetElement(e_id) for e_id in sel_el_ids]
-sel_elem_filter = [el for el in sel_elem if issubclass(type(el), Wall) or issubclass(type(el), Grid) or issubclass(type(el), ReferencePlane)]
+#3️⃣ WPF Form to set the angle if any scope box is selected
 
-if not sel_elem_filter or len(sel_elem_filter) != 1:
-    with forms.WarningBar(title='Select Wall, Grid or Ref Plane:'):
-        try:
-            # Get Views - Selected in a projectBrowser
-            sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element, "Select elements")
-            sel_elem_id = sel_elem_reference.ElementId
-            sel_elem = doc.GetElement(sel_elem_id)
-        except:
-            # If None Selected - Promp SelectViews from pyrevit.forms.select_views()
-            forms.alert('No Elements Selected. Please Try Again', exitscript=True)
-else:
-    sel_elem = sel_elem_filter[0]
+UI_angle = forms.ask_for_string(            # User Input (UI)
+    default='2',
+    prompt='Enter maximum number of decimals allowed: [degrees]',
+    title='Splash!')
+try:
+    UI_max_number_of_decimals = int(UI_angle)
+except:
+    forms.alert("Please enter a number and press 'Splash!'.\n\ne.g. '2' or '3'", exitscript=True)
 
-if isinstance(sel_elem, Wall):
-    sel_elem_direction = sel_elem.Location.Curve.Direction
-elif isinstance(sel_elem, Grid):
-    sel_elem_direction = sel_elem.Curve.Direction
-elif isinstance(sel_elem, ReferencePlane):
-    sel_elem_direction = sel_elem.Direction
-else:
-    pass
-
-sel_elem_direction_first_quadrant = move_vector_to_first_quadrant(sel_elem_direction)
 
 all_walls        = FilteredElementCollector(doc).OfClass(Wall).ToElements()
 all_grids        = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
@@ -83,8 +69,8 @@ collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
 # GROUPING PARALLEL AND PERPENDICULAR ELEMENTS USING THEIR VECTOR DIRECTION
 # MOVING ALL THE VECTORS TO THE 1ST QUADRANT
 
-items_parallels_perpendicular = []
-items_NO_parallels_perpendicular = []
+items_group_1 = []
+items_group_2 = []
 
 for element in collector:
 
@@ -97,12 +83,12 @@ for element in collector:
     else:
         continue
 
-    direction_first_quadrant = move_vector_to_first_quadrant(direction)
+    angle_to_X = round(math.degrees(direction.AngleTo(XYZ(1,0,0))),12)
 
-    if are_vectors_parallel(sel_elem_direction_first_quadrant, direction_first_quadrant,tolerance=1e-14):
-        items_parallels_perpendicular.append(element)
+    if count_decimals(angle_to_X) <= UI_max_number_of_decimals:
+        items_group_1.append(element)
     else:
-        items_NO_parallels_perpendicular.append(element)
+        items_group_2.append(element)
 
 # OVERRIDING THE ELEMENTS
 #colors = generate_random_colors(len(groups))
@@ -114,11 +100,11 @@ t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id
 
-for element in items_parallels_perpendicular:
+for element in items_group_1:
     settings = set_graphics_override_direction(line_weight=5, color_lines=color_green, color_surfaces=lighten_color(color_green,0.45), fill_pattern_id=solid_fill_pattern)
     doc.ActiveView.SetElementOverrides(element.Id, settings)
 
-for element in items_NO_parallels_perpendicular:
+for element in items_group_2:
     settings = set_graphics_override_direction(line_weight=5, color_lines=color_red, color_surfaces=lighten_color(color_red,0.45), fill_pattern_id=solid_fill_pattern)
     doc.ActiveView.SetElementOverrides(element.Id, settings)
 
