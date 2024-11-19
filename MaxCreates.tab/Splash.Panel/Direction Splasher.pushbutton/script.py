@@ -24,7 +24,7 @@ Author: Máximo Cubero"""
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._MaxCreates import *
+from lib.Snippets._MaxCreates import *
 
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
