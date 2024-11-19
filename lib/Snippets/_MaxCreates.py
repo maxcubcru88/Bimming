@@ -154,6 +154,12 @@ def lighten_color(color, factor=0.2):
     return Color(new_r, new_g, new_b)
 
 def count_decimals(number):
+    """
+    count the number of decimals
+
+    :number: Float value
+    :return:
+    """
     # Convert the float to a Decimal
     decimal_number = Decimal(str(number))
 
