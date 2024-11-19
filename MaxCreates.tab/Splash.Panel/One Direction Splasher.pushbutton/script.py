@@ -23,6 +23,7 @@ Author: Máximo Cubero"""
 #==================================================
 # Custom Libraries
 from Snippets._MaxCreates import *
+from Snippets._selection import *
 
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
@@ -30,6 +31,7 @@ from Autodesk.Revit.UI.Selection import ObjectType
 
 # pyRevit
 from pyrevit import forms
+from pyrevit.revit import selection as py_selection
 
 # ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
 # ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
@@ -54,7 +56,11 @@ if not sel_elem_filter or len(sel_elem_filter) != 1:
     with forms.WarningBar(title='Select Wall, Grid or Ref Plane:'):
         try:
             # Get Views - Selected in a projectBrowser
-            sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element, "Select elements")
+            sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element,
+                                                             IselectionFilter_Categories([BuiltInCategory.OST_Walls,
+                                                                                          BuiltInCategory.OST_Grids,
+                                                                                          BuiltInCategory.OST_CLines]),
+                                                             "Select elements")
             sel_elem_id = sel_elem_reference.ElementId
             sel_elem = doc.GetElement(sel_elem_id)
         except:
