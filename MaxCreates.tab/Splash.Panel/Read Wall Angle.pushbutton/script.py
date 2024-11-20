@@ -143,7 +143,7 @@ def calculate_angle_with_y(vector):
     cross_product = vector.CrossProduct(x_vector)
 
     # Use the Z-component of the cross product to determine direction
-    if cross_product.Z > 0:  # Clockwise direction
+    if cross_product.Z < 0:  # Clockwise direction
         angle_degrees = -angle_degrees
 
     # Set the precision high enough for calculations
@@ -192,64 +192,33 @@ else:
 
 for element in sel_elem:
     direction = get_direction(element)
-    print("Original direction: {}".format(direction))
+    #print("Original direction: {}".format(direction))
     direction_1st_2nd_quadrant = move_vector_to_first_and_second_quadrant(direction)
-    print("Direction 1st and 2nd quadrant: {}".format(direction_1st_2nd_quadrant))
+    direction_1st_4th_quadrant = move_vector_to_first_and_fourth_quadrant(direction)
+
+    #print("Direction 1st and 2nd quadrant: {}".format(direction_1st_2nd_quadrant))
+    #print("Direction 1st and 4th quadrant: {}".format(direction_1st_4th_quadrant))
+
     angle_against_X = calculate_angle_with_x(direction_1st_2nd_quadrant)
-    print('The angle against Vector X is: {}'.format(angle_against_X))
+    #print('The angle against Vector X is: {}'.format(angle_against_X))
+    angle_against_Y = calculate_angle_with_y(direction_1st_4th_quadrant)
+    #print('The angle against Vector Y is: {}'.format(angle_against_Y))
+
     if angle_against_X < 5 or angle_against_X > 175:
-        angle_against_Y = calculate_angle_with_y(direction_1st_2nd_quadrant)
-        print(angle_against_Y)
-        angle_against_X = 90 + angle_against_Y
-        # Format the output to always show 12 decimal places
-        angle_against_X = '%.12f' % angle_against_X
-        print('The angle against Vector X is: {}'.format(angle_against_X))
+        angle_against_X = 90 - angle_against_Y
+        #print('IF')
+
+    elif angle_against_X > 85 and angle_against_X < 95:
+        angle_against_Y = 90 - angle_against_X
+        #print('ELIF')
+
     else:
-        pass
+        print('PASS')
+        #pass
 
-print(move_vector_to_first_and_second_quadrant(XYZ(1, 0, 0)))
+    # Format the output to always show 12 decimal places
+    angle_against_X = '%.12f' % angle_against_X
+    print('The angle against Vector X is: {}'.format(angle_against_X))
 
-# Set the precision high enough for calculations
-getcontext().prec = 50  # High precision for intermediate calculations
-rounded_value = Decimal(direction.Y).quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
-
-print(direction.X)
-print(rounded_value)
-print(direction.Z)
-
-# print(calculate_angle_with_x(direction))
-# print(calculate_angle_with_x_B(direction))
-# print('-'*100)
-
-
-# if isinstance(sel_elem, Wall):
-#     direction = sel_elem.Location.Curve.Direction
-# elif isinstance(sel_elem, Grid):
-#     direction = sel_elem.Curve.Direction
-# elif isinstance(sel_elem, ReferencePlane):
-#     direction = sel_elem.Direction
-# else:
-#     pass
-# print(calculate_angle_with_x(direction))
-# print(calculate_angle_with_x_B(direction))
-
-# angle_to_X = round(math.degrees(direction.AngleTo(XYZ(1,0,0))),10) # number max of decimas is 10
-# print(angle_to_X)
-#
-# print ('-'*100)
-# number = 1.231654984651321354987654321321
-# print(str(number))
-
-
-
-# print(calculate_angle_with_x(direction))
-
-# value = 3.1234567890123456789
-# rounded_value = float("{:.12f}".format(value))
-# print(rounded_value)  # Output: 3.14159265359
-#
-# rounded_value = float("%.13f" % value)
-# print(rounded_value)  # Output: 3.14159265359
-#
-# rounded_value = round(value, 12)
-# print(rounded_value)  # Output: 3.14159265359
+    angle_against_Y = '%.12f' % angle_against_Y
+    print('The angle against Vector Y is: {}'.format(angle_against_Y))
