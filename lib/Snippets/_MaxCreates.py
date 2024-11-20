@@ -4,7 +4,7 @@
 #==================================================
 import random
 import math
-from decimal import Decimal
+from decimal import Decimal, getcontext, ROUND_HALF_UP
 
 from Autodesk.Revit.DB import *
 
@@ -83,6 +83,23 @@ def move_vector_to_first_quadrant(direction):
     else: pass
     return direction
 
+def move_vector_to_first_and_second_quadrant(direction):
+    # Set the precision high enough for calculations
+    getcontext().prec = 50  # High precision for intermediate calculations
+
+    X = Decimal(direction.X)
+    Y = Decimal(direction.Y)
+
+    rounded_value_X = X.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
+    rounded_value_Y = Y.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
+
+    if rounded_value_X < 0 and rounded_value_Y < 0:                       # third quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
+        direction = XYZ(-direction.X, -direction.Y, direction.Z)
+    elif rounded_value_X > 0 and rounded_value_Y < 0:                       # fourth quadrant - The vector is reversed to the second quadrant
+        direction = XYZ(-direction.X, -direction.Y, direction.Z)
+    else: pass
+    return direction
+
 def set_graphics_override_direction(line_weight = -1 ,
                                     color_lines = Color.InvalidColorValue,
                                     color_surfaces = Color.InvalidColorValue,
@@ -114,6 +131,22 @@ def set_graphics_override_direction(line_weight = -1 ,
     override_settings.SetCutForegroundPatternId(fill_pattern_id)
 
     return override_settings
+
+def get_direction(element):
+    """
+    get direction of element
+    :param element
+    :return XYZ vector
+    """
+    if isinstance(element, Wall):
+        direction = element.Location.Curve.Direction
+    elif isinstance(element, Grid):
+        direction = element.Curve.Direction
+    elif isinstance(element, ReferencePlane):
+        direction = element.Direction
+    else:
+        pass
+    return direction
 
 def generate_random_colors(n):
     colors = []

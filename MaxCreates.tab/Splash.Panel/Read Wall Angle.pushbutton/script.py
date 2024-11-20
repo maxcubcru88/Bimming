@@ -22,6 +22,7 @@ Author: Máximo Cubero"""
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
 #==================================================
 import math
+from decimal import Decimal, getcontext, ROUND_HALF_UP
 
 # Custom Libraries
 from Snippets._MaxCreates import *
@@ -79,49 +80,87 @@ def calculate_angle_with_x(vector):
     # Convert radians to degrees
     angle_degrees = math.degrees(angle_radians)
 
-    print (angle_degrees)
+    # Calculate the cross product to determine direction
+    cross_product = vector.CrossProduct(x_vector)
 
-    return angle_radians, angle_degrees
+    # Use the Z-component of the cross product to determine direction
+    if cross_product.Z > 0:  # Clockwise direction
+        angle_degrees = -angle_degrees
 
+    # Set the precision high enough for calculations
+    getcontext().prec = 50  # High precision for intermediate calculations
 
-def calculate_angle_with_x_B(vector):
+    # Define the number and round to 12 decimal places
+    if angle_degrees <= 90:
+        value = Decimal(angle_degrees)
+    else:
+        value = Decimal(angle_degrees)
+
+    rounded_value = value.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
+
+    # Format the output to always show 12 decimal places
+    #rounded_value = '%.12f' % rounded_value
+
+    return rounded_value
+
+def calculate_angle_with_y(vector):
     """
-    Calculate the signed angle between the given vector and the X-axis.
+    Calculate the angle between the given vector and the X-axis.
 
     Args:
         vector (XYZ): The input vector.
 
     Returns:
-        tuple: A tuple containing the signed angle in radians and degrees.
+        tuple: A tuple containing the angle in radians and degrees.
     """
     # Define the X-axis vector
-    x_vector = XYZ(1, 0, 0)
+    x_vector = XYZ(0, 1, 0)
 
-    # Normalize the input vector to avoid magnitude issues
-    if vector.GetLength() == 0:
-        raise ValueError("The input vector cannot have zero length.")
+    # Calculate the dot product of the vectors
+    dot_product = vector.DotProduct(x_vector)
 
-    normalized_vector = vector.Normalize()
-    normalized_x_vector = x_vector.Normalize()
+    # Calculate the magnitude of the vectors
+    magnitude_vector = vector.GetLength()
+    magnitude_x_vector = x_vector.GetLength()
 
-    # Calculate the dot product and magnitudes
-    dot_product = normalized_vector.DotProduct(normalized_x_vector)
-    cross_product = normalized_vector.CrossProduct(normalized_x_vector)
+    # Ensure non-zero magnitude to avoid division by zero
+    if magnitude_vector == 0 or magnitude_x_vector == 0:
+        raise ValueError("Vector magnitudes cannot be zero.")
 
-    # Clamp the dot product to avoid precision issues
-    dot_product = max(min(dot_product, 1.0), -1.0)
+    # Calculate the cosine of the angle
+    cos_angle = dot_product / (magnitude_vector * magnitude_x_vector)
+
+    # Clamp the cosine value to avoid precision errors outside [-1, 1]
+    cos_angle = max(min(cos_angle, 1.0), -1.0)
 
     # Calculate the angle in radians
-    angle_radians = math.acos(dot_product)
+    angle_radians = math.acos(cos_angle)
 
-    # Use the cross product to determine the sign (direction)
-    if cross_product.Z < 0:  # Assumes 2D comparison; checks Z for 2D vectors
-        angle_radians = -angle_radians  # Make angle negative for clockwise
-
-    # Convert to degrees
+    # Convert radians to degrees
     angle_degrees = math.degrees(angle_radians)
 
-    return "direction angle", angle_degrees
+    # Calculate the cross product to determine direction
+    cross_product = vector.CrossProduct(x_vector)
+
+    # Use the Z-component of the cross product to determine direction
+    if cross_product.Z > 0:  # Clockwise direction
+        angle_degrees = -angle_degrees
+
+    # Set the precision high enough for calculations
+    getcontext().prec = 50  # High precision for intermediate calculations
+
+    # Define the number and round to 12 decimal places
+    if angle_degrees <= 90:
+        value = Decimal(angle_degrees)
+    else:
+        value = Decimal(angle_degrees)
+
+    rounded_value = value.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
+
+    # Format the output to always show 12 decimal places
+    #rounded_value = '%.12f' % rounded_value
+
+    return rounded_value
 
 # ╔╦╗╔═╗╦╔╗╔
 # ║║║╠═╣║║║║
@@ -151,16 +190,37 @@ if not sel_elem_filter:
 else:
     pass
 
-for elem in sel_elem:
-    if isinstance(elem, Wall):
-        direction = elem.Location.Curve.Direction
-    elif isinstance(elem, Grid):
-        direction = elem.Curve.Direction
-    elif isinstance(elem, ReferencePlane):
-        direction = elem.Direction
+for element in sel_elem:
+    direction = get_direction(element)
+    print("Original direction: {}".format(direction))
+    direction_1st_2nd_quadrant = move_vector_to_first_and_second_quadrant(direction)
+    print("Direction 1st and 2nd quadrant: {}".format(direction_1st_2nd_quadrant))
+    angle_against_X = calculate_angle_with_x(direction_1st_2nd_quadrant)
+    print('The angle against Vector X is: {}'.format(angle_against_X))
+    if angle_against_X < 5 or angle_against_X > 175:
+        angle_against_Y = calculate_angle_with_y(direction_1st_2nd_quadrant)
+        print(angle_against_Y)
+        angle_against_X = 90 + angle_against_Y
+        # Format the output to always show 12 decimal places
+        angle_against_X = '%.12f' % angle_against_X
+        print('The angle against Vector X is: {}'.format(angle_against_X))
     else:
         pass
-    print(calculate_angle_with_x_B(direction))
+
+print(move_vector_to_first_and_second_quadrant(XYZ(1, 0, 0)))
+
+# Set the precision high enough for calculations
+getcontext().prec = 50  # High precision for intermediate calculations
+rounded_value = Decimal(direction.Y).quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
+
+print(direction.X)
+print(rounded_value)
+print(direction.Z)
+
+# print(calculate_angle_with_x(direction))
+# print(calculate_angle_with_x_B(direction))
+# print('-'*100)
+
 
 # if isinstance(sel_elem, Wall):
 #     direction = sel_elem.Location.Curve.Direction
@@ -183,3 +243,13 @@ for elem in sel_elem:
 
 
 # print(calculate_angle_with_x(direction))
+
+# value = 3.1234567890123456789
+# rounded_value = float("{:.12f}".format(value))
+# print(rounded_value)  # Output: 3.14159265359
+#
+# rounded_value = float("%.13f" % value)
+# print(rounded_value)  # Output: 3.14159265359
+#
+# rounded_value = round(value, 12)
+# print(rounded_value)  # Output: 3.14159265359
