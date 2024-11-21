@@ -90,8 +90,9 @@ def move_vector_to_first_and_second_quadrant(direction):
     X = Decimal(direction.X)
     Y = Decimal(direction.Y)
 
-    rounded_value_X = X.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
-    rounded_value_Y = Y.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
+    rounded_value_X = X.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
+    rounded_value_Y = Y.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
+                                        # 0.1234567890123
 
     if rounded_value_X <= 0 and rounded_value_Y < 0:                       # third quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
         direction = XYZ(-direction.X, -direction.Y, direction.Z)
@@ -107,8 +108,9 @@ def move_vector_to_first_and_fourth_quadrant(direction):
     X = Decimal(direction.X)
     Y = Decimal(direction.Y)
 
-    rounded_value_X = X.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
-    rounded_value_Y = Y.quantize(Decimal('0.000000000001'), rounding=ROUND_HALF_UP)
+    rounded_value_X = X.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
+    rounded_value_Y = Y.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
+                                        # 0.1234567890123
 
     if rounded_value_X < 0 and rounded_value_Y >= 0:                       # second quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
         direction = XYZ(-direction.X, -direction.Y, direction.Z)
