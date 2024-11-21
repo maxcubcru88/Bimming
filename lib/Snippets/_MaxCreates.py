@@ -157,6 +157,7 @@ def get_direction(element):
     :param element
     :return XYZ vector
     """
+    direction = None
     if isinstance(element, Wall):
         direction = element.Location.Curve.Direction
     elif isinstance(element, Grid):
