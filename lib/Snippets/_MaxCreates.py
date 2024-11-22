@@ -6,7 +6,10 @@ import random
 import math
 from decimal import Decimal, getcontext, ROUND_HALF_UP
 
+from Snippets._convert import *
+
 from Autodesk.Revit.DB import *
+from pyrevit import forms
 
 # Variables
 #==================================================
@@ -158,14 +161,16 @@ def get_direction(element):
     :return XYZ vector
     """
     direction = None
-    if isinstance(element, Wall):
-        direction = element.Location.Curve.Direction
-    elif isinstance(element, Grid):
-        direction = element.Curve.Direction
-    elif isinstance(element, ReferencePlane):
-        direction = element.Direction
-    else:
-        pass
+    try:
+        if isinstance(element, Wall):
+            direction = element.Location.Curve.Direction
+        elif isinstance(element, Grid):
+            direction = element.Curve.Direction
+        elif isinstance(element, ReferencePlane):
+            direction = element.Direction
+        else:
+            pass
+    except: pass
     return direction
 
 def generate_random_colors(n):
@@ -206,7 +211,7 @@ def lighten_color(color, factor=0.2):
     # Return the new lightened color
     return Color(new_r, new_g, new_b)
 
-def count_decimals(number):
+def count_decimals_float(number):
     """
     count the number of decimals
 
@@ -215,9 +220,81 @@ def count_decimals(number):
     """
     # Convert the float to a Decimal
     decimal_number = Decimal(str(number))
-
     # Get the decimal part only
     decimal_part = abs(decimal_number - decimal_number.to_integral())
-
     # Convert the decimal part to string and count the digits after the '.'
     return max(0, -decimal_part.as_tuple().exponent)
+
+def count_decimals_string(string):
+    """
+    count the number of decimals
+    :string: Float value
+    :return:
+    """
+    # Convert the float to a Decimal
+    decimal_number = Decimal(str(string)).normalize()  # normalize() removes trailing zeros
+    # This expression calculates the number of decimal places in a Decimal number.
+    # - decimal_number.as_tuple().exponent: Retrieves the exponent of the Decimal number,
+    #   which indicates the position of the decimal point relative to the integer part.
+    # - The negative sign (-) reverses the exponent to give the count of decimal places.
+    # - max(0, ...): Ensures that the result is non-negative, returning 0 if the number has no decimal part.
+    number_of_decimals = max(0, -decimal_number.as_tuple().exponent)
+    return number_of_decimals
+
+def custom_round(value, precision='0.000000000005', rounding=ROUND_HALF_UP):
+    """
+    Rounds a given value to the nearest multiple of 0.000000000005 with high precision.
+
+    This function uses the Decimal module to ensure precision and avoids
+    floating-point errors. It first converts the input value to a Decimal,
+    defines a quantization step of 0.000000000005 to manage rounding, and
+    performs the rounding using the ROUND_HALF_UP method.
+
+    Parameters:
+        value (float or str): The value to be rounded.
+
+    Returns:
+        Decimal: The value rounded to the nearest 0.000000000005.
+    """
+    # Convert to Decimal for precision
+    decimal_value = Decimal(value)
+
+    # Define the quantization step (0.0001, to control 4th decimal place)
+    step = Decimal(precision)
+
+    # Quantize the value to the nearest 0.0005
+    rounded_value = (decimal_value / step).quantize(Decimal('1'), rounding) * step
+    return rounded_value
+
+def get_angle_to_vector(vector1, vector2=XYZ(1, 0, 0)):
+    """
+    Input vector 1 and vector 2, and the script will return the angle between them + the
+    supplementary angle.
+    : vector1: vector 1
+    : vector2: vector 2
+    : return: angle between vector 1 and vector 2
+    : return: supplementary angle between vector 1 and vector 2
+    """
+    # Calculate angle using the method 'AngleTo' of the Revit API
+    angle_to_X = vector1.AngleTo(vector2)
+
+    # Convert radians to degrees - Maximum number of decimals is 9
+    angle_to_X_degrees = convert_internal_units(angle_to_X, False, 'degrees')
+    # print('Angle from radians {} to degrees:\n{}'.format(angle_to_X, angle_to_X_degrees))
+
+    # Set the precision high enough for calculations -- Not entirely sure why we need this.
+    getcontext().prec = 50  # High precision for intermediate calculations
+
+    # With 'Decimals' we read up to 44 decimals
+    angle_to_X_decimals = Decimal(angle_to_X_degrees)
+    # print('Angle with more precision using the modulo "Decimals":\n{}'.format(angle_to_X_decimals))
+
+    # We use the function 'custom_round' which Rounds a given value to the nearest multiple of 0.000000000005 (12 decimals) with high precision.
+    angle_to_X_rounded = custom_round(angle_to_X_decimals, precision='0.000000000005', rounding=ROUND_HALF_UP)
+    supplementary_angle = 180 - angle_to_X_rounded
+
+    # Format the output to always show 12 decimal places and avoid results like E0-12
+    angle_to_X_formated = '%.12f' % (angle_to_X_rounded)
+    supplementary_angle_formated = '%.12f' % (supplementary_angle)
+
+    return angle_to_X_formated, supplementary_angle_formated

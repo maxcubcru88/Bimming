@@ -17,6 +17,8 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
+import sys
+
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
@@ -48,54 +50,63 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
-#3️⃣ WPF Form to set the angle if any scope box is selected
+#👆 WPF Form to set the number of decimals to be checked
 
 UI_angle = forms.ask_for_string(            # User Input (UI)
     default='2',
-    prompt='Enter maximum number of decimals allowed: [degrees]',
+    prompt='Enter the maximum number of decimal places (0-12):',
     title='Splash!')
-try:
-    UI_max_number_of_decimals = int(UI_angle)
-except:
-    forms.alert("Please enter a number and press 'Splash!'.\n\ne.g. '2' or '3'", exitscript=True)
+
+# Check that the input is correct
+warning_message = "Please enter an integer between 0 and 12, then press 'Splash!'.\ne.g., '2' or '3'"
+
+# Check that the input is a integer
+try: UI_max_number_of_decimals = int(UI_angle)
+except: forms.alert(warning_message, exitscript=True)
+
+# Check that the integer is between 0 and 12
+if UI_max_number_of_decimals in list(range(0, 13)): pass# list [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+else: forms.alert(warning_message, exitscript=True)
 
 
-all_walls        = FilteredElementCollector(doc).OfClass(Wall).ToElements()
-all_grids        = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
+#🔥 Splashing walls
+
+#1️⃣ COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
+all_walls        = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(Wall).ToElements()
+all_grids        = FilteredElementCollector(doc, doc.ActiveView.Id).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
 all_ref_planes   = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(ReferencePlane).ToElements()
 
 collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
 
-# GROUPING PARALLEL AND PERPENDICULAR ELEMENTS USING THEIR VECTOR DIRECTION
-# MOVING ALL THE VECTORS TO THE 1ST QUADRANT
-
-items_group_1 = []
-items_group_2 = []
+#2️⃣ GROUPING THE ELEMENTS
+items_group_1 = [] # Group that includes the elements with the maximun number of decimals allowed
+items_group_2 = [] # Group that includes the elements with more decimals that the maximum allowed
 
 for element in collector:
-
-    if isinstance(element, Wall):
-        direction = element.Location.Curve.Direction
-    elif isinstance(element, Grid):
-        direction = element.Curve.Direction
-    elif isinstance(element, ReferencePlane):
-        direction = element.Direction
-    else:
+    # Getting the direction of the element
+    direction   = get_direction(element)
+    if not direction: # Skip the element if it has not attribute direction
         continue
+    vector_X    = XYZ(1,0,0)
+    angle_to_X  = get_angle_to_vector(direction, vector_X)[0] # it returns a list with 2 angles, so we need to select one
+    # print ('Angle to Axis X: {}'.format(angle_to_X))
 
-    angle_to_X = round(math.degrees(direction.AngleTo(XYZ(1,0,0))),12)
+    number_of_decimals = count_decimals_string(angle_to_X)
+    # print ('Number of decimals: {}'.format(number_of_decimals))
 
-    if count_decimals(angle_to_X) <= UI_max_number_of_decimals:
+    #Grouping the elements based on the number of decimals
+    if  number_of_decimals <= UI_max_number_of_decimals:
         items_group_1.append(element)
     else:
         items_group_2.append(element)
 
-# OVERRIDING THE ELEMENTS
+#3️⃣ OVERRIDING THE ELEMENTS
 #colors = generate_random_colors(len(groups))
 color_green = Color(0, 210, 0)
 color_red   = Color(255, 0, 0)
 
-t = Transaction(doc, 'MC-One Elements Splasher')
+# 🔓 Starting Transaction
+t = Transaction(doc, 'MC-Accuracy Precision')
 t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id
@@ -109,3 +120,4 @@ for element in items_group_2:
     doc.ActiveView.SetElementOverrides(element.Id, settings)
 
 t.Commit()
+# 🔐 Finishing Transaction

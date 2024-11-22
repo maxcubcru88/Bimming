@@ -30,6 +30,7 @@ def convert_internal_units(value, get_internal = True, units='mm'):
         elif units == "m2": units = UnitTypeId.SquareMeters
         elif units == 'cm': units = UnitTypeId.Centimeters
         elif units == "mm": units = UnitTypeId.Millimeters
+        elif units == "degrees": units = UnitTypeId.Degrees
     else:
         from Autodesk.Revit.DB import DisplayUnitType
         if   units == 'm' : units = DisplayUnitType.DUT_METERS
