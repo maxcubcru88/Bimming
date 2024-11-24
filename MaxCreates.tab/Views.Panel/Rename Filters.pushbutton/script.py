@@ -40,7 +40,92 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
-def get_all_parameters_names_and_ids(doc):
+def get_filter_type_text(filter_obj):
+    """
+    Get the string representation of a Revit filter type.
+
+    Args:
+        filter_obj: The filter object (e.g., FilterStringEquals, FilterNumericEquals, etc.).
+
+    Returns:
+        A string that represents the filter type (e.g., 'Equals', 'Contains', etc.).
+    """
+    if isinstance(filter_obj, FilterIntegerRule):
+        return 'Integer'
+    elif isinstance(filter_obj, FilterInverseRule):
+        return 'Not'
+
+    elif isinstance(filter_obj, FilterNumericEquals):
+        return 'Equals'
+    elif isinstance(filter_obj, FilterNumericGreater):
+        return 'Greater'
+    elif isinstance(filter_obj, FilterNumericGreaterOrEqual):
+        return 'Greater or Equal'
+    elif isinstance(filter_obj, FilterNumericLess):
+        return 'Less'
+    elif isinstance(filter_obj, FilterNumericLessOrEqual):
+        return 'Less or Equal'
+    elif isinstance(filter_obj, FilterNumericRuleEvaluator):
+        return 'Numeric Rule'
+    elif isinstance(filter_obj, FilterNumericValueRule):
+        return 'Numeric Value'
+
+    elif isinstance(filter_obj, FilterStringBeginsWith):
+        return 'Begins With'
+    elif isinstance(filter_obj, FilterStringContains):
+        return 'Contains'
+    elif isinstance(filter_obj, FilterStringEndsWith):
+        return 'Ends With'
+    elif isinstance(filter_obj, FilterStringEquals):
+        return 'Equals'
+    elif isinstance(filter_obj, FilterStringGreater):
+        return 'Greater'
+    elif isinstance(filter_obj, FilterStringGreaterOrEqual):
+        return 'Greater or Equal'
+    elif isinstance(filter_obj, FilterStringLess):
+        return 'Less'
+    elif isinstance(filter_obj, FilterStringLessOrEqual):
+        return 'Less or Equal'
+    elif isinstance(filter_obj, FilterStringRuleEvaluator):
+        return 'String Rule'
+
+    elif isinstance(filter_obj, FilterValueRule):
+        return 'Value Rule'
+
+
+
+
+    # Add more cases as needed for other filter types
+    else:
+        return 'Unknown Filter Type'
+
+# def get_all_parameters_names_and_ids(doc):
+#     """
+#     Get the names and IDs of all parameters in the document.
+#
+#     Args:
+#         doc: The current Revit document.
+#
+#     Returns:
+#         A dictionary where the key is the parameter's ID and the value is the parameter's name.
+#     """
+#     parameter_info = {}
+#
+#     # Collect all elements in the document (can be filtered if needed)
+#     elements = FilteredElementCollector(doc).WhereElementIsNotElementType().ToElements()
+#
+#     # Iterate through all elements
+#     for element in elements:
+#         # Loop through all parameters of the element
+#         for param in element.Parameters:
+#             # Check if the parameter's Definition is not None before accessing its Name
+#             if param.Definition:
+#                 parameter_info[param.Id] = param.Definition.Name  # Add to dictionary
+#
+#     return parameter_info
+
+
+def get_all_parameters(doc):
     """
     Get the names and IDs of all parameters in the document.
 
@@ -50,20 +135,40 @@ def get_all_parameters_names_and_ids(doc):
     Returns:
         A dictionary where the key is the parameter's ID and the value is the parameter's name.
     """
-    parameter_info = {}
+    # Initialize an empty dictionary to store parameter IDs and names
+    param_dict = {}
 
-    # Collect all elements in the document (can be filtered if needed)
-    elements = FilteredElementCollector(doc).WhereElementIsNotElementType().ToElements()
+    # Collect all elements in the document
+    collector = FilteredElementCollector(doc).WhereElementIsNotElementType()
 
-    # Iterate through all elements
-    for element in elements:
-        # Loop through all parameters of the element
-        for param in element.Parameters:
-            # Check if the parameter's Definition is not None before accessing its Name
-            if param.Definition:
-                parameter_info[param.Id] = param.Definition.Name  # Add to dictionary
+    # Iterate through each element in the collector
+    for element in collector:
+        # Get all parameters for this element
+        params = element.Parameters
+        for param in params:
+            # Check if the parameter is valid and has a definition
+            if param and param.Definition:
+                param_dict[param.Id] = param.Definition.Name
 
-    return parameter_info
+    # Collect built-in parameters (e.g., instance, type)
+    built_in_params = doc.ParameterBindings
+    for binding in built_in_params:
+        definition = binding.Definition
+        if definition and definition.Id not in param_dict:
+            param_dict[definition.Id] = definition.Name
+
+    # Collect shared parameters
+    # This assumes that you have access to shared parameter definitions
+    # Note: You'll need to reference the shared parameter file and load it for this to work
+    shared_param_file = doc.Application.SharedParametersFilename
+    if shared_param_file:
+        shared_param_file = doc.Application.SharedParametersFile
+        for group in shared_param_file.Groups:
+            for definition in group.Definitions:
+                if definition and definition.Id not in param_dict:
+                    param_dict[definition.Id] = definition.Name
+
+    return param_dict
 
 
 """ Rename views on sheets
@@ -75,7 +180,7 @@ def get_all_parameters_names_and_ids(doc):
 
 all_filter        = FilteredElementCollector(doc).OfClass(ParameterFilterElement).ToElements()
 
-project_parameters = get_all_parameters_names_and_ids(doc)
+project_parameters = get_all_parameters(doc)
 
 for filter in all_filter:
 
@@ -101,18 +206,21 @@ for filter in all_filter:
 
             if hasattr(rule, "GetEvaluator"):
                 rule_condition = rule.GetEvaluator()
+                rule_condition_name = get_filter_type_text(rule_condition)
                 try:
                     rule_value = rule.RuleString
                 except: rule_value = 'check!'
             elif hasattr(rule, "GetInnerRule"):
                 rule_condition = rule.GetInnerRule()
+                rule_condition_name = get_filter_type_text(rule_condition)
                 rule_value = rule_condition.RuleValue
             else:
-                rule_condition = 'To be defined'
+                rule_condition_name = 'To be defined'
+                rule_value = 'To be defined'
             print('Parameter: ID: {}, NAME: {}\n'
                   'Rule Condition: {}\n'
                   'Rule Value: {}'
-                  .format(rule_parameter_id,rule_parameter, rule_condition, rule_value))
+                  .format(rule_parameter_id,rule_parameter, rule_condition_name, rule_value))
 
 
     print("-" * 100)
