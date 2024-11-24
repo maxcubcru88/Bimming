@@ -54,12 +54,12 @@ app   = __revit__.Application
 # Get Views - Selected in a projectBrowser
 sel_el_ids      = uidoc.Selection.GetElementIds()
 sel_elem        = [doc.GetElement(e_id) for e_id in sel_el_ids]
-#sel_elem_filter = [el for el in sel_elem if issubclass(type(el), Wall) or issubclass(type(el), Grid) or issubclass(type(el), ReferencePlane)]
+sel_elem_filter = [el for el in sel_elem if issubclass(type(el), Wall) or issubclass(type(el), Grid) or issubclass(type(el), ReferencePlane)]
 
-if len(sel_elem) != 1:
+if len(sel_elem_filter) != 1:
     with forms.WarningBar(title='Select Wall, Grid or Ref Plane:'):
         try:
-            # Get Views - Selected in a projectBrowser
+            # Get Element - Selected in a projectBrowser
             sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element,
                                                              IselectionFilter_Categories([BuiltInCategory.OST_Walls,
                                                                                           BuiltInCategory.OST_Grids,
@@ -71,7 +71,7 @@ if len(sel_elem) != 1:
             # If None Selected - Prompt SelectViews from pyrevit.forms.select_views()
             forms.alert('No Elements Selected. Please Try Again', exitscript=True)
 else:
-    sel_elem = sel_elem[0] # Selecting the only element in the list
+    sel_elem = sel_elem_filter[0] # Selecting the only element in the list
     pass
 
 #🔥 Calculating the angle

@@ -11,6 +11,8 @@ from Snippets._convert import *
 from Autodesk.Revit.DB import *
 from pyrevit import forms
 
+from collections import defaultdict
+
 # Variables
 #==================================================
 app   = __revit__.Application
@@ -173,6 +175,20 @@ def get_direction(element):
     except: pass
     return direction
 
+def get_vector_quadrant(direction):
+    X = direction.X
+    Y = direction.Y
+    if X > 0 and Y > 0:
+        return 'Quadrant 1'
+    elif X < 0 and Y > 0:
+        return 'Quadrant 2'
+    elif X < 0 and Y < 0:
+        return 'Quadrant 3'
+    elif X > 0 and Y < 0:
+        return 'Quadrant 4'
+    else:
+        return 'Align with X or Y Axis'
+
 def generate_random_colors(n):
     colors = []
     for _ in range(n):
@@ -298,3 +314,38 @@ def get_angle_to_vector(vector1, vector2=XYZ(1, 0, 0)):
     supplementary_angle_formated = '%.12f' % (supplementary_angle)
 
     return angle_to_X_formated, supplementary_angle_formated
+
+def group_by_second_arg(items):
+    """
+    Group items by the second element in each tuple.
+
+    :param items: List of tuples
+    :return: Dictionary with grouped items
+    """
+    grouped = defaultdict(list)
+    for item in items:
+        key = item[1]  # The second element of the tuple
+        grouped[key].append(item[0])  # Append the first element to the group
+    return dict(grouped)
+
+def dict_to_list(grouped_dict):
+    """
+    Convert a grouped dictionary into a list of lists.
+
+    :param grouped_dict: Dictionary with grouped items
+    :return: List of lists
+    """
+    return list(grouped_dict.values())
+
+"""# Test data
+test = [('elem1', 'D'), ('elem2', 'A'), ('elem3', 'B'), ('elem4', 'D'), ('elem5', 'B')]
+
+# Group the items into a dictionary
+grouped_dict = group_by_second_arg(test)
+
+# Convert the dictionary to a list of lists
+grouped_list = dict_to_list(grouped_dict)
+
+# Print the results
+print("Grouped Dictionary:", grouped_dict)
+print("List of Lists:", grouped_list)"""

@@ -17,8 +17,6 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-# import random
-
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
@@ -42,50 +40,66 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
-#1️⃣ Collect Walls, Grids and Ref Planes
-
-all_walls        = FilteredElementCollector(doc).OfClass(Wall).ToElements()
-all_grids        = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
+#3️⃣ COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
+all_walls        = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(Wall).ToElements()
+all_grids        = FilteredElementCollector(doc, doc.ActiveView.Id).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
 all_ref_planes   = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(ReferencePlane).ToElements()
 
 collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
 
-# GROUPING PARALLEL AND PERPENDICULAR ELEMENTS USING THEIR VECTOR DIRECTION
-# MOVING ALL THE VECTORS TO THE 1ST QUADRANT
 
-items = []
-vectors = []
+#4️⃣ GROUPING THE ELEMENTS
+# Tuple(element, angle)
+elements_tuple = []
 
 for element in collector:
-
-    if isinstance(element, Wall):
-        direction = element.Location.Curve.Direction
-    elif isinstance(element, Grid):
-        direction = element.Curve.Direction
-    elif isinstance(element, ReferencePlane):
-        direction = element.Direction
-    else:
+    # Getting the direction of the element
+    direction   = get_direction(element)
+    if not direction: # Skip the element if it has not attribute direction
         continue
+    vector_X    = XYZ(1,0,0)
+    angle  = get_angle_to_vector(direction, vector_X)[0] # it returns a list with 2 angles, so we need to select one
+    # print ('Angle to Axis X: {}'.format(angle))
+    angle_decimal = Decimal(angle)
+    quadrant = get_vector_quadrant(direction)
+    if angle_decimal == 0 or angle_decimal == 90 or angle_decimal == 180:
+        angle = '%.12f' % (0)
+        case = 'case 1'
+    elif quadrant == 'Quadrant 1':
+        angle = angle
+        case = 'case 2'
+    elif quadrant == 'Quadrant 2':
+        angle = '%.12f' % (angle_decimal - 90)
+        case = 'case 3'
+    elif quadrant == 'Quadrant 3':
+        angle = '%.12f' % (180 - angle_decimal)
+        case = 'case 4'
+    elif quadrant == 'Quadrant 4':
+        angle = '%.12f' % (90 - angle_decimal)
+        case = 'case 5'
+    # print ('Angle in the first quadrant: {} - {}'.format(angle, case))
+    # Grouping the elements if 'sel_angle' and 'angle' match
+    elements_tuple.append(tuple((element, angle)))
 
-    direction_first_quadrant = move_vector_to_first_quadrant(direction)
+# Group the items into a dictionary
+grouped_dict = group_by_second_arg(elements_tuple)
 
-    items.append(element)
-    vectors.append(direction_first_quadrant)
+# Convert the dictionary to a list of lists
+grouped_list = dict_to_list(grouped_dict)
 
-#GROUPING BY THEIR DIRECTION
-groups = (group_walls_by_direction(items, vectors, tolerance=1e-14))
+#5️⃣ OVERRIDING THE ELEMENTS
+colors = generate_random_colors(len(grouped_list))
 
-# OVERRIDING THE ELEMENTS
-colors = generate_random_colors(len(groups))
-
+# 🔓 Starting Transaction
 t = Transaction(doc, 'MC-Elements Splasher')
 t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id
 
-for group, color in zip(groups, colors):
+for group, color in zip(grouped_list, colors):
     settings = set_graphics_override_direction(line_weight=5, color_lines=color, color_surfaces=lighten_color(color,0.45), fill_pattern_id=solid_fill_pattern)
     for el in group:
         doc.ActiveView.SetElementOverrides(el.Id, settings)
 
 t.Commit()
+# 🔐 Finishing Transaction
