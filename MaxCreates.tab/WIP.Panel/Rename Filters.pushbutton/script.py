@@ -124,6 +124,44 @@ def get_all_parameters_names_and_ids(doc):
 
     return parameter_info
 
+def get_filter_rule(rule):
+
+    rule_filter = "TBC"
+    rule_value = "TBC"
+
+    if isinstance(rule, FilterIntegerRule):
+        rule_filter = ''
+        rule_value = ''
+        #print('Integer Rule')
+    elif isinstance(rule, FilterStringRule):
+        rule_filter = ''
+        rule_value = ''
+        #print ('String Rule')
+    elif isinstance(rule, FilterDoubleRule):
+        rule_filter = ''
+        rule_value = ''
+        #print('Double Rule')
+    elif isinstance(rule, FilterInverseRule):
+        rule_filter = ''
+        rule_value = ''
+        #print('Inverse Rule')
+    elif isinstance(rule, FilterElementIdRule):
+        rule_filter = ''
+        rule_value = ''
+        #print('Element Id Rule')
+    elif isinstance(rule, HasValueFilterRule):
+        rule_filter = 'Has Value'
+        rule_value = 'Empty'
+        #print('Has Value Rule')
+    elif isinstance(rule, HasNoValueFilterRule):
+        rule_filter = 'Has No Value'
+        rule_value = 'Empty'
+        #print('Has No Value Rule')
+    else:
+        pass
+        #print('Other Rule')
+
+    return (rule_filter, rule_value)
 
 """ Rename views on sheets
     SHEET NUMBER + DETAIL NUMBER + TITLE ON SHEET (IF POPULATED)
@@ -163,7 +201,14 @@ for filter in all_filter:
     for enum, f in enumerate(get_element_filters, 1):
         rules = f.GetRules()
         for rule in rules:
-            print('Rules: {}'.format(rule))
+            print('#' * 50)
+            rule_number = 'Rule ' + str(enum) + ':'
+            print(rule_number)
+
+            print('Rules: {}'.format(type(rule)))
+            get_filter_rule(rule)
+            #print('Rule Type: {}'.format(get_filter_type_text(rule)))
+
             aux.append(type(rule))
 
             # PARAMETER NAME
@@ -171,30 +216,33 @@ for filter in all_filter:
             try:    rule_parameter = project_parameters[rule_parameter_id]
             except: rule_parameter = "It couldn't get the parameter name. Check!"
 
-            # RULE CONDITION
-            try:
-                rule_condition = rule.GetEvaluator()
-                rule_condition_name = get_filter_type_text(rule_condition)
-            except: rule_condition_name = 'Not found'
+            # RULE FILTER
+            rule_filter = get_filter_rule(rule)[0]
+            rule_value = get_filter_rule(rule)[1]
 
-            if hasattr(rule, "GetEvaluator"):
-                try:
-                    rule_value = rule.RuleString
-                except: rule_value = 'check!'
-            elif hasattr(rule, "GetInnerRule"):
-                try:
-                    rule_value = rule_condition.RuleValue
-                except: rule_value = 'check!'
-            else:
-                rule_condition_name = 'To be defined'
-                rule_value = 'To be defined'
+            # # RULE CONDITION
+            # try:
+            #     rule_condition = rule.GetEvaluator()
+            #     rule_condition_name = get_filter_type_text(rule_condition)
+            # except: rule_condition_name = 'Not found'
+            #
+            # if hasattr(rule, "GetEvaluator"):
+            #     try:
+            #         rule_value = rule.RuleString
+            #     except: rule_value = 'check!'
+            # elif hasattr(rule, "GetInnerRule"):
+            #     try:
+            #         rule_value = rule_condition.RuleValue
+            #     except: rule_value = 'check!'
+            # else:
+            #     rule_condition_name = 'To be defined'
+            #     rule_value = 'To be defined'
 
-            rule =  ('RULE {}:\n'
-                    'Parameter: ID: {}, NAME: {}\n'
-                    'Rule Condition: {}\n'
-                    'Rule Value: {}'
-                     .format(str(enum), rule_parameter_id,rule_parameter, rule_condition_name, rule_value))
-        print(rule)
+            rule_summary =  ('Parameter: ID: {}, NAME: {}\n'
+                            'Rule Filter: {}\n'
+                            'Rule Value: {}'
+                            .format(rule_parameter_id,rule_parameter, rule_filter, rule_value))
+        print(rule_summary)
 
     print("-" * 100)
 
