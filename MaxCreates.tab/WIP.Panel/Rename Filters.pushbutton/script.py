@@ -40,6 +40,69 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
+from Autodesk.Revit.DB import ElementId, LabelUtils, BuiltInParameter
+
+def get_parameter_name_by_id(doc, param_id):
+    """
+    Get the name of a parameter by its ID.
+
+    Args:
+        doc: The current Revit document.
+        param_id (ElementId or int): The parameter ID as an ElementId or an integer.
+
+    Returns:
+        str: The name of the parameter, or None if not found.
+    """
+    # Ensure param_id is an ElementId
+    if not isinstance(param_id, ElementId):
+        param_id = ElementId(param_id)
+
+    # Check if it's a built-in parameter
+    try:
+        built_in_param = BuiltInParameter(param_id.IntegerValue)
+        if built_in_param != BuiltInParameter.INVALID:
+            return LabelUtils.GetLabelFor(built_in_param)
+    except:
+        pass
+
+    # Check if it's a shared parameter
+    shared_param = doc.GetElement(param_id)
+    if shared_param:
+        return shared_param.Name
+
+    return None
+
+
+    # Check if it's a shared parameter
+    shared_param = doc.GetElement(element_id)
+    if shared_param:
+        return shared_param.Name
+
+    return None
+
+# param_id = -1002053  # Workset parameter ID
+# param_name = get_parameter_name_by_id(doc, param_id)
+#
+# if param_name:
+#     print("Parameter Name: {}".format(param_name))
+# else:
+#     print("Parameter ID {} not found.".format(param_id))
+
+def get_workset_by_id(doc, workset_id):
+    """
+    Get a workset by its ID.
+
+    Args:
+        doc: The current Revit document.
+        workset_id (int): The ID of the workset to retrieve.
+
+    Returns:
+        Workset: The workset object if found, otherwise None.
+    """
+    workset_table = doc.GetWorksetTable()
+    workset = workset_table.GetWorkset(WorksetId(workset_id))
+    return workset
+
 def get_filter_type_text(filter_obj):
     """
     Get the string representation of a Revit filter type.
@@ -92,6 +155,8 @@ def get_filter_type_text(filter_obj):
     elif isinstance(filter_obj, FilterValueRule):
         return 'Value Rule'
 
+
+
     # Add more cases as needed for other filter types
     else:
         return 'Unknown Filter Type'
@@ -124,30 +189,36 @@ def get_all_parameters_names_and_ids(doc):
 
     return parameter_info
 
-def get_filter_rule(rule):
+
+def get_filter_rule(doc, rule, parameter_id):
 
     rule_filter = "TBC"
     rule_value = "TBC"
 
     if isinstance(rule, FilterIntegerRule):
-        rule_filter = ''
-        rule_value = ''
+        rule_filter = get_filter_type_text(rule.GetEvaluator())
+        rule_value = rule.RuleValue
         #print('Integer Rule')
     elif isinstance(rule, FilterStringRule):
-        rule_filter = ''
-        rule_value = ''
+        rule_filter = get_filter_type_text(rule.GetEvaluator())
+        rule_value = rule.RuleString
         #print ('String Rule')
     elif isinstance(rule, FilterDoubleRule):
-        rule_filter = ''
-        rule_value = ''
+        rule_filter = get_filter_type_text(rule.GetEvaluator())
+        rule_value = rule.RuleValue
         #print('Double Rule')
     elif isinstance(rule, FilterInverseRule):
-        rule_filter = ''
-        rule_value = ''
+        rule_filter_inverse_rule = get_filter_rule(doc, rule.GetInnerRule(), parameter_id)
+        rule_filter = rule_filter_inverse_rule[0]
+        rule_value_id = rule_filter_inverse_rule[1]
+        rule_value = get_workset_by_id(doc, rule_value_id).Name
         #print('Inverse Rule')
     elif isinstance(rule, FilterElementIdRule):
-        rule_filter = ''
-        rule_value = ''
+        if rule.UsesLevelFiltering(doc, parameter_id):
+            rule_filter = 'Level'
+        else:
+            rule_filter = 'Element Id'
+        rule_value = doc.GetElement(rule.RuleValue).Name
         #print('Element Id Rule')
     elif isinstance(rule, HasValueFilterRule):
         rule_filter = 'Has Value'
@@ -196,6 +267,7 @@ for filter in all_filter:
     except:
         rule = 'No Rules'
         print(rule)
+        print("-" * 100)
         continue
 
     for enum, f in enumerate(get_element_filters, 1):
@@ -205,20 +277,24 @@ for filter in all_filter:
             rule_number = 'Rule ' + str(enum) + ':'
             print(rule_number)
 
+            # PARAMETER NAME
+            rule_parameter_id = rule.GetRuleParameter()
+            print(type(rule_parameter_id))
+            try:    rule_parameter = get_parameter_name_by_id(doc, rule_parameter_id)
+            #try:    rule_parameter = project_parameters[rule_parameter_id]
+            except: rule_parameter = "It couldn't get the parameter name. Check!"
+
+
+
             print('Rules: {}'.format(type(rule)))
-            get_filter_rule(rule)
+            get_filter_rule(doc, rule, rule_parameter_id)
             #print('Rule Type: {}'.format(get_filter_type_text(rule)))
 
             aux.append(type(rule))
 
-            # PARAMETER NAME
-            rule_parameter_id = rule.GetRuleParameter()
-            try:    rule_parameter = project_parameters[rule_parameter_id]
-            except: rule_parameter = "It couldn't get the parameter name. Check!"
-
             # RULE FILTER
-            rule_filter = get_filter_rule(rule)[0]
-            rule_value = get_filter_rule(rule)[1]
+            rule_filter = get_filter_rule(doc,rule, rule_parameter_id)[0]
+            rule_value = get_filter_rule(doc,rule, rule_parameter_id)[1]
 
             # # RULE CONDITION
             # try:
@@ -250,3 +326,13 @@ for filter in all_filter:
 output = set(aux)
 for i in output:
     print(i)
+
+
+from Autodesk.Revit.DB import ElementId, LabelUtils, BuiltInParameter
+
+
+
+
+# e_id = ElementId(-1002053)
+# print (doc.GetElement(e_id))
+
