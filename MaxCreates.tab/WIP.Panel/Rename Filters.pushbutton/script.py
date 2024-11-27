@@ -17,6 +17,8 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
+from traceback import print_tb
+
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
@@ -67,14 +69,6 @@ def get_parameter_name_by_id(doc, param_id):
 
     # Check if it's a shared parameter
     shared_param = doc.GetElement(param_id)
-    if shared_param:
-        return shared_param.Name
-
-    return None
-
-
-    # Check if it's a shared parameter
-    shared_param = doc.GetElement(element_id)
     if shared_param:
         return shared_param.Name
 
@@ -161,35 +155,6 @@ def get_filter_type_text(filter_obj):
     else:
         return 'Unknown Filter Type'
 
-def get_all_parameters_names_and_ids(doc):
-    """
-    Get the names and IDs of all parameters in the document.
-
-    Args:
-        doc: The current Revit document.
-
-    Returns:
-        A dictionary where the key is the parameter's ID and the value is the parameter's name.
-    """
-    parameter_info = {}
-
-    # Collect all elements in the document
-    collector1 = FilteredElementCollector(doc).WhereElementIsNotElementType()  # Instances
-    collector2 = FilteredElementCollector(doc).WhereElementIsElementType()  # Types
-
-    collector = list(collector1) + list(collector2)
-
-    # Iterate through all elements
-    for element in collector:
-        # Loop through all parameters of the element
-        for param in element.Parameters:
-            # Check if the parameter's Definition is not None before accessing its Name
-            if param.Definition:
-                parameter_info[param.Id] = param.Definition.Name  # Add to dictionary
-
-    return parameter_info
-
-
 def get_filter_rule(doc, rule, parameter_id):
 
     rule_filter = "TBC"
@@ -234,9 +199,10 @@ def get_filter_rule(doc, rule, parameter_id):
 
     return (rule_filter, rule_value)
 
-""" Rename views on sheets
-    SHEET NUMBER + DETAIL NUMBER + TITLE ON SHEET (IF POPULATED)
-    SHEET NUMBER + DETAIL NUMBER + VIEW NAME
+"""
+SORT FILTERS BY USES
+IDENTIFY DUPLICATES
+MAX NUMBER OF RULES PER FILTER
 """
 
 #def rule_condition:
@@ -246,93 +212,109 @@ def get_filter_rule(doc, rule, parameter_id):
 
 all_filter        = FilteredElementCollector(doc).OfClass(ParameterFilterElement).ToElements()
 
-project_parameters = get_all_parameters_names_and_ids(doc)
 
 aux = []
 
-for filter in all_filter:
+debugg_1 = False
 
+filters_and_rules = []
+
+for filter in all_filter:
+    aux = []
     filter_name = filter.Name
-    print('FILTER NAME: {}'.format(filter_name))
+    if debugg_1: print('FILTER NAME: {}'.format(filter_name))
 
     get_categories_id = filter.GetCategories()
     categories = [Category.GetCategory(doc, category_id).Name for category_id in get_categories_id]
-    print('CATEGORIES SELECTED: {}'.format(categories))
+    if debugg_1: print('CATEGORIES SELECTED: {}'.format(categories))
 
-    print('CONDITIONS/RULES:')
+    if debugg_1: print('CONDITIONS/RULES:')
     # get_element_filters = filter.GetElementFilter().GetFilters()
-
+    aux.append(filter)
+    aux.append(categories)
     try:
         get_element_filters = filter.GetElementFilter().GetFilters()
     except:
         rule = 'No Rules'
-        print(rule)
-        print("-" * 100)
+        if debugg_1: print(rule)
+        if debugg_1: print("-" * 100)
         continue
 
+    rules_all = []
     for enum, f in enumerate(get_element_filters, 1):
         rules = f.GetRules()
         for rule in rules:
-            print('#' * 50)
+            #if debugg1: print('#' * 50)
             rule_number = 'Rule ' + str(enum) + ':'
-            print(rule_number)
+            if debugg_1: print(rule_number)
 
             # PARAMETER NAME
             rule_parameter_id = rule.GetRuleParameter()
-            print(type(rule_parameter_id))
+            #print(type(rule_parameter_id))
             try:    rule_parameter = get_parameter_name_by_id(doc, rule_parameter_id)
-            #try:    rule_parameter = project_parameters[rule_parameter_id]
             except: rule_parameter = "It couldn't get the parameter name. Check!"
-
-
-
-            print('Rules: {}'.format(type(rule)))
-            get_filter_rule(doc, rule, rule_parameter_id)
+            #get_filter_rule(doc, rule, rule_parameter_id)
             #print('Rule Type: {}'.format(get_filter_type_text(rule)))
 
-            aux.append(type(rule))
 
             # RULE FILTER
+            rule_type = type(rule)
             rule_filter = get_filter_rule(doc,rule, rule_parameter_id)[0]
             rule_value = get_filter_rule(doc,rule, rule_parameter_id)[1]
+            #aux.append(rule_type)
 
-            # # RULE CONDITION
-            # try:
-            #     rule_condition = rule.GetEvaluator()
-            #     rule_condition_name = get_filter_type_text(rule_condition)
-            # except: rule_condition_name = 'Not found'
-            #
-            # if hasattr(rule, "GetEvaluator"):
-            #     try:
-            #         rule_value = rule.RuleString
-            #     except: rule_value = 'check!'
-            # elif hasattr(rule, "GetInnerRule"):
-            #     try:
-            #         rule_value = rule_condition.RuleValue
-            #     except: rule_value = 'check!'
-            # else:
-            #     rule_condition_name = 'To be defined'
-            #     rule_value = 'To be defined'
+            rule_summary =  ('Parameter ID: {}\n'
+                             'Parameter Name: {}\n'
+                             'Rule Type: {}\n'
+                             'Rule Filter: {}\n'
+                             'Rule Value: {}'
+                             .format(rule_parameter_id,rule_parameter, rule_type, rule_filter, rule_value))
+            rules_all.append([rule_parameter, rule_filter, rule_value])
+            if debugg_1: print(rule_summary)
+            if debugg_1: print("-" * 30)
+    aux.append(rules_all)
+    filters_and_rules.append(aux)
+    if debugg_1: print("-" * 100)
 
-            rule_summary =  ('Parameter: ID: {}, NAME: {}\n'
-                            'Rule Filter: {}\n'
-                            'Rule Value: {}'
-                            .format(rule_parameter_id,rule_parameter, rule_filter, rule_value))
-        print(rule_summary)
+# 🔓 Starting Transaction
+t = Transaction(doc, 'MC-Rename Filters')
+t.Start()
 
-    print("-" * 100)
+for f in filters_and_rules:
+    #print(filter)
 
+    filter = f[0]
+    filter_name = f[0].Name
+    filter_categories   = sorted(f[1], key=lambda x: x)
+    filter_rules        = f[2]
 
-output = set(aux)
-for i in output:
-    print(i)
+    filter_categories_concat = ', '.join(filter_categories)
+    #print(filter_categories_concat)
 
+    filer_rules_concat = []
+    for rule in filter_rules:
+        rule_string = [str(r) for r in rule]
+        rule_join = '"' + ' - '.join(rule_string) + '"'
+        filer_rules_concat.append(rule_join)
 
-from Autodesk.Revit.DB import ElementId, LabelUtils, BuiltInParameter
+        # print(rule_join)
+    filter_rules_concat = ' AND '.join(filer_rules_concat)
+    #print (filter_rules_concat)
 
+    filter_name_new = filter_categories_concat + ' - ' + filter_rules_concat
 
+    try:
+        filter.Name = filter_name_new
+    except Exception as e:
+        print("Error renaming filter:", e)
 
+    message =   ('--------------------------------------------------' + '\n'
+                'FILTER NAME OLD: {}\n'
+                'FILTER NAME NEW: {}\n'
+                '---------------------------------------------------'
+                .format(filter_name, filter_name_new))
 
-# e_id = ElementId(-1002053)
-# print (doc.GetElement(e_id))
+    #print (message)
 
+t.Commit()
+# 🔐 Finishing Transaction
