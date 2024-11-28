@@ -17,8 +17,6 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-from traceback import print_tb
-
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
@@ -42,7 +40,42 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
-from Autodesk.Revit.DB import ElementId, LabelUtils, BuiltInParameter
+def duplicate_tracker(lst):
+    """
+    Assigns a group name prefixed with 'DUPLICATED' to words that appear more than once in the list.
+    Words that appear only once are labeled as 'NOT DUPLICATED'.
+
+    Args:
+        lst (list): A list of strings to check for duplicates.
+
+    Returns:
+        list: A new list where duplicated words are replaced with 'DUPLICATED' labels,
+              and unique words are labeled as 'NOT DUPLICATED'.
+
+    Example:
+        Input: ['AAAA', 'ABA', 'AAAA', 'AA', 'ABA', 'AAA']
+        Output: ['DUPLICATED1', 'DUPLICATED2', 'DUPLICATED1', 'NOT DUPLICATED', 'DUPLICATED2', 'NOT DUPLICATED']
+    """
+    # Manually count occurrences for compatibility with Python 2.7
+    counts = {}
+    for word in lst:
+        counts[word] = counts.get(word, 0) + 1
+
+    group_mapping = {}
+    group_counter = 1
+    output = []
+
+    for word in lst:
+        if counts[word] > 1:  # If the word repeats
+            if word not in group_mapping:
+                group_mapping[word] = "DUPLICATED " + str(group_counter)
+                group_counter += 1
+            output.append(group_mapping[word])
+        else:  # If the word is unique
+            output.append("NOT DUPLICATED")
+
+    return output
+
 
 def get_parameter_name_by_id(doc, param_id):
     """
@@ -176,7 +209,8 @@ def get_filter_rule(doc, rule, parameter_id):
         rule_filter_inverse_rule = get_filter_rule(doc, rule.GetInnerRule(), parameter_id)
         rule_filter = rule_filter_inverse_rule[0]
         rule_value_id = rule_filter_inverse_rule[1]
-        rule_value = get_workset_by_id(doc, rule_value_id).Name
+        #rule_value = get_workset_by_id(doc, rule_value_id).Name
+        rule_value = 'TBC'
         #print('Inverse Rule')
     elif isinstance(rule, FilterElementIdRule):
         if rule.UsesLevelFiltering(doc, parameter_id):
@@ -202,7 +236,6 @@ def get_filter_rule(doc, rule, parameter_id):
 """
 SORT FILTERS BY USES
 IDENTIFY DUPLICATES
-MAX NUMBER OF RULES PER FILTER
 """
 
 #def rule_condition:
@@ -210,13 +243,15 @@ MAX NUMBER OF RULES PER FILTER
 
 # forms.alert("WIP-Rename Filters")
 
-all_filter        = FilteredElementCollector(doc).OfClass(ParameterFilterElement).ToElements()
+max_number_of_cat = 3
+max_number_of_rules = 4
 
-
-aux = []
-
+#1️⃣ Collecting filters and filter rules
 debugg_1 = False
 
+all_filter        = FilteredElementCollector(doc).OfClass(ParameterFilterElement).ToElements()
+
+aux = []
 filters_and_rules = []
 
 for filter in all_filter:
@@ -238,6 +273,8 @@ for filter in all_filter:
         rule = 'No Rules'
         if debugg_1: print(rule)
         if debugg_1: print("-" * 100)
+        aux.append([[rule]])
+        filters_and_rules.append(aux)
         continue
 
     rules_all = []
@@ -276,32 +313,101 @@ for filter in all_filter:
     filters_and_rules.append(aux)
     if debugg_1: print("-" * 100)
 
+# for f in filters_and_rules:
+#     print(f)
+
+#2️⃣ Sorting the filters and finding duplicates
+cats_filters = []
+for f in filters_and_rules:
+    #print(f)
+    # SORTING CATEGORIES
+    filter_categories   = sorted(f[1], key=lambda x: x)
+
+    # COMBINING AND SORTING FILTER RULES
+    # COMBINING
+    filter_rules        = f[2]
+    aux = []
+    for rule in filter_rules:
+        rule_string = [str(r) for r in rule]
+        # print(rule_string)
+        rule_join = '( ' + ' - '.join(rule_string) + ' ) '
+        #print(rule_join)
+        aux.append(rule_join)
+    #print(aux)
+
+    #SORTING
+    filter_rules_sorted = sorted(aux, key=lambda x: x)
+    # print(filter_rules_sorted)
+
+    #UNIQUE NAME
+    cats_filters.append(str(filter_categories + filter_rules_sorted))
+    # print(unique_filters)
+
+# cats_filters_sorted = sorted(cats_filters, key=lambda x: x)
+# for f in cats_filters_sorted:
+#     print(type(f))
+
+cats_filters_duplicated = duplicate_tracker(cats_filters)
+
+filters_and_rules_complete = []
+
+for a, b in zip(filters_and_rules, cats_filters_duplicated):
+    a.append(b)
+    filters_and_rules_complete.append(a)
+
+for e in filters_and_rules_complete:
+    print(e)
+
+#3️⃣ Renaming the filters
+
 # 🔓 Starting Transaction
 t = Transaction(doc, 'MC-Rename Filters')
 t.Start()
 
-for f in filters_and_rules:
-    #print(filter)
+duplicated_temp_list = []
+filter_names_used = []
 
-    filter = f[0]
-    filter_name = f[0].Name
+for f in filters_and_rules:
+    # print(f)
+
+    filter              = f[0]
+    filter_name         = f[0].Name
     filter_categories   = sorted(f[1], key=lambda x: x)
     filter_rules        = f[2]
+    duplicated          = f[3]
 
-    filter_categories_concat = ', '.join(filter_categories)
+    # print(filter_rules)
+
+    if len(filter_categories) <= max_number_of_cat:
+        filter_categories_concat = '_'.join(filter_categories)
+    else:
+        filter_categories_concat = 'MULTICAT #Description#'
     #print(filter_categories_concat)
 
-    filer_rules_concat = []
-    for rule in filter_rules:
-        rule_string = [str(r) for r in rule]
-        rule_join = '"' + ' - '.join(rule_string) + '"'
-        filer_rules_concat.append(rule_join)
+    filter_rules_concat = []
+    if len(filter_rules) <= max_number_of_rules:
+        for rule in filter_rules:
+            rule_string = [str(r) for r in rule]
+            #print(rule_string)
+            rule_join = '( ' + ' - '.join(rule_string) + ' ) '
+            filter_rules_concat.append(rule_join)
+    else:
+        filter_rules_concat.append('( Multiple Rules )')
 
         # print(rule_join)
-    filter_rules_concat = ' AND '.join(filer_rules_concat)
+    filter_rules_concat = ' AND '.join(filter_rules_concat)
     #print (filter_rules_concat)
+    if duplicated == 'NOT DUPLICATED':
+        duplicated = ''
 
-    filter_name_new = filter_categories_concat + ' - ' + filter_rules_concat
+    filter_name_new = filter_categories_concat + ' - FILTER_RULES ' + filter_rules_concat + '-' + duplicated
+
+    iteration = 0
+    while filter_name_new in filter_names_used:
+        iteration += 1
+        filter_name_new = "{}({})".format(filter_name_new, iteration)
+
+    filter_names_used.append(filter_name_new)
 
     try:
         filter.Name = filter_name_new
@@ -314,7 +420,11 @@ for f in filters_and_rules:
                 '---------------------------------------------------'
                 .format(filter_name, filter_name_new))
 
-    #print (message)
+    print (message)
 
 t.Commit()
 # 🔐 Finishing Transaction
+
+
+
+
