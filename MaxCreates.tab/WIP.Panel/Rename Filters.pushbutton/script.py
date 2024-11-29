@@ -376,12 +376,15 @@ for f in filters_and_rules:
     filter_rules        = f[2]
     duplicated          = f[3]
 
-    # print(filter_rules)
+    description_cat = False
+    description_rules = False
 
+    # print(filter_rules)
     if len(filter_categories) <= max_number_of_cat:
-        filter_categories_concat = '_'.join(filter_categories)
+        filter_categories_concat = '* ' + '_'.join(filter_categories)
     else:
-        filter_categories_concat = 'MULTICAT #Description#'
+        filter_categories_concat = '+' + str(max_number_of_cat) + ' categories'
+        description_cat = True
     #print(filter_categories_concat)
 
     filter_rules_concat = []
@@ -392,15 +395,26 @@ for f in filters_and_rules:
             rule_join = '( ' + ' - '.join(rule_string) + ' ) '
             filter_rules_concat.append(rule_join)
     else:
+        description_rules = True
         filter_rules_concat.append('( Multiple Rules )')
+
+
+    if description_cat or description_rules:
+        description = '#Description#'
+        print (22222222222222222)
+    else:
+        print(11111111111111111)
+        description = ''
 
         # print(rule_join)
     filter_rules_concat = ' AND '.join(filter_rules_concat)
     #print (filter_rules_concat)
     if duplicated == 'NOT DUPLICATED':
         duplicated = ''
+    else:
+        duplicated = ' - DUPLICATED'
 
-    filter_name_new = filter_categories_concat + ' - FILTER_RULES ' + filter_rules_concat + '-' + duplicated
+    filter_name_new = filter_categories_concat + ' - RULES ' + filter_rules_concat + ' ' + description + duplicated
 
     iteration = 0
     while filter_name_new in filter_names_used:
