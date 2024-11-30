@@ -270,7 +270,17 @@ for filter in all_filter:
     try:
         get_element_filters = filter.GetElementFilter().GetFilters()
     except:
-        rule = 'No Rules'
+        rule = 'There are not any rules set'
+        if debugg_1: print(rule)
+        if debugg_1: print("-" * 100)
+        aux.append([[rule]])
+        filters_and_rules.append(aux)
+        continue
+
+    # Check if there are sets in the filter:
+    check_set = any([isinstance(e, LogicalAndFilter) for e in get_element_filters])
+    if check_set:
+        rule = 'Contains Sets'
         if debugg_1: print(rule)
         if debugg_1: print("-" * 100)
         aux.append([[rule]])
@@ -282,7 +292,7 @@ for filter in all_filter:
         rules = f.GetRules()
         for rule in rules:
             #if debugg1: print('#' * 50)
-            rule_number = 'Rule ' + str(enum) + ':'
+            rule_number = '\nRule ' + str(enum) + ':'
             if debugg_1: print(rule_number)
 
             # PARAMETER NAME
@@ -308,7 +318,7 @@ for filter in all_filter:
                              .format(rule_parameter_id,rule_parameter, rule_type, rule_filter, rule_value))
             rules_all.append([rule_parameter, rule_filter, rule_value])
             if debugg_1: print(rule_summary)
-            if debugg_1: print("-" * 30)
+            #if debugg_1: print("-" * 30)
     aux.append(rules_all)
     filters_and_rules.append(aux)
     if debugg_1: print("-" * 100)
@@ -392,15 +402,15 @@ for f in filters_and_rules:
         for rule in filter_rules:
             rule_string = [str(r) for r in rule]
             #print(rule_string)
-            rule_join = '( ' + ' - '.join(rule_string) + ' ) '
+            rule_join = '(' + ' - '.join(rule_string) + ')'
             filter_rules_concat.append(rule_join)
     else:
         description_rules = True
-        filter_rules_concat.append('( Multiple Rules )')
+        filter_rules_concat.append(('(+' + str(max_number_of_rules) + ' rules)'))
 
 
     if description_cat or description_rules:
-        description = '#Description#'
+        description = ' - #Description#'
         print (22222222222222222)
     else:
         print(11111111111111111)
@@ -414,7 +424,7 @@ for f in filters_and_rules:
     else:
         duplicated = ' - DUPLICATED'
 
-    filter_name_new = filter_categories_concat + ' - RULES ' + filter_rules_concat + ' ' + description + duplicated
+    filter_name_new = filter_categories_concat + ' - RULES ' + filter_rules_concat + description + duplicated
 
     iteration = 0
     while filter_name_new in filter_names_used:
