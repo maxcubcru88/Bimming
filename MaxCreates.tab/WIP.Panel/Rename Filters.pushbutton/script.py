@@ -216,10 +216,11 @@ def get_filter_rule(doc, rule, parameter_id):
         rule_value = 'TBC'
         #print('Inverse Rule')
     elif isinstance(rule, FilterElementIdRule):
-        if rule.UsesLevelFiltering(doc, parameter_id):
-            rule_filter = 'Level'
-        else:
-            rule_filter = 'Element Id'
+        # if rule.UsesLevelFiltering(doc, parameter_id):
+        #     rule_filter = 'Level'
+        # else:
+        #     rule_filter = 'Element Id'
+        rule_filter = 'Element Id'
         rule_value = doc.GetElement(rule.RuleValue).Name
         #print('Element Id Rule')
     elif isinstance(rule, HasValueFilterRule):
