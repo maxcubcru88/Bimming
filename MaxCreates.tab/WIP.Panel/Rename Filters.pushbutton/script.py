@@ -17,6 +17,8 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
+from tarfile import TruncatedHeaderError
+
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
@@ -233,67 +235,108 @@ def get_filter_rule(doc, rule, parameter_id):
 
     return (rule_filter, rule_value)
 
+def check_condition_type(element_filter):
+    if isinstance(element_filter, LogicalAndFilter):
+        return " AND "
+    elif isinstance(element_filter, LogicalOrFilter):
+        return " OR "
+    else:
+        return "Unknown"
+
+
+def extract_hash_value_from_end(text):
+    """
+    This function reverses the input text, extracts the second value
+    enclosed in hash symbols (#), and then reverses the extracted value.
+
+    Parameters:
+    - text (str): The input string containing values enclosed in hash symbols.
+
+    Returns:
+    - str: The reversed value enclosed in the second pair of hash symbols.
+    """
+    # Step 1: Reverse the entire text
+    reversed_text = text[::-1]
+
+    # Step 2: Apply the regex to extract the second #enclosed value
+    match = re.search(r'(#[^#]*#)', reversed_text)
+
+    if match:
+        # Step 3: Reverse the extracted value
+        reversed_output = match.group(1)[::-1]
+        return reversed_output
+    return None
+
 """
 SORT FILTERS BY USES
 IDENTIFY DUPLICATES
 """
 
-#def rule_condition:
-
-
-# forms.alert("WIP-Rename Filters")
-
-max_number_of_cat = 3
-max_number_of_rules = 4
+MAX_CATEGORIES = 3
+MAX_RULES = 4
 
 #1️⃣ Collecting filters and filter rules
-debugg_1 = False
+DEBUG_MODE_1 = False
+DEBUG_MODE_2 = False
+DEBUG_MODE_3 = False
 
 all_filter        = FilteredElementCollector(doc).OfClass(ParameterFilterElement).ToElements()
 
-aux = []
 filters_and_rules = []
 
 for filter in all_filter:
     aux = []
+    # GET FILTER NAME
     filter_name = filter.Name
-    if debugg_1: print('FILTER NAME: {}'.format(filter_name))
-
-    get_categories_id = filter.GetCategories()
-    categories = [Category.GetCategory(doc, category_id).Name for category_id in get_categories_id]
-    if debugg_1: print('CATEGORIES SELECTED: {}'.format(categories))
-
-    if debugg_1: print('CONDITIONS/RULES:')
-    # get_element_filters = filter.GetElementFilter().GetFilters()
+    if DEBUG_MODE_1: print('FILTER NAME: {}'.format(filter_name))
     aux.append(filter)
+
+    # GET CATEGORIES
+    categories_ids = filter.GetCategories()
+    categories = [Category.GetCategory(doc, category_id).Name for category_id in categories_ids]
+    categories = sorted(categories, key=lambda x: x)
+    if DEBUG_MODE_1: print('CATEGORIES SELECTED: {}'.format(categories))
     aux.append(categories)
+    if DEBUG_MODE_1: print('CONDITIONS/RULES:')
+
+    # RULES
+    # Check if there are not any rules:
     try:
         get_element_filters = filter.GetElementFilter().GetFilters()
     except:
-        rule = 'There are not any rules set'
-        if debugg_1: print(rule)
-        if debugg_1: print("-" * 100)
-        aux.append([[rule]])
+        number_of_rules = 'N/A'
+        rule = '(There are not any rules set)'
+        if DEBUG_MODE_1: print(rule)
+        if DEBUG_MODE_1: print("-" * 100)
+        aux.append(rule)
+        aux.append(number_of_rules)
         filters_and_rules.append(aux)
         continue
 
     # Check if there are sets in the filter:
-    check_set = any([isinstance(e, LogicalAndFilter) for e in get_element_filters])
+    check_set = any([isinstance(e, LogicalAndFilter) or isinstance(e, LogicalOrFilter) for e in get_element_filters])
     if check_set:
-        rule = 'Contains Sets'
-        if debugg_1: print(rule)
-        if debugg_1: print("-" * 100)
-        aux.append([[rule]])
+        number_of_rules = 'N/A'
+        rule = '(Contains Sets)'
+        if DEBUG_MODE_1: print(rule)
+        if DEBUG_MODE_1: print("-" * 100)
+        aux.append(rule)
+        aux.append(number_of_rules)
         filters_and_rules.append(aux)
         continue
 
+    # Check the condition
+    element_filter = filter.GetElementFilter()
+    condition = check_condition_type(element_filter)
+
+    # Collect rules:
     rules_all = []
+
     for enum, f in enumerate(get_element_filters, 1):
         rules = f.GetRules()
         for rule in rules:
-            #if debugg1: print('#' * 50)
             rule_number = '\nRule ' + str(enum) + ':'
-            if debugg_1: print(rule_number)
+            if DEBUG_MODE_1: print(rule_number)
 
             # PARAMETER NAME
             rule_parameter_id = rule.GetRuleParameter()
@@ -303,148 +346,132 @@ for filter in all_filter:
             #get_filter_rule(doc, rule, rule_parameter_id)
             #print('Rule Type: {}'.format(get_filter_type_text(rule)))
 
-
             # RULE FILTER
             rule_type = type(rule)
             rule_filter = get_filter_rule(doc,rule, rule_parameter_id)[0]
             rule_value = get_filter_rule(doc,rule, rule_parameter_id)[1]
             #aux.append(rule_type)
 
-            rule_summary =  ('Parameter ID: {}\n'
-                             'Parameter Name: {}\n'
-                             'Rule Type: {}\n'
-                             'Rule Filter: {}\n'
-                             'Rule Value: {}'
-                             .format(rule_parameter_id,rule_parameter, rule_type, rule_filter, rule_value))
-            rules_all.append([rule_parameter, rule_filter, rule_value])
-            if debugg_1: print(rule_summary)
-            #if debugg_1: print("-" * 30)
-    aux.append(rules_all)
+            r = [rule_parameter, rule_filter, str(rule_value)]
+            rule_compact = '(' + '-'.join(r) + ')'
+            rules_all.append(rule_compact)
+
+            if DEBUG_MODE_1: print(rule_compact)
+
+    number_of_rules = len(rules_all)
+    rules_all = sorted(rules_all, key=lambda x: x)
+    rules_all_compact = '(' + condition.join(rules_all) + ')'
+    if DEBUG_MODE_1:
+        print('\nRULES COMPACTED:')
+        print(rules_all_compact)
+
+    if DEBUG_MODE_1:
+        print('\nNUMBER OF RULES:')
+        print(number_of_rules)
+    aux.append(rules_all_compact)
+    aux.append(number_of_rules)
     filters_and_rules.append(aux)
-    if debugg_1: print("-" * 100)
 
-# for f in filters_and_rules:
-#     print(f)
+    if DEBUG_MODE_1: print("-" * 100)
 
-#2️⃣ Sorting the filters and finding duplicates
-cats_filters = []
-for f in filters_and_rules:
-    #print(f)
-    # SORTING CATEGORIES
-    filter_categories   = sorted(f[1], key=lambda x: x)
+#2️⃣ GROUPING CATS AND FILTER TO FIND DUPLICATES
 
-    # COMBINING AND SORTING FILTER RULES
-    # COMBINING
-    filter_rules        = f[2]
-    aux = []
-    for rule in filter_rules:
-        rule_string = [str(r) for r in rule]
-        # print(rule_string)
-        rule_join = '( ' + ' - '.join(rule_string) + ' ) '
-        #print(rule_join)
-        aux.append(rule_join)
-    #print(aux)
+categories_and_filters = []
+for instance in filters_and_rules:
+    # JOINING CATEGORIES
+    filter_categories   = instance[1]
+    filter_categories_concat = '_'.join(filter_categories)
+    # FILTER RULES
+    filter_rules        = instance[2]
+    # UNIQUE NAME
+    unique_name = '#CATS: ' + filter_categories_concat + ' #RULES: ' + filter_rules
+    categories_and_filters.append(unique_name)
+    #print(unique_name)
 
-    #SORTING
-    filter_rules_sorted = sorted(aux, key=lambda x: x)
-    # print(filter_rules_sorted)
-
-    #UNIQUE NAME
-    cats_filters.append(str(filter_categories + filter_rules_sorted))
-    # print(unique_filters)
-
-# cats_filters_sorted = sorted(cats_filters, key=lambda x: x)
-# for f in cats_filters_sorted:
-#     print(type(f))
-
-cats_filters_duplicated = duplicate_tracker(cats_filters)
-
-filters_and_rules_complete = []
+cats_filters_duplicated = duplicate_tracker(categories_and_filters)
 
 for a, b in zip(filters_and_rules, cats_filters_duplicated):
     a.append(b)
-    filters_and_rules_complete.append(a)
 
-for e in filters_and_rules_complete:
-    print(e)
+for lst in filters_and_rules:
+    for l in lst:
+        if DEBUG_MODE_2:
+            print(l)
+    if DEBUG_MODE_2:
+        print('-'*100)
 
-#3️⃣ Renaming the filters
+
+#3️⃣ RENAMING FILTERS
 
 # 🔓 Starting Transaction
 t = Transaction(doc, 'MC-Rename Filters')
 t.Start()
 
-duplicated_temp_list = []
-filter_names_used = []
-
 for f in filters_and_rules:
-    # print(f)
 
-    filter              = f[0]
-    filter_name         = f[0].Name
-    filter_categories   = sorted(f[1], key=lambda x: x)
-    filter_rules        = f[2]
-    duplicated          = f[3]
+    filter              = f[0] # Revit.DB.ParameterFilterElement
+    filter_categories   = f[1] # List       -> ['Doors', 'Floors', 'Ramps', 'Stairs', 'Walls']
+    filter_rules        = f[2] # String     -> ((Assembly Description-Has Value-Empty)AND(Cut-Has Value-Empty)AND(Workset-Equals-TBC))
+    number_of_rules     = f[3] # String/Int -> 'N/A', 2, 3...
+    duplicated          = f[4] # String     -> 'NOT DUPLICATED', 'DUPLICATED_001', 'DUPLICATED_002', ETC
 
+    if DEBUG_MODE_3:
+        print(filter_name)
+        print(filter_categories)
+        print(number_of_rules)
+        print(filter_rules)
+        print(duplicated)
+        print('-'*100)
+
+    # We assume that a description is not need in principle
     description_cat = False
     description_rules = False
 
-    # print(filter_rules)
-    if len(filter_categories) <= max_number_of_cat:
+    if len(filter_categories) <= MAX_CATEGORIES:
         filter_categories_concat = '* ' + '_'.join(filter_categories)
     else:
-        filter_categories_concat = '+' + str(max_number_of_cat) + ' categories'
+        filter_categories_concat = '+' + str(MAX_CATEGORIES) + ' categories'
         description_cat = True
     #print(filter_categories_concat)
 
-    filter_rules_concat = []
-    if len(filter_rules) <= max_number_of_rules:
-        for rule in filter_rules:
-            rule_string = [str(r) for r in rule]
-            #print(rule_string)
-            rule_join = '(' + ' - '.join(rule_string) + ')'
-            filter_rules_concat.append(rule_join)
-    else:
+    if number_of_rules != 'N/A' and number_of_rules > MAX_RULES:
+        filter_rules ='(+' + str(MAX_RULES) + ' rules)'
         description_rules = True
-        filter_rules_concat.append(('(+' + str(max_number_of_rules) + ' rules)'))
-
+    elif filter_rules == '(Contains Sets)':
+        description_rules = True
+    else: pass
 
     if description_cat or description_rules:
         description = ' - #Description#'
-        print (22222222222222222)
-    else:
-        print(11111111111111111)
-        description = ''
+    else: description = ''
 
-        # print(rule_join)
-    filter_rules_concat = ' AND '.join(filter_rules_concat)
-    #print (filter_rules_concat)
-    if duplicated == 'NOT DUPLICATED':
-        duplicated = ''
-    else:
-        duplicated = ' - DUPLICATED'
+    duplicated = '' if duplicated == 'NOT DUPLICATED' else ' - DUPLICATED'
 
-    filter_name_new = filter_categories_concat + ' - RULES ' + filter_rules_concat + description + duplicated
+    filter_name_new = filter_categories_concat + ' - RULES ' + filter_rules + description + duplicated
 
+    # Adding (1), (2), etc to have unique names:
+    filter_names_used = []
     iteration = 0
     while filter_name_new in filter_names_used:
         iteration += 1
         filter_name_new = "{}({})".format(filter_name_new, iteration)
-
     filter_names_used.append(filter_name_new)
+
+    # Renaming the filters
+
+
 
     try:
         filter.Name = filter_name_new
     except Exception as e:
-        print("Error renaming filter:", e)
+        if DEBUG_MODE_3: print("Error renaming filter:", e)
 
     message =   ('--------------------------------------------------' + '\n'
                 'FILTER NAME OLD: {}\n'
                 'FILTER NAME NEW: {}\n'
                 '---------------------------------------------------'
                 .format(filter_name, filter_name_new))
-
-    print (message)
+    if DEBUG_MODE_3: print (message)
 
 t.Commit()
 # 🔐 Finishing Transaction
