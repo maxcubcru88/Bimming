@@ -268,6 +268,32 @@ def extract_hash_value_from_end(text):
         return reversed_output
     return None
 
+
+def remove_specific_characters(input_string):
+    """
+    Removes the characters \:{}[]|;<>?~ from the input string.
+
+    Args:
+        input_string (str): The string to process.
+
+    Returns:
+        str: A string with the specified characters removed.
+    """
+    # Define the characters to remove
+    characters_to_remove = r"\:{}[]|;<>?~"
+
+    # Use str.replace in a loop to remove each character
+    for char in characters_to_remove:
+        input_string = input_string.replace(char, '')
+
+    return input_string
+
+
+# Example usage
+# example = "-*#Sample: text {with} special |characters| to remove? ~Test!"
+# result = remove_specific_characters(example)
+# print(result)  # Output: "Sample text with special characters to remove Test!"
+
 """
 SORT FILTERS BY USES
 IDENTIFY DUPLICATES
@@ -276,10 +302,33 @@ IDENTIFY DUPLICATES
 MAX_CATEGORIES = 3
 MAX_RULES = 4
 
+# 2️⃣🅱️ Define Renaming Rules (UI FORM)
+# https://revitpythonwrapper.readthedocs.io/en/latest/ui/forms.html?highlight=forms#flexform
+from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
+
+components = [Label('Max number of categories to be included in the name\nof the filter'),  TextBox('cat'),
+              Label('Max number of rules to show in the name of the filter'),    TextBox('rules'),
+              Separator(),
+              Button('Rename Views')]
+
+form = FlexForm('Title', components)
+form.show()
+
+# Ensure Components are Filled
+try:
+    user_inputs     = form.values #type: dict
+    MAX_CATEGORIES  = int(user_inputs['cat'])
+    MAX_RULES       = int(user_inputs['rules'])
+except:
+    forms.alert('Rules to rename have not been defined. Please Try Again', exitscript=True)
+
+print(MAX_CATEGORIES)
+print(MAX_RULES)
+
 #1️⃣ Collecting filters and filter rules
 DEBUG_MODE_1 = False
 DEBUG_MODE_2 = False
-DEBUG_MODE_3 = False
+DEBUG_MODE_3 = True
 
 all_filter        = FilteredElementCollector(doc).OfClass(ParameterFilterElement).ToElements()
 
@@ -468,7 +517,8 @@ for f in filters_and_rules:
     filter_names_used.append(filter_name_new)
 
     # Renaming the filters
-
+    # Removing special characters if any, some subcategories had the special characters '<' and '>'
+    filter_name_new = remove_specific_characters(filter_name_new)
     try:
         filter.Name = filter_name_new
     except Exception as e:
