@@ -25,7 +25,7 @@ from tarfile import TruncatedHeaderError
 #==================================================
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
-
+import re
 # pyRevit
 from pyrevit import revit, forms
 
@@ -46,37 +46,38 @@ def duplicate_tracker(lst):
     """
     Assigns a group name prefixed with 'DUPLICATED' to words that appear more than once in the list.
     Words that appear only once are labeled as 'NOT DUPLICATED'.
-
-    Args:
-        lst (list): A list of strings to check for duplicates.
-
-    Returns:
-        list: A new list where duplicated words are replaced with 'DUPLICATED' labels,
-              and unique words are labeled as 'NOT DUPLICATED'.
-
-    Example:
-        Input: ['AAAA', 'ABA', 'AAAA', 'AA', 'ABA', 'AAA']
-        Output: ['DUPLICATED1', 'DUPLICATED2', 'DUPLICATED1', 'NOT DUPLICATED', 'DUPLICATED2', 'NOT DUPLICATED']
     """
-    # Manually count occurrences for compatibility with Python 2.7
+    # Count occurrences of each word
     counts = {}
     for word in lst:
         counts[word] = counts.get(word, 0) + 1
 
+    # Initialize variables
     group_mapping = {}
-    group_counter = 1
+    group_counter = {}
     output = []
 
     for word in lst:
         if counts[word] > 1:  # If the word repeats
             if word not in group_mapping:
-                group_mapping[word] = "DUPLICATED " + str(group_counter)
-                group_counter += 1
-            output.append(group_mapping[word])
+                # Assign a base label like "DUPLICATED 1", "DUPLICATED 2"
+                group_mapping[word] = "DUPLICATED " + str(len(group_mapping) + 1)
+                group_counter[word] = 0
+
+            group_counter[word] += 1
+            if group_counter[word] == 1:
+                output.append(group_mapping[word])
+            else:
+                output.append("{} ({})".format(group_mapping[word], group_counter[word] - 1))
         else:  # If the word is unique
             output.append("NOT DUPLICATED")
 
     return output
+
+
+# lst = ['11', '22', '11', '11', '222', '22']
+# temp = duplicate_tracker(lst)
+# print(temp)
 
 
 def get_parameter_name_by_id(doc, param_id):
@@ -409,11 +410,12 @@ t.Start()
 
 for f in filters_and_rules:
 
-    filter              = f[0] # Revit.DB.ParameterFilterElement
-    filter_categories   = f[1] # List       -> ['Doors', 'Floors', 'Ramps', 'Stairs', 'Walls']
-    filter_rules        = f[2] # String     -> ((Assembly Description-Has Value-Empty)AND(Cut-Has Value-Empty)AND(Workset-Equals-TBC))
-    number_of_rules     = f[3] # String/Int -> 'N/A', 2, 3...
-    duplicated          = f[4] # String     -> 'NOT DUPLICATED', 'DUPLICATED_001', 'DUPLICATED_002', ETC
+    filter              = f[0]          # Revit.DB.ParameterFilterElement
+    filter_name         = filter.Name   # Name of the filter
+    filter_categories   = f[1]          # List       -> ['Doors', 'Floors', 'Ramps', 'Stairs', 'Walls']
+    filter_rules        = f[2]          # String     -> ((Assembly Description-Has Value-Empty)AND(Cut-Has Value-Empty)AND(Workset-Equals-TBC))
+    number_of_rules     = f[3]          # String/Int -> 'N/A', 2, 3...
+    duplicated          = f[4]          # String     -> 'NOT DUPLICATED', 'DUPLICATED_001', 'DUPLICATED_002', ETC
 
     if DEBUG_MODE_3:
         print(filter_name)
@@ -441,11 +443,19 @@ for f in filters_and_rules:
         description_rules = True
     else: pass
 
-    if description_cat or description_rules:
-        description = ' - #Description#'
-    else: description = ''
+    if extract_hash_value_from_end(filter_name):
+        description = ' - ' + extract_hash_value_from_end(filter_name)
+    else:
+        if description_cat or description_rules:
+            description = ' - ' + '#Description#'
+        else: description = ''
 
-    duplicated = '' if duplicated == 'NOT DUPLICATED' else ' - DUPLICATED'
+    if duplicated == 'NOT DUPLICATED':
+        duplicated = ''
+    else:
+        duplicated = ' - ' + duplicated
+
+    # Check if the current name of the filer contains any description
 
     filter_name_new = filter_categories_concat + ' - RULES ' + filter_rules + description + duplicated
 
@@ -458,8 +468,6 @@ for f in filters_and_rules:
     filter_names_used.append(filter_name_new)
 
     # Renaming the filters
-
-
 
     try:
         filter.Name = filter_name_new

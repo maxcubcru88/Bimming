@@ -4,6 +4,7 @@
 #==================================================
 import random
 import math
+
 from decimal import Decimal, getcontext, ROUND_HALF_UP
 
 from Snippets._convert import *
