@@ -23,6 +23,8 @@ Author: Máximo Cubero"""
 #==================================================
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
+from System.Collections.Generic import List
+import csv
 
 # pyRevit
 from pyrevit import revit, forms
@@ -40,77 +42,131 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
-""" Rename views on sheets
-    SHEET NUMBER + DETAIL NUMBER + TITLE ON SHEET (IF POPULATED)
-    SHEET NUMBER + DETAIL NUMBER + VIEW NAME
-"""
+def export_to_csv(path, data):
+    # Writing to the CSV file
+    with open(file_path, 'w') as file:
+        writer = csv.writer(file, lineterminator='\n')
+        writer.writerows(data)
+    print("Data exported to:", file_path)
 
-forms.alert("WIP-Filter Usage")
+# # Data to export
+# data = [[1, 2, 3, 4, 5], ['a', 'b', 'c', 'd', 'e']]
+# # Filepath for the CSV
+# file_path = r'C:\\Users\\34644\\Downloads\\test\\test01.csv'
+#
+# export_to_csv(file_path, data)
 
-"""#1️⃣ Select Views
 
-# Get Views - Selected in a projectBrowser
-sel_el_ids  = uidoc.Selection.GetElementIds()
-sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
-sel_views   = [el for el in sel_elem if issubclass(type(el), View)]
 
-# If None Selected - Promp SelectViews from pyrevit.forms.select_views()
-if not sel_views:
-    sel_views = forms.select_views()
+# #🔒 Start Transaction to make changes in project
+# t = Transaction(doc, 'MC-Rename Views')
+#
+# t.Start()  #🔓
+# for view in sel_views:
+#
+#     #3️⃣ Create New View Name
+#     old_name = view.Name
+#     new_name = prefix + old_name.replace(find, replace) + suffix
+#
+#     #4️⃣ Rename Views (Ensure unique view name)
+#     for i in range(20):
+#         try:
+#             view.Name = new_name
+#             print('{} -> {}'.format(old_name, new_name))
+#             break
+#         except:
+#             new_name += '*'
+#
+# t.Commit() #🔒
+#
+# print ('-'*50)
+# print ('Done!')"""
 
-# Ensure Views Selected
-if not sel_views:
-    forms.alert('No Views Selected. Please Try Again', exitscript=True)
 
-# #2️⃣🅰️ Define Renaming Rules
-# prefix  = 'pre-'
-# find    = 'Level'
-# replace = 'MC-Level'
-# suffix  = '-suf'
+def GetFilterIds(view):
+    filterIds = None
+    try:
+        filterIds = view.GetFilters()
+    except Exception as e:
+        #print("Error collecting filters in view: {}".format(view), e)
+        filterIds = None
+    return filterIds
 
-# 2️⃣🅱️ Define Renaming Rules (UI FORM)
-# https://revitpythonwrapper.readthedocs.io/en/latest/ui/forms.html?highlight=forms#flexform
-from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
 
-components = [Label('Prefix:'),  TextBox('prefix'),
-              Label('Find:'),    TextBox('find'),
-              Label('Replace:'), TextBox('replace'),
-              Label('Suffix'),   TextBox('suffix'),
-              Separator(),       Button('Rename Views')]
-
-form = FlexForm('Title', components)
-form.show()
-
-# Ensure Components are Filled
-try:
-    user_inputs = form.values #type: dict
-    prefix  = user_inputs['prefix']
-    find    = user_inputs['find']
-    replace = user_inputs['replace']
-    suffix  = user_inputs['suffix']
-except:
-    forms.alert('Rules to rename have not been defined. Please Try Again', exitscript=True)
-
-#🔒 Start Transaction to make changes in project
-t = Transaction(doc, 'MC-Rename Views')
-
-t.Start()  #🔓
-for view in sel_views:
-
-    #3️⃣ Create New View Name
-    old_name = view.Name
-    new_name = prefix + old_name.replace(find, replace) + suffix
-
-    #4️⃣ Rename Views (Ensure unique view name)
-    for i in range(20):
+def GetUsedFilterIds(doc):
+    views = FilteredElementCollector(doc).OfClass(View).ToElements()
+    usedFilterIds = List[ElementId]()
+    for view in views:
+        viewFilterIds = []
         try:
-            view.Name = new_name
-            print('{} -> {}'.format(old_name, new_name))
-            break
+            viewFilterIds = view.GetFilters()
+            for filter in viewFilterIds:
+                usedFilterIds.Add(filter)
         except:
-            new_name += '*'
+            pass  # this exception happens when a view doesn't support filters
+    return usedFilterIds
 
-t.Commit() #🔒
 
-print ('-'*50)
-print ('Done!')"""
+def GetUnusedFilters(doc):
+    usedFilterIds = GetUsedFilterIds(doc)
+    unusedFilters = FilteredElementCollector(doc).OfClass(ParameterFilterElement).Excluding(usedFilterIds).ToElements()
+    return list(unusedFilters)
+
+filters_used   = GetUsedFilterIds(doc)
+filters_unused = GetUnusedFilters(doc)
+
+# print(type(filters_unused))
+# print(list(filters_unused))
+
+
+output_filters, output_views = [], []
+output = [["View Type", "View Name", "IsViewTemplate", "Sheet Info", "View Template Applied", "Filter Name", "Filter Id", "IsEnabled"]]
+
+views = FilteredElementCollector(doc).OfClass(View).ToElements()
+
+for v in views:
+
+    sheetInfo = v.get_Parameter(BuiltInParameter.VIEW_SHEET_VIEWPORT_INFO).AsString()
+    if sheetInfo:
+        sheetInfo = sheetInfo
+    else:
+        sheetInfo = "Not in sheet"
+
+    if v.IsTemplate:
+        vType = "View Template"
+        vTemplate = "N/A"
+    else:
+        vType = v.ViewType
+        vTemplateFam = doc.GetElement(v.get_Parameter(BuiltInParameter.VIEW_TEMPLATE).AsElementId())
+        try:
+            vTemplate = vTemplateFam.Name
+        except:
+            vTemplate = "Not View Template Assigned"
+
+    filters_in_view = GetFilterIds(v)
+
+    if filters_in_view:
+        for f in filters_in_view:
+            aux = []
+            aux.append(str(vType))
+            aux.append(v.Name)
+            aux.append(v.IsTemplate)
+            aux.append(sheetInfo)
+            aux.append(vTemplate)
+            aux.append(doc.GetElement(f).Name)
+            aux.append(f.IntegerValue)
+            aux.append(v.GetIsFilterEnabled(f))
+
+            output.append(aux)
+
+OUT = output
+
+
+file_path = r'C:\\Users\\34644\\Downloads\\test\\test01.csv'
+export_to_csv(file_path, output)
+
+# for e in output:
+# #     print(e)
+
+
+
