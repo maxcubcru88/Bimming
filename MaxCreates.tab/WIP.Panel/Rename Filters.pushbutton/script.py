@@ -296,8 +296,9 @@ def remove_specific_characters(input_string):
 # print(result)  # Output: "Sample text with special characters to remove Test!"
 
 """
-SORT FILTERS BY USES
-IDENTIFY DUPLICATES
+IMPROVE THE INPUTS
+EVALUATOR ELEMENT ID TEST
+UNITS, CONVERT TO PROJECTS UNITS
 """
 
 MAX_CATEGORIES = 3
