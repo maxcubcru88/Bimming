@@ -1,0 +1,112 @@
+# This node has been made by Modelical
+# www.modelical.com
+
+#Note: The methods used in this script has been taken from Paul Wintour's BVN package and reused to achieve the purpose of the same. https://parametricmonkey.com/2016/03/09/get-unused-filters/
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+clr.AddReference("System.Core")
+import System.Linq
+clr.ImportExtensions(System.Linq)
+
+clr.AddReference("RevitAPI")
+import Autodesk.Revit
+from Autodesk.Revit.Exceptions import InvalidOperationException
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB import ElementId
+from System.Collections.Generic import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from RevitServices.Persistence import DocumentManager
+
+def GetFilterIds(view):
+  filterIds = None
+  try:
+    filterIds = view.GetFilters()
+  except InvalidOperationException, e:
+    filterIds = None
+  return filterIds
+
+def GetUsedFilterIds(doc):
+  views = FilteredElementCollector(doc).OfClass(View).ToElements()
+  usedFilterIds = []
+  for view in views:
+    viewFilterIds = []
+    try:
+      viewFilterIds = view.GetFilters()
+    except InvalidOperationException, e:
+      pass # this exception happens when a view doesn't support filters
+    usedFilterIds.extend(viewFilterIds)
+  return usedFilterIds
+
+def GetUnusedFilters(doc):
+  usedFilterIds = GetUsedFilterIds(doc).ToList[ElementId]()
+  unusedFilters = FilteredElementCollector(doc).OfClass(ParameterFilterElement).Excluding(usedFilterIds).ToElements()
+  return list(f.ToDSType(True) for f in unusedFilters)
+
+#The inputs to this node will be stored as a list in the IN variables.
+
+bool = IN[0]
+output = ""
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+filters = GetUnusedFilters(doc)
+filters2 = UnwrapElement(filters)
+
+#Assign your output to the OUT variable.
+OUT = [e.Name for e in filters], filters
+
+output_filters, output_views = [], []
+output = [["View Type", "View Name", "IsViewTemplate", "Sheet Info", "View Template Applied", "Filter Name", "Filter Id", "IsEnabled"]]
+
+views = FilteredElementCollector(doc).OfClass(View).ToElements()
+
+VT3D = [i for i in FilteredElementCollector(doc).OfClass(View) if i.IsTemplate and i.ViewType == ViewType.ThreeD]
+
+views = list(views) + list(VT3D)
+
+for v in views:
+	filters_in_view = GetFilterIds(v)
+	
+	sheetInfo = v.get_Parameter(BuiltInParameter.VIEW_SHEET_VIEWPORT_INFO).AsString()
+	if sheetInfo:
+		sheetInfo = sheetInfo
+	else: sheetInfo = "Not in sheet"
+	
+	if v.IsTemplate:
+		vType = "View Template"
+		vTemplate = "N/A"
+	else:
+		vType = v.ViewType
+		vTemplateFam = doc.GetElement(v.get_Parameter(BuiltInParameter.VIEW_TEMPLATE).AsElementId())
+		try: vTemplate = vTemplateFam.Name
+		except: vTemplate = "Not View Template Assigned"
+	
+	if filters_in_view:
+		for f in filters_in_view:
+			aux = []
+
+			aux.append(vType)
+			aux.append(v.Name)
+			aux.append(v.IsTemplate)
+			aux.append(sheetInfo)
+			aux.append(vTemplate)
+			aux.append(doc.GetElement(f).Name)
+			aux.append(f)
+			aux.append(v.GetIsFilterEnabled(f))
+			
+			output.append(aux)
+		
+OUT = output
