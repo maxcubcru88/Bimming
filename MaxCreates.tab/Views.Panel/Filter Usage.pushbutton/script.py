@@ -25,7 +25,7 @@ Author: Máximo Cubero"""
 from Autodesk.Revit.DB import *
 from System.Collections.Generic import List
 import csv
-
+import codecs
 # pyRevit
 from pyrevit import revit, forms
 
@@ -43,8 +43,8 @@ app   = __revit__.Application
 #==================================================
 
 def export_to_csv(file_path, data):
-    # Writing to the CSV file
-    with open(file_path, 'w', encoding='utf-8') as file:
+    # Open the file with codecs and utf-8 encoding
+    with codecs.open(file_path, 'w', 'utf-8') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerows(data)
     print("Data exported to:", file_path)
