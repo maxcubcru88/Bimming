@@ -17,6 +17,8 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
+import sys
+
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
@@ -115,7 +117,8 @@ try:
     sel_elem = doc.GetElement(sel_elem_id)
 except:
     # If None Selected - Prompt SelectViews from pyrevit.forms.select_views()
-    TaskDialog.Show('No Elements Selected. Please Try Again')
+    TaskDialog.Show('Message', 'No Reference Plane Selected. Please Try Again')
+    sys.exit()
 
 # sel_elem_filter_name = Element.Name.GetValue(sel_elem)
 # print(sel_elem_filter_name)
@@ -123,8 +126,11 @@ subcategory_id = sel_elem.get_Parameter(BuiltInParameter.CLINE_SUBCATEGORY).AsEl
 subcategory = doc.GetElement(subcategory_id)
 sel_subcategory_name = Element.Name.GetValue(subcategory)
 # sel_elem_filter_name = Element.Name.GetValue(sel_elem)
-#
-print(sel_subcategory_name)
+
+if not isinstance(sel_subcategory_name, str):
+    sel_subcategory_name = 'None'
+
+# print(sel_subcategory_name)
 
 
 all_ref_planes   = FilteredElementCollector(doc).OfClass(ReferencePlane).ToElements()
@@ -136,7 +142,7 @@ for rp in all_ref_planes:
     subcategory = doc.GetElement(subcategory_id)
     subcategory_name = Element.Name.GetValue(subcategory)
     if not isinstance(subcategory_name, str):
-        subcategory_name = '<None>'
+        subcategory_name = 'None'
     dic[subcategory_name] = dic.get(subcategory_name, []) + [rp]
     # print(subcategory_name)
 
