@@ -104,10 +104,10 @@ if not sel_views:
 
 try:
     # Get Element - Selected in a projectBrowser
-    sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element,
-                                                     IselectionFilter_Categories([BuiltInCategory.OST_CLines]),
-                                                     "Select elements")
-
+    # sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element,
+    #                                                  IselectionFilter_Categories([BuiltInCategory.OST_CLines]),
+    #                                                  "Select elements")
+    sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element, "Select elements")
     sel_elem_id = sel_elem_reference.ElementId
     sel_elem = doc.GetElement(sel_elem_id)
 except:
