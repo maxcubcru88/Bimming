@@ -29,6 +29,10 @@ from Autodesk.Revit.DB import *
 # pyRevit
 from pyrevit import revit, forms
 
+
+from Snippets._selection import *
+
+
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
@@ -76,16 +80,6 @@ if not sel_views:
 
 
 
-class IselectionFilter_Categories(ISelectionFilter):
-    def __init__(self, allowed_categories):
-        """ ISelectionFilter made to filter with categories
-        allowed_types: list of allowed Types"""
-        self.allowed_categories = allowed_categories
-
-    def AllowElement(self, element):
-        if element.Category.BuiltInCategory in self.allowed_categories:
-            return True
-
 # Get Views - Selected in a projectBrowser
 # sel_el_ids      = uidoc.Selection.GetElementIds()
 # sel_elem        = [doc.GetElement(e_id) for e_id in sel_el_ids]
@@ -113,6 +107,7 @@ try:
     sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element,
                                                      IselectionFilter_Categories([BuiltInCategory.OST_CLines]),
                                                      "Select elements")
+
     sel_elem_id = sel_elem_reference.ElementId
     sel_elem = doc.GetElement(sel_elem_id)
 except:
