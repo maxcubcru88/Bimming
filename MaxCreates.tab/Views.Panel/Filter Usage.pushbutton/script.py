@@ -42,7 +42,7 @@ app   = __revit__.Application
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
 
-def export_to_csv(path, data):
+def export_to_csv(file_path, data):
     # Writing to the CSV file
     with open(file_path, 'w') as file:
         writer = csv.writer(file, lineterminator='\n')
@@ -120,7 +120,7 @@ filters_unused = GetUnusedFilters(doc)
 
 
 output_filters, output_views = [], []
-output = [["View Type", "View Name", "IsViewTemplate", "Sheet Info", "View Template Applied", "Filter Name", "Filter Id", "IsEnabled"]]
+output = [["Filter Id", "Filter Name", "Filter Enable", "Filter Visibility", "View Type", "View Name", "Is View Template", "View Template Name Applied", "Sheet Info"]]
 
 views = FilteredElementCollector(doc).OfClass(View).ToElements()
 
@@ -148,25 +148,68 @@ for v in views:
     if filters_in_view:
         for f in filters_in_view:
             aux = []
-            aux.append(str(vType))
-            aux.append(v.Name)
-            aux.append(v.IsTemplate)
-            aux.append(sheetInfo)
-            aux.append(vTemplate)
-            aux.append(doc.GetElement(f).Name)
-            aux.append(f.IntegerValue)
-            aux.append(v.GetIsFilterEnabled(f))
+
+            aux.append(f.IntegerValue)              # Filter Id
+            aux.append(doc.GetElement(f).Name)      # Filter Name <string>
+            aux.append(v.GetIsFilterEnabled(f))     # Filter Enable <True/False>
+            aux.append(v.GetFilterVisibility(f))    # Filter Visibility <True/False>
+            aux.append(str(vType))                  # View Type <string>
+            aux.append(v.Name)                      # View Name
+            aux.append(v.IsTemplate)                # IsViewTemplate <True/False>
+            aux.append(vTemplate)                   # Name of the view template assigned to the view <string>
+            aux.append(sheetInfo)                   # Sheet Info <string>
+
 
             output.append(aux)
 
-OUT = output
-
-
-file_path = r'C:\\Users\\34644\\Downloads\\test\\test01.csv'
-export_to_csv(file_path, output)
-
-# for e in output:
-# #     print(e)
 
 
 
+import os
+
+# Get the user's Documents directory
+documents_folder = os.path.expanduser("~\\Documents\\BIMming_Filter_Usage_Reports")
+
+# Check if the BIMming folder exists, if not, create it
+if not os.path.exists(documents_folder):
+    os.makedirs(documents_folder)
+
+# print("Reports will be saved in:", documents_folder)
+
+# Open the folder in File Explorer
+os.startfile(documents_folder)
+
+
+
+import datetime
+import os
+from Autodesk.Revit.DB import ModelPathUtils
+
+# Get the active Revit document
+doc = __revit__.ActiveUIDocument.Document
+
+# Get the model path (supports both local and central models)
+model_path = doc.PathName
+
+# Extract the file name without the extension
+file_name = os.path.splitext(os.path.basename(model_path))[0]
+
+# Get the current date and time
+now = datetime.datetime.now()
+
+# Format the date and time as 'YYYY-MM-DD_HH.MM.SS'
+formatted_datetime = now.strftime("%Y-%m-%d_%H.%M.%S")
+
+# Concatenate the file name with the formatted date and time
+new_file_name = "{}_{}".format(file_name, formatted_datetime)
+
+# Print the result
+# print("Concatenated File Name:", new_file_name)
+
+
+# Create the full file path with the .csv extension
+csv_file_path = os.path.join(documents_folder, new_file_name + ".csv")
+
+# print(csv_file_path)
+
+export_to_csv(csv_file_path, output)

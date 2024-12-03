@@ -6,5 +6,7 @@ layout:
   - Rename Filters
   - Filter Usage
   - Download Filter Usage Template
+  - Delete Filters Unabled or Not Overriden in Views
+  - Delete and Replace Duplicated Filters
   - Create Views Workset
   
