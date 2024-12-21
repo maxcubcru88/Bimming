@@ -37,7 +37,7 @@ class IselectionFilter_Classes(ISelectionFilter):
         if type(element) in self.allowed_types:
             return True
 
-
+#THIS ONE DOES NOT WORK IN RVT 2021
 class IselectionFilter_Categories(ISelectionFilter):
     def __init__(self, allowed_categories):
         """ ISelectionFilter made to filter with categories
