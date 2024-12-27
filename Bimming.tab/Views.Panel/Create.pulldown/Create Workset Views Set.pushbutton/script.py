@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__   = "Worksets\n3D Views"
+__title__   = "Set of 3D Views to audit Worksets"
 __doc__     = """Version = 1.0
 Date    = 12.11.2024
 ________________________________________________________________
@@ -20,7 +20,7 @@ You will be able to override this placeholder.
 2. Automate Your Boring Work ;)
 
 ________________________________________________________________
-TODO:
+TO DO:
 [FEATURE] - Describe Your ToDo Tasks Here
 ________________________________________________________________
 Last Updates:
@@ -55,15 +55,6 @@ doc    = __revit__.ActiveUIDocument.Document #type:Document
 # ╩ ╩╩ ╩╩╝╚╝
 #==================================================
 
-if forms.check_workshared(doc): pass
-else: sys.exit()
-
-t = Transaction(doc, 'MC-Audit Worksets Create 3D Views')
-t.Start()
-
-# Define the desired name for the new 3D View Type
-new_view_type_name = "Audit_Workset"
-
 # Function to get existing ViewFamilyType for 3D views
 def get_existing_3d_view_type(view_type_name):
     collector = FilteredElementCollector(doc).OfClass(ViewFamilyType)
@@ -73,57 +64,82 @@ def get_existing_3d_view_type(view_type_name):
             return vft
     return None
 
-# Check if a 3D view type with the specified name already exists
-existing_view_type = get_existing_3d_view_type(new_view_type_name)
+# 📝Constants
+VIEW_PREFIX = "Audit_Workset-"
+THREE_D_VIEW_FAMILY_NAME = "Audit_Worksets"
 
-if existing_view_type:
-    existing_view_type_name = existing_view_type.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString()
-    #print("3D View Type '{new_view_type_name}' already exists.".format(new_view_type_name=existing_view_type_name))
-    new_view_type = existing_view_type
-else:
-    # Find the base 3D ViewFamilyType to duplicate
-    base_3d_view_type_id = doc.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D)
-    base_3d_view_type = doc.GetElement(base_3d_view_type_id)
-    # Duplicate the existing 3D View Type to create a new one
-    new_view_type = base_3d_view_type.Duplicate(new_view_type_name)
+# ✍️Name of views that are going to be created
+all_worksets = FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset)
+view_names_to_create = [VIEW_PREFIX + workset.Name for workset in all_worksets]
+
+t = Transaction(doc, 'Bimming-Set of Workset Views Created')
+t.Start()
+
+# 🕵️CHECKS
+# 1️⃣Check in the model is workshared
+if not forms.check_workshared(doc): sys.exit()
+
+# 2️⃣Check in the 3D View Types 'Audit_Workset' is already created, if not, a new one will be created
+threeD_view_family_type = get_existing_3d_view_type(THREE_D_VIEW_FAMILY_NAME)
+
+if not threeD_view_family_type:
+    # Get a default 3D ViewFamilyType to duplicate
+    default_threeD_view_family_type_id = doc.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D)
+    default_threeD_view_family_type = doc.GetElement(default_threeD_view_family_type_id)
+    # Duplicate the default 3D ViewFamilyType to create a new one
+    threeD_view_family_type = default_threeD_view_family_type.Duplicate(THREE_D_VIEW_FAMILY_NAME)
     #print("Created new 3D View Type '{}'.".format(new_view_type_name))
 
-if doc.ActiveView.GetTypeId() == new_view_type.Id:
-    forms.alert("Please switch to a different view. The current view needs to be deleted, and it must not be one of the 3D 'Audit_Workset' view types.")
+# 3️⃣Check if the Active View belongs to the threeD_view_family_type_name = "Audit_Workset"
+message = 'The current view needs to be deleted.\nPlease switch to another view, ideally a non 3D-View'
 
-else:
-    # Delete all views in the new 3D View Type
-    all_views       = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Views).WhereElementIsNotElementType().ToElements()
-    all_3D_views    = [view for view in all_views if view.ViewType == ViewType.ThreeD]
+if doc.ActiveView.GetTypeId() == threeD_view_family_type.Id:
+    forms.alert(message,exitscript=True)
 
-    for view in all_3D_views:
-        if view.GetTypeId() == new_view_type.Id:
-            doc.Delete(view.Id)
-            #print("Deleted existing 3D View '{}'.".format(view.Id))
+if doc.ActiveView.Name in view_names_to_create:
+    forms.alert(message, exitscript=True)
 
-    all_worksets     = FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset)
-    all_worksets_2   = list(all_worksets)   #Created for the 2nd loop within the 1st loop
 
-    for workset in all_worksets:
-        View_name = "Audit_Workset-" + workset.Name
+# 🔥Creating Set of Views
 
-        # Create 3D View
-        # view_type_3D_id = doc.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D)
-        view_3d_iso = View3D.CreateIsometric(doc, new_view_type.Id)
+# 1️⃣Delete all views in the new 3D View Type or with Name already in use
+all_views       = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Views).WhereElementIsNotElementType().ToElements()
+all_3D_views    = [view for view in all_views if view.ViewType == ViewType.ThreeD]
 
-        # Rename 3D View
-        view_3d_iso.Name = View_name
+for view in all_3D_views:
+    if view.GetTypeId() == threeD_view_family_type.Id:
+        doc.Delete(view.Id)
+    elif view.Name in view_names_to_create:
+        doc.Delete(view.Id)
 
-        # Set Detail Level to Fine
-        view_3d_iso.DetailLevel = ViewDetailLevel.Fine
+# 2️⃣Creating the new set of 3D views
+all_worksets     = FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset)
+all_worksets_2   = list(all_worksets)   #Created for the 2nd loop within the 1st loop
 
-        # Set workset visibility
-        for w in all_worksets_2:
-            if workset.Id == w.Id:
-                view_3d_iso.SetWorksetVisibility(w.Id, WorksetVisibility.Visible)
-            else:
-                view_3d_iso.SetWorksetVisibility(w.Id, WorksetVisibility.Hidden)
+count = 0
 
-    forms.alert("Job done! New 'Audit Workset'\nviews created/updated.")
+for workset in all_worksets:
+    View_name = VIEW_PREFIX + workset.Name
+
+    # Create 3D View
+    view_3d_iso = View3D.CreateIsometric(doc, threeD_view_family_type.Id)
+
+    # Rename 3D View
+    view_3d_iso.Name = View_name
+
+    # Set Detail Level to Fine
+    view_3d_iso.DetailLevel = ViewDetailLevel.Fine
+
+    # Set workset visibility
+    for w in all_worksets_2:
+        if workset.Id == w.Id:
+            view_3d_iso.SetWorksetVisibility(w.Id, WorksetVisibility.Visible)
+        else:
+            view_3d_iso.SetWorksetVisibility(w.Id, WorksetVisibility.Hidden)
+
+    count += 1
+
+forms.alert("Job done! {} Views created/updated.\nCheck the views in your project browser starting with the prefix "
+            "'Audit_Workset' which are part of the 3D View Family Type (Audit_Workset)".format(str(count)))
 
 t.Commit()
