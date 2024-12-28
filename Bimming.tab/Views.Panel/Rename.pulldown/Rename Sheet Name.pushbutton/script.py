@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Rename\nSheet Name"
+__title__ = "Rename Sheet Name"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -49,7 +49,7 @@ sel_el_ids  = uidoc.Selection.GetElementIds()
 sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
 sel_sheets  = [el for el in sel_elem if issubclass(type(el), ViewSheet)]
 
-# If None Selected - Promp SelectViews from pyrevit.forms.select_views()
+# If None Selected - Prompt SelectViews from pyrevit.forms.select_views()
 filter_sheet = ElementCategoryFilter(BuiltInCategory.OST_Sheets)
 if not sel_sheets:
     sel_sheets = forms.select_sheets()

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Rename\nViews"
+__title__ = "Rename Views"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -46,6 +46,10 @@ app   = __revit__.Application
 sel_el_ids  = uidoc.Selection.GetElementIds()
 sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
 sel_views   = [el for el in sel_elem if issubclass(type(el), View)]
+
+for e in sel_elem:
+    print(e)
+    print(type(e))
 
 # If None Selected - Promp SelectViews from pyrevit.forms.select_views()
 if not sel_views:
@@ -107,3 +111,8 @@ t.Commit() #🔒
 
 print ('-'*50)
 print ('Done!')
+
+print_md('## ✅️ {btn_name} was Clicked ✨'.format(btn_name=btn_name))  # <- Print MarkDown Heading 2
+print_md('---')
+print_md('⌨️ Hold **ALT + CLICK** to open the source code of this button. ')  # <- Print MarkDown Heading 2
+print_md('*You can Duplicate, or use this placeholder for your own script.*')

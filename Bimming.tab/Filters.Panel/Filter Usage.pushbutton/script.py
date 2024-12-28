@@ -17,6 +17,8 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
+from lib2to3.fixes.fix_asserts import NAMES
+
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
 # ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
 # ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
@@ -41,6 +43,17 @@ app   = __revit__.Application
 # ║║║╠═╣║║║║
 # ╩ ╩╩ ╩╩╝╚╝ MAIN
 #==================================================
+
+# ADD PROJECT INFO
+# Current file name: Project1.rvt
+# Project Name: Project Name
+# Project Number: Project Number
+# Client Name: Owner
+
+# ADD SCRIP INFO:
+# Date of execution: DDMMYYYY HH:MM:SS
+# Execution Time: 29 seconds
+
 
 def export_to_csv(file_path, data):
     # Open the file with codecs and utf-8 encoding

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Rename\nViews Sheets"
+__title__ = "Rename Views Placed on Sheets"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________

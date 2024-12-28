@@ -28,42 +28,22 @@ Last Updates:
 ________________________________________________________________
 Author: Maximo Cubero"""
 
-#from symbol import continue_stmt
-
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝
-#==================================================
+# IMPORTS
+from Snippets._bimming_views import get_existing_3d_view_type
 from Autodesk.Revit.DB import *
 # pyRevit
-from pyrevit import revit, forms
+from pyrevit import forms
 import sys
 #.NET Imports
 import clr
 clr.AddReference('System')
 
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝
-#==================================================
+# VARIABLES
 app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝
-#==================================================
-
-# Function to get existing ViewFamilyType for 3D views
-def get_existing_3d_view_type(view_type_name):
-    collector = FilteredElementCollector(doc).OfClass(ViewFamilyType)
-    for vft in collector:
-        name_param = vft.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString()
-        if vft.ViewFamily == ViewFamily.ThreeDimensional and name_param == view_type_name:
-            return vft
-    return None
-
+#MAIN
 # 📝Constants
 VIEW_PREFIX = "Audit_Workset-"
 THREE_D_VIEW_FAMILY_NAME = "Audit_Worksets"
