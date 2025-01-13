@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Filter\nUsage"
+__title__ = "Usage\nReport"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -17,31 +17,25 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-from lib2to3.fixes.fix_asserts import NAMES
+import sys
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
-# Regular + Autodesk
 from Autodesk.Revit.DB import *
 from System.Collections.Generic import List
 import csv
 import codecs
-# pyRevit
-from pyrevit import revit, forms
+import os
+import datetime
+from pyrevit import forms
 
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
 
 # ADD PROJECT INFO
@@ -60,41 +54,8 @@ def export_to_csv(file_path, data):
     with codecs.open(file_path, 'w', 'utf-8') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerows(data)
-    print("Data exported to:", file_path)
-
-# # Data to export
-# data = [[1, 2, 3, 4, 5], ['a', 'b', 'c', 'd', 'e']]
-# # Filepath for the CSV
-# file_path = r'C:\\Users\\34644\\Downloads\\test\\test01.csv'
-#
-# export_to_csv(file_path, data)
-
-
-
-# #🔒 Start Transaction to make changes in project
-# t = Transaction(doc, 'MC-Rename Views')
-#
-# t.Start()  #🔓
-# for view in sel_views:
-#
-#     #3️⃣ Create New View Name
-#     old_name = view.Name
-#     new_name = prefix + old_name.replace(find, replace) + suffix
-#
-#     #4️⃣ Rename Views (Ensure unique view name)
-#     for i in range(20):
-#         try:
-#             view.Name = new_name
-#             print('{} -> {}'.format(old_name, new_name))
-#             break
-#         except:
-#             new_name += '*'
-#
-# t.Commit() #🔒
-#
-# print ('-'*50)
-# print ('Done!')"""
-
+    return  file_path
+    # print("Data exported to: " + file_path)
 
 def GetFilterIds(view):
     filterIds = None
@@ -104,7 +65,6 @@ def GetFilterIds(view):
         #print("Error collecting filters in view: {}".format(view), e)
         filterIds = None
     return filterIds
-
 
 def GetUsedFilterIds(doc):
     views = FilteredElementCollector(doc).OfClass(View).ToElements()
@@ -119,21 +79,25 @@ def GetUsedFilterIds(doc):
             pass  # this exception happens when a view doesn't support filters
     return usedFilterIds
 
-
 def GetUnusedFilters(doc):
     usedFilterIds = GetUsedFilterIds(doc)
     unusedFilters = FilteredElementCollector(doc).OfClass(ParameterFilterElement).Excluding(usedFilterIds).ToElements()
     return list(unusedFilters)
 
+# 🫷Check if the model is saved
+# Get the model path (supports both local and central models)
+model_path = doc.PathName
+if model_path == "":
+    forms.alert('Model has not been saved yet.\nSave the model and try again.')
+    sys.exit()
+
+# 1️⃣Get filter information to be exported
+
 filters_used   = GetUsedFilterIds(doc)
 filters_unused = GetUnusedFilters(doc)
 
-# print(type(filters_unused))
-# print(list(filters_unused))
-
-
 output_filters, output_views = [], []
-output = [["Filter Id", "Filter Name", "Filter Enable", "Filter Visibility", "View Type", "View Name", "Is View Template", "View Template Name Applied", "Sheet Info"]]
+output_data = [["DATA"], ["Filter Id", "Filter Name", "Filter Enable", "Filter Visibility", "View Type", "View Name", "Is View Template", "View Template Name Applied", "Sheet Info"]]
 
 views = FilteredElementCollector(doc).OfClass(View).ToElements()
 
@@ -173,17 +137,55 @@ for v in views:
             aux.append(sheetInfo)                   # Sheet Info <string>
 
 
-            output.append(aux)
+            output_data.append(aux)
+
+
+# 2️⃣PROJECT INFO
+
+output_project_info = [["PROJECT INFO"]]
+
+output_project_info.append(("File Path", model_path))
+#print("File Path: " + model_path)
+
+# Extract the file name without the extension
+file_name = os.path.splitext(os.path.basename(model_path))[0]
+output_project_info.append(("File Name", file_name))
+#print("File Name: " + file_name)
+
+# Check if the document is workshared
+if doc.IsWorkshared:
+    # Get the central file path
+    # Extract basic file info, including the central path
+    file_info = BasicFileInfo.Extract(model_path)
+
+    # Retrieve the central model path
+    central_path = file_info.CentralPath
+    if central_path:
+        central_path = central_path
+        #print("Central File Path: " + central_path)
+    else:
+        central_path = "File hasn't been saved as a central model yet."
+        #print("Central File Path: " + central_path)
+else:
+    central_path = "This document is not workshared."
+    #print("Central File Path: " + central_path)
+
+output_project_info.append(("Central File Path", central_path))
+#print(output_project_info)
+
+# Get the current user's name
+user_name = app.Username
+output_project_info.append(("Export by", user_name))
+#print("Export by: " + user_name)
 
 
 
-
-import os
+# 2️⃣Create directory where the report will be saved
 
 # Get the user's Documents directory
-documents_folder = os.path.expanduser("~\\Documents\\BIMming_Filter_Usage_Reports")
+documents_folder = os.path.expanduser("~\\Documents\\Bimming_Filter_Usage_Reports")
 
-# Check if the BIMming folder exists, if not, create it
+# Check if the Bimming folder exists, if not, create it
 if not os.path.exists(documents_folder):
     os.makedirs(documents_folder)
 
@@ -193,25 +195,16 @@ if not os.path.exists(documents_folder):
 os.startfile(documents_folder)
 
 
-
-import datetime
-import os
-from Autodesk.Revit.DB import ModelPathUtils
-
-# Get the active Revit document
-doc = __revit__.ActiveUIDocument.Document
-
-# Get the model path (supports both local and central models)
-model_path = doc.PathName
-
-# Extract the file name without the extension
-file_name = os.path.splitext(os.path.basename(model_path))[0]
+# 3️⃣Name of the report: File Name + Date + Time
 
 # Get the current date and time
 now = datetime.datetime.now()
 
 # Format the date and time as 'YYYY-MM-DD_HH.MM.SS'
 formatted_datetime = now.strftime("%Y-%m-%d_%H.%M.%S")
+output_project_info.append((("Export Date", now.strftime("%Y-%m-%d"))))
+output_project_info.append((("Export Time", now.strftime("%H.%M.%S"))))
+
 
 # Concatenate the file name with the formatted date and time
 new_file_name = "{}_{}".format(file_name, formatted_datetime)
@@ -219,10 +212,13 @@ new_file_name = "{}_{}".format(file_name, formatted_datetime)
 # Print the result
 # print("Concatenated File Name:", new_file_name)
 
+# 4️⃣Export the report
 
 # Create the full file path with the .csv extension
 csv_file_path = os.path.join(documents_folder, new_file_name + ".csv")
-
 # print(csv_file_path)
 
+output = output_project_info + output_data
 export_to_csv(csv_file_path, output)
+
+

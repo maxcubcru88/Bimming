@@ -120,6 +120,6 @@ for workset in all_worksets:
     count += 1
 
 forms.alert("Job done! {} Views created/updated.\nCheck the views in your project browser starting with the prefix "
-            "'Audit_Workset' which are part of the 3D View Family Type (Audit_Workset)".format(str(count)))
+            "'Audit_Workset' which are part of the 3D View Family Type (Audit_Workset)".format(str(count)),warn_icon=False)
 
 t.Commit()

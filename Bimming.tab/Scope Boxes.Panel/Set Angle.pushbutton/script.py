@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__   = "Rotate\nScope Boxes"
+__title__   = "Set Angle\nRotation"
 __doc__     = """Version = 1.0
 Date    = 12.11.2024
 ________________________________________________________________
@@ -28,38 +28,22 @@ Last Updates:
 ________________________________________________________________
 Author: Maximo Cubero"""
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝
+# IMPORTS
 #==================================================
 from Autodesk.Revit.DB import *
-
-# pyRevit
 from pyrevit import revit, forms
-
-import sys
 import math
-
-#.NET Imports
 import clr
 clr.AddReference('System')
-from System.Collections.Generic import List
 
-
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝
+# VARIABLES
 #==================================================
 app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
 
-
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝
+# MAIN
 #==================================================
-
 class MyOption(forms.TemplateListItem):
     def __init__(self, item, el_name, angle, checked=False):
         self.item = item #Id of the element
@@ -137,12 +121,9 @@ def rotate_scope_box(scope_box, angle_degrees):
     ElementTransformUtils.RotateElement(doc, scope_box.Id, axis, angle_radians)
 
 #1️⃣ Select Scope Boxes
-
 scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElements()
 scope_boxes_sorted = sorted(scope_boxes, key=lambda sb: get_scope_box_angle(sb))
 scope_boxes_ids = [sb.Id for sb in scope_boxes]
-
-#print([get_scope_box_angle(sb) for sb in scope_boxes_sorted])
 
 # Get Scope Boxes - Selected in the model
 sel_el_ids          = uidoc.Selection.GetElementIds()

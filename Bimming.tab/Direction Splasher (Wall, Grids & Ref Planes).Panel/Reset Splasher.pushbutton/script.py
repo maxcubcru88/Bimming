@@ -17,30 +17,18 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-import random
-import math
-
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 
-# pyRevit
-from pyrevit import revit, forms
-
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
 
 def set_graphics_override_direction(line_weight = -1 ,
@@ -76,19 +64,6 @@ def set_graphics_override_direction(line_weight = -1 ,
     return override_settings
 
 #1️⃣ Select Wall, Grid or Ref Planes
-
-# # Get Views - Selected in a projectBrowser
-# sel_el_ids  = uidoc.Selection.GetElementIds()
-# sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
-# sel_views   = [el for el in sel_elem if issubclass(type(el), View)]
-#
-# # If None Selected - Promp SelectViews from pyrevit.forms.select_views()
-# if not sel_views:
-#     sel_views = forms.select_views()
-#
-# # Ensure Views Selected
-# if not sel_views:
-#     forms.alert('No Views Selected. Please Try Again', exitscript=True)
 
 all_walls        = FilteredElementCollector(doc).OfClass(Wall).ToElements()
 all_grids        = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()

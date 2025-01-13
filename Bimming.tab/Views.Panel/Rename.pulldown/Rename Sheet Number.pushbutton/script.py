@@ -73,7 +73,7 @@ components = [Label('Prefix:'),  TextBox('prefix'),
               Label('Find:'),    TextBox('find'),
               Label('Replace:'), TextBox('replace'),
               Label('Suffix'),   TextBox('suffix'),
-              Separator(),       Button('Rename Views')]
+              Separator(),       Button('Rename Sheet Numbers')]
 
 form = FlexForm('Title', components)
 form.show()
@@ -90,6 +90,8 @@ except:
 
 #🔒 Start Transaction to make changes in project
 t = Transaction(doc, 'MC-Rename Sheet Number')
+
+print('The following sheet numbers have been renamed:')
 
 t.Start()  #🔓
 
@@ -116,5 +118,5 @@ project_browser.Show()
 
 t.Commit() #🔒
 
-print ('-'*50)
-print ('Done!')
+print ('---'*30)
+print ('Job done!')

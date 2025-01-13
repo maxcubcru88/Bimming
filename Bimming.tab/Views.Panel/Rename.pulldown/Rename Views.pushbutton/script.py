@@ -17,41 +17,27 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
-# Regular + Autodesk
 from Autodesk.Revit.DB import *
+from pyrevit import forms
 
-# pyRevit
-from pyrevit import revit, forms
-
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
 
 #1️⃣ Select Views
-
 # Get Views - Selected in a projectBrowser
 sel_el_ids  = uidoc.Selection.GetElementIds()
 sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
 sel_views   = [el for el in sel_elem if issubclass(type(el), View)]
 
-for e in sel_elem:
-    print(e)
-    print(type(e))
-
-# If None Selected - Promp SelectViews from pyrevit.forms.select_views()
+# If None Selected - Prompt SelectViews from pyrevit.forms.select_views()
 if not sel_views:
     sel_views = forms.select_views()
 
@@ -59,13 +45,8 @@ if not sel_views:
 if not sel_views:
     forms.alert('No Views Selected. Please Try Again', exitscript=True)
 
-# #2️⃣🅰️ Define Renaming Rules
-# prefix  = 'pre-'
-# find    = 'Level'
-# replace = 'MC-Level'
-# suffix  = '-suf'
 
-# 2️⃣🅱️ Define Renaming Rules (UI FORM)
+# 2️⃣ Define Renaming Rules (UI FORM)
 # https://revitpythonwrapper.readthedocs.io/en/latest/ui/forms.html?highlight=forms#flexform
 from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
 
@@ -91,6 +72,8 @@ except:
 #🔒 Start Transaction to make changes in project
 t = Transaction(doc, 'MC-Rename Views')
 
+print('The following views have been renamed:')
+
 t.Start()  #🔓
 for view in sel_views:
 
@@ -109,10 +92,5 @@ for view in sel_views:
 
 t.Commit() #🔒
 
-print ('-'*50)
-print ('Done!')
-
-print_md('## ✅️ {btn_name} was Clicked ✨'.format(btn_name=btn_name))  # <- Print MarkDown Heading 2
-print_md('---')
-print_md('⌨️ Hold **ALT + CLICK** to open the source code of this button. ')  # <- Print MarkDown Heading 2
-print_md('*You can Duplicate, or use this placeholder for your own script.*')
+print ('---'*30)
+print ('Job done!')

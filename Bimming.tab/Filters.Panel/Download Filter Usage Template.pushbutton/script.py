@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Filter Usage\nTemplate"
+__title__ = "Template\nReport"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________

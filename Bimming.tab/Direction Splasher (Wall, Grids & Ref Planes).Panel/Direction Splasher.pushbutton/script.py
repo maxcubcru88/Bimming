@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Direction\nSplasher"
+__title__ = "Directions\nSplasher"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -17,9 +17,7 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
 # Custom Libraries
 from Snippets._MaxCreates import *
@@ -27,17 +25,13 @@ from Snippets._MaxCreates import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
 
 #3️⃣ COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
@@ -46,7 +40,6 @@ all_grids        = FilteredElementCollector(doc, doc.ActiveView.Id).OfCategory(B
 all_ref_planes   = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(ReferencePlane).ToElements()
 
 collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
-
 
 #4️⃣ GROUPING THE ELEMENTS
 # Tuple(element, angle)

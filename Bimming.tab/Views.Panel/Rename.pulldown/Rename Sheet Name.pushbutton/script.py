@@ -19,27 +19,18 @@ Author: Máximo Cubero"""
 
 from toaiff import error
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
-# Regular + Autodesk
 from Autodesk.Revit.DB import *
+from pyrevit import forms
 
-# pyRevit
-from pyrevit import revit, forms
-
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
 
 #1️⃣ Select Views
@@ -73,7 +64,7 @@ components = [Label('Prefix:'),  TextBox('prefix'),
               Label('Find:'),    TextBox('find'),
               Label('Replace:'), TextBox('replace'),
               Label('Suffix'),   TextBox('suffix'),
-              Separator(),       Button('Rename Views')]
+              Separator(),       Button('Rename Sheet Names')]
 
 form = FlexForm('Title', components)
 form.show()
@@ -90,6 +81,8 @@ except:
 
 #🔒 Start Transaction to make changes in project
 t = Transaction(doc, 'MC-Rename Sheet Name')
+
+print('The following sheet names have been renamed:')
 
 t.Start()  #🔓
 for sheet in sel_sheets:
@@ -108,5 +101,5 @@ for sheet in sel_sheets:
 
 t.Commit() #🔒
 
-print ('-'*50)
-print ('Done!')
+print ('---'*30)
+print ('Job done!')

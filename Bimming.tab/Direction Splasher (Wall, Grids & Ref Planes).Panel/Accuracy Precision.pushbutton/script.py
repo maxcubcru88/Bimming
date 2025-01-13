@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Accuracy\nPrecision"
+__title__ = "Decimals\nAccuracy"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -19,35 +19,24 @@ Author: Máximo Cubero"""
 
 import sys
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
 # Custom Libraries
 from Snippets._MaxCreates import *
 
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
-from Autodesk.Revit.UI.Selection import ObjectType
 
 # pyRevit
 from pyrevit import forms
-from pyrevit.revit.report import print_view
 
-#Others
-import math
-
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
 
 #👆 WPF Form to set the number of decimals to be checked
@@ -67,7 +56,6 @@ except: forms.alert(warning_message, exitscript=True)
 # Check that the integer is between 0 and 12
 if UI_max_number_of_decimals in list(range(0, 13)): pass# list [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 else: forms.alert(warning_message, exitscript=True)
-
 
 #🔥 Splashing walls
 

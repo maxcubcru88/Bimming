@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Wall\nAngle"
+__title__ = "Read\nAngle"
 __doc__ = """Version = 1.0
 Date    = 28.10.2024
 _____________________________________________________________________
@@ -17,14 +17,8 @@ Last update:
 _____________________________________________________________________
 Author: Máximo Cubero"""
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
-import math
-from decimal import Decimal, getcontext, ROUND_HALF_UP, ROUND_UP, ROUND_05UP, ROUND_DOWN, ROUND_FLOOR, ROUND_HALF_DOWN, \
-    ROUND_HALF_EVEN
-
 # Custom Libraries
 from Snippets._MaxCreates import *
 from Snippets._selection import *
@@ -36,17 +30,13 @@ from Autodesk.Revit.UI.Selection import ObjectType
 # pyRevit
 from pyrevit import forms
 
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
 
 #🫳 Select Wall, Grid or Ref Planes

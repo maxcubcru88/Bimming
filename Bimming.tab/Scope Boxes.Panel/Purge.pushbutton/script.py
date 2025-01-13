@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__   = "Delete\nScope Boxes"
+__title__   = "Delete\nUnused"
 __doc__     = """Version = 1.0
 Date    = 12.11.2024
 ________________________________________________________________
@@ -28,41 +28,37 @@ Last Updates:
 ________________________________________________________________
 Author: Maximo Cubero"""
 
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝
+# IMPORTS
 #==================================================
 from Autodesk.Revit.DB import *
-
-# pyRevit
-from pyrevit import revit, forms
-
-import sys
-
-#.NET Imports
+from pyrevit import forms
 import clr
 clr.AddReference('System')
-from System.Collections.Generic import List
 
-
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝
+# VARIABLES
 #==================================================
 app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
 
-
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝
+# MAIN
 #==================================================
 
-# Step 1: Collect all Scope Boxes in the project
+class MyOption(forms.TemplateListItem):
+    def __init__(self, item, el_name, checked=False):
+        self.item = item #Id of the element
+        self.el_name = el_name
+        self.checked = checked
+
+    @property
+    def name(self):
+        el_id = str(self.item)
+        return "Name: {}".format(self.el_name)
+
+# 1️⃣ Collect all Scope Boxes in the project
 scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElements()
 
-# Step 2: Collect all views and elements that might reference scope boxes
+# 2️⃣ Collect all views and elements that might reference scope boxes
 views = FilteredElementCollector(doc).OfClass(View).ToElements()
 grids = FilteredElementCollector(doc).OfClass(Grid).ToElements()
 reference_planes = FilteredElementCollector(doc).OfClass(ReferencePlane).ToElements()
@@ -70,7 +66,7 @@ reference_planes = FilteredElementCollector(doc).OfClass(ReferencePlane).ToEleme
 # Set to store used scope box IDs
 used_scope_box_ids = set()
 
-# Step 3: Check which scope boxes are being used
+# 3️⃣ Check which scope boxes are being used
 # Check views
 for view in views:
     if view.IsTemplate:  # Skip view templates
@@ -97,9 +93,24 @@ for ref_plane in reference_planes:
     except:
         continue
 
-# Step 4: Delete unused Scope Boxes
+# Unused Scope Boxes
 unused_scope_boxes = [scope_box for scope_box in scope_boxes if scope_box.Id not in used_scope_box_ids]
+scope_boxes_sorted = sorted(unused_scope_boxes, key=lambda sb: sb.Name)
 
+# 4️⃣ WPF Form to select scope boxes
+scope_box_list = []
+for sb in scope_boxes_sorted:
+    scope_box_id = sb.Id
+    scope_box_name = sb.Name
+    #scope_box_angle = get_scope_box_angle(sb)
+    scope_box_checked = True
+    option = MyOption(scope_box_id, scope_box_name, scope_box_checked)
+    scope_box_list.append(option)
+
+res = forms.SelectFromList.show(scope_box_list, title='Scope Boxes List', multiselect=True, button_name='Select Item') #Ids
+unused_scope_boxes = [doc.GetElement(i) for i in res]
+
+# 5️⃣ Delete Scope Boxes
 if unused_scope_boxes:
     t = Transaction(doc, 'MC-Delete Unused Scope Boxes')
     t.Start()
