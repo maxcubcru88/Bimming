@@ -203,7 +203,7 @@ now = datetime.datetime.now()
 # Format the date and time as 'YYYY-MM-DD_HH.MM.SS'
 formatted_datetime = now.strftime("%Y-%m-%d_%H.%M.%S")
 output_project_info.append((("Export Date", now.strftime("%Y-%m-%d"))))
-output_project_info.append((("Export Time", now.strftime("%H.%M.%S"))))
+output_project_info.append((("Export Time", now.strftime("%H:%M:%S"))))
 
 
 # Concatenate the file name with the formatted date and time
