@@ -154,18 +154,21 @@ output_project_info.append(("File Name", file_name))
 
 # Check if the document is workshared
 if doc.IsWorkshared:
-    # Get the central file path
-    # Extract basic file info, including the central path
-    file_info = BasicFileInfo.Extract(model_path)
+    try:
+        # Get the central file path
+        # Extract basic file info, including the central path
+        file_info = BasicFileInfo.Extract(model_path)
 
-    # Retrieve the central model path
-    central_path = file_info.CentralPath
-    if central_path:
-        central_path = central_path
-        #print("Central File Path: " + central_path)
-    else:
-        central_path = "File hasn't been saved as a central model yet."
-        #print("Central File Path: " + central_path)
+        # Retrieve the central model path
+        central_path = file_info.CentralPath
+        if central_path:
+            central_path = central_path
+            #print("Central File Path: " + central_path)
+        else:
+            central_path = "File hasn't been saved as a central model yet."
+            #print("Central File Path: " + central_path)
+    except Exception as e:
+        central_path = "Error extracting central file path: {}".format(e)
 else:
     central_path = "This document is not workshared."
     #print("Central File Path: " + central_path)
