@@ -1,20 +1,7 @@
 # -*- coding: utf-8 -*-
 __title__ = "Reset\nSplasher"
-__doc__ = """Version = 1.0
-Date    = 28.10.2024
-_____________________________________________________________________
-Description:
-Rename Views in Revit by using Find/Replace Logic
-_____________________________________________________________________
-How-to:
--> Click on the button
--> Select Views
--> Define Renaming Rules
--> Rename Views
-_____________________________________________________________________
-Last update:
-- [28.10.2024] - 1.1 First Release
-_____________________________________________________________________
+__doc__ = """Resets graphic overrides for walls, reference planes, and grids in the active view.
+
 Author: Máximo Cubero"""
 
 # IMPORTS

@@ -1,23 +1,8 @@
 # -*- coding: utf-8 -*-
 __title__ = "Rename Sheet Name"
-__doc__ = """Version = 1.0
-Date    = 28.10.2024
-_____________________________________________________________________
-Description:
-Rename Views in Revit by using Find/Replace Logic
-_____________________________________________________________________
-How-to:
--> Click on the button
--> Select Views
--> Define Renaming Rules
--> Rename Views
-_____________________________________________________________________
-Last update:
-- [28.10.2024] - 1.1 First Release
-_____________________________________________________________________
-Author: Máximo Cubero"""
+__doc__ = """Renames the sheet names of the selected sheets in the project.
 
-from toaiff import error
+Author: Máximo Cubero"""
 
 # IMPORTS
 #==================================================

@@ -1,31 +1,7 @@
 # -*- coding: utf-8 -*-
 __title__   = "Set of 3D Views to audit Worksets"
-__doc__     = """Version = 1.0
-Date    = 12.11.2024
-________________________________________________________________
-Description:
+__doc__     = """Creates a 3D view for each workset in the project.
 
-Create a 3D view per workset and hide all the workset but one.
-
-The name of the 3D View starts with Audit_Worset-"Workset Name"
-
-To modify the prefix execute the script with Shift+Click
-
-________________________________________________________________
-How-To:
-
-1. [Hold ALT + CLICK] on the button to open its source folder.
-You will be able to override this placeholder.
-
-2. Automate Your Boring Work ;)
-
-________________________________________________________________
-TO DO:
-[FEATURE] - Describe Your ToDo Tasks Here
-________________________________________________________________
-Last Updates:
-<>
-________________________________________________________________
 Author: Maximo Cubero"""
 
 # IMPORTS

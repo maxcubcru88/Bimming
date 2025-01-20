@@ -1,20 +1,7 @@
 # -*- coding: utf-8 -*-
 __title__ = "Rename\nSheet Number"
-__doc__ = """Version = 1.0
-Date    = 28.10.2024
-_____________________________________________________________________
-Description:
-Rename Views in Revit by using Find/Replace Logic
-_____________________________________________________________________
-How-to:
--> Click on the button
--> Select Views
--> Define Renaming Rules
--> Rename Views
-_____________________________________________________________________
-Last update:
-- [28.10.2024] - 1.1 First Release
-_____________________________________________________________________
+__doc__ = """Renames the sheet numbers of the selected sheets in the project.
+
 Author: Máximo Cubero"""
 
 from Autodesk.Revit.UI import DockablePanes, DockablePane
