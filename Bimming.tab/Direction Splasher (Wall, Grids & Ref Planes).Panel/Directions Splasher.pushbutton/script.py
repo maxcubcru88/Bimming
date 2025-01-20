@@ -73,7 +73,7 @@ grouped_list = dict_to_list(grouped_dict)
 colors = generate_random_colors(len(grouped_list))
 
 # 🔓 Starting Transaction
-t = Transaction(doc, 'MC-Elements Splasher')
+t = Transaction(doc, 'Bimming-Directions Splasher')
 t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id

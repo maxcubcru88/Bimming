@@ -60,7 +60,7 @@ collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
 
 # RESET GRAPHICS FOR ALL THE ELEMENTS
 
-t = Transaction(doc, 'MC-Elements Splasher')
+t = Transaction(doc, 'Bimming-Reset Splash')
 t.Start()
 
 for el in collector:

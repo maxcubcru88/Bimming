@@ -78,6 +78,9 @@ for ref_plane in reference_planes:
 unused_scope_boxes = [scope_box for scope_box in scope_boxes if scope_box.Id not in used_scope_box_ids]
 scope_boxes_sorted = sorted(unused_scope_boxes, key=lambda sb: sb.Name)
 
+if not unused_scope_boxes:
+    forms.alert("All the scope boxes are in use.", warn_icon=False, exitscript=True)
+
 # 4️⃣ WPF Form to select scope boxes
 scope_box_list = []
 for sb in scope_boxes_sorted:
@@ -88,27 +91,21 @@ for sb in scope_boxes_sorted:
     option = MyOption(scope_box_id, scope_box_name, scope_box_checked)
     scope_box_list.append(option)
 
-res = forms.SelectFromList.show(scope_box_list, title='Scope Boxes List', multiselect=True, button_name='Select Item') #Ids
+res = forms.SelectFromList.show(scope_box_list, title='Unused Scope Boxes List', multiselect=True, button_name='Delete') #Ids
+if not res:
+    sys.exit()
 unused_scope_boxes = [doc.GetElement(i) for i in res]
 
 # 5️⃣ Delete Scope Boxes
-if unused_scope_boxes:
-    t = Transaction(doc, 'MC-Delete Unused Scope Boxes')
-    t.Start()
-    counter = 0
-    for scope_box in unused_scope_boxes:
-        try:
-            print("Deleted unused Scope Box: {scope_box.Name}".format(scope_box=scope_box))
-            scope_box.Pinned = False
-            doc.Delete(scope_box.Id)
-            counter += 1
-        except Exception as e:
-            print("Error deleting Scope Box {scope_box.Name}: {e}".format(scope_box=scope_box, e=e))
-    forms.alert("{} Scope Boxes Deleted.".format(len(unused_scope_boxes)))
-    t.Commit()
-else:
-    forms.alert("No unused Scope Boxes found.")
-
-
-
-
+t = Transaction(doc, 'Bimming-Delete Unused Scope Boxes')
+t.Start()
+counter = 0
+for scope_box in unused_scope_boxes:
+    try:
+        print("Scope Box '{scope_box.Name}' has been deleted".format(scope_box=scope_box))
+        scope_box.Pinned = False
+        doc.Delete(scope_box.Id)
+        counter += 1
+    except Exception as e:
+        print("Error deleting Scope Box {scope_box.Name}: {e}".format(scope_box=scope_box, e=e))
+t.Commit()

@@ -57,7 +57,7 @@ except:
     forms.alert('Rules to rename have not been defined. Please Try Again', exitscript=True)
 
 #🔒 Start Transaction to make changes in project
-t = Transaction(doc, 'MC-Rename Views')
+t = Transaction(doc, 'Bimming-Rename Views')
 
 print('The following views have been renamed:')
 

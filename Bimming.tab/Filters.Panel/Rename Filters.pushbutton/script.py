@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __title__ = "Rename\nFilters"
-__doc__ = """Automatically renames filters in your model using the format: 'Category/ies' + 'Rules' + #Description# + Duplicated.
+__doc__ = """Automatically renames filters in your model using the format: 'Category/ies' + 'Rules' + #Description#
 
 Author: Máximo Cubero"""
 
@@ -443,7 +443,7 @@ for lst in filters_and_rules:
 #3️⃣ RENAMING FILTERS
 
 # 🔓 Starting Transaction
-t = Transaction(doc, 'MC-Rename Filters')
+t = Transaction(doc, 'Bimming-Rename Filters')
 t.Start()
 
 for f in filters_and_rules:

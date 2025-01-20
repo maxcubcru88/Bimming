@@ -76,7 +76,7 @@ except:
     forms.alert('Rules to rename have not been defined. Please Try Again', exitscript=True)
 
 #🔒 Start Transaction to make changes in project
-t = Transaction(doc, 'MC-Rename Sheet Number')
+t = Transaction(doc, 'Bimming-Rename Sheet Number')
 
 print('The following sheet numbers have been renamed:')
 

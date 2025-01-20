@@ -122,14 +122,14 @@ for sb in scope_boxes_sorted:
     option = MyOption(scope_box_id, scope_box_name, scope_box_angle, scope_box_checked)
     scope_box_list.append(option)
 
-res = forms.SelectFromList.show(scope_box_list, title='Scope Boxes List', multiselect=True, button_name='Select Item')
+res = forms.SelectFromList.show(scope_box_list, title='Scope Boxes List', multiselect=True, button_name='Set Angle')
 
 #3️⃣ WPF Form to set the angle if any scope box is selected
 if res:
     UI_angle = forms.ask_for_string(            # User Input (UI)
         default='30.0',
         prompt='Enter an angle: [degrees]',
-        title='Rotate Scope Boxes')
+        title='Scope Boxes - Set Angle')
     try:
         UI_angle_float = float(UI_angle.replace(',', '.'))
     except:
@@ -139,7 +139,7 @@ else:
 
 # 4️⃣ Rotate the specified angle the scope box selected
 
-t = Transaction(doc, 'MC-Rotate Scope Boxes')
+t = Transaction(doc, 'Bimming-Rotate Scope Boxes')
 t.Start()
 
 scope_box_selected = [doc.GetElement(sb) for sb in res]

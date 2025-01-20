@@ -125,7 +125,7 @@ color_green = Color(0, 210, 0)
 color_red   = Color(255, 0, 0)
 
 # 🔓 Starting Transaction
-t = Transaction(doc, 'MC-Accuracy Precision')
+t = Transaction(doc, 'Bimming-One Direction Splasher')
 t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id

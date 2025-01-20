@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __title__ = "Usage\nReport"
-__doc__ = """Exports a .csv report listing only the filters currently in use.
+__doc__ = """Exports a .csv report listing the filters currently in use.
 
 TIP: Use the 'Power BI Template' command to download the template and link the .csv file, allowing you to track where filters are applied in your project.
 
