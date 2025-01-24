@@ -4,6 +4,12 @@ __doc__ = """Renames the sheet numbers of the selected sheets in the project.
 
 Author: Máximo Cubero"""
 
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
+
 from Autodesk.Revit.UI import DockablePanes, DockablePane
 
 # ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗

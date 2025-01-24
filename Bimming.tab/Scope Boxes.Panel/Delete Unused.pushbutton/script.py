@@ -4,7 +4,11 @@ __doc__     = """Deletes unused scope boxes from the project.
 
 Author: Maximo Cubero"""
 
-import sys
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
 
 # IMPORTS
 #==================================================
@@ -12,6 +16,7 @@ from Autodesk.Revit.DB import *
 from pyrevit import forms
 import clr
 clr.AddReference('System')
+import sys
 
 # VARIABLES
 #==================================================

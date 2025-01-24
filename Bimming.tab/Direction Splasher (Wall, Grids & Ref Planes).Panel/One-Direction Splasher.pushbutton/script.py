@@ -5,6 +5,12 @@ elements parallel or perpendicular to the selected one are highlighted in green,
 
 Author: Máximo Cubero"""
 
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
+
 # IMPORTS
 #==================================================
 # Custom Libraries
@@ -26,6 +32,16 @@ app   = __revit__.Application
 
 # MAIN
 #==================================================
+
+app = __revit__.Application
+rvt_year = int(app.VersionNumber)
+
+if rvt_year < 2022:
+    # Code 🅰️
+    print('Revit version smaller than 2022')
+elif rvt_year >= 2022:
+    # Code 🅱️
+    print('Revit version equals or greater than 2022')
 
 #🫳 Select Wall, Grid or Ref Planes
 

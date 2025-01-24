@@ -4,6 +4,12 @@ __doc__ = """Retrieve the angle between a wall, reference plane, or grid line an
 
 Author: Máximo Cubero"""
 
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
+
 # IMPORTS
 #==================================================
 # Custom Libraries

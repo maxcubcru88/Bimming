@@ -4,6 +4,12 @@ __doc__     = """Creates a 3D view for each workset in the project.
 
 Author: Maximo Cubero"""
 
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
+
 # IMPORTS
 from Snippets._bimming_views import get_existing_3d_view_type
 from Autodesk.Revit.DB import *

@@ -6,7 +6,11 @@ TIP: Use the 'Power BI Template' command to download the template and link the .
 
 Author: Máximo Cubero"""
 
-import sys
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
 
 # IMPORTS
 #==================================================
@@ -17,6 +21,7 @@ import codecs
 import os
 import datetime
 from pyrevit import forms
+import sys
 
 # VARIABLES
 #==================================================
@@ -72,6 +77,11 @@ def GetUnusedFilters(doc):
     usedFilterIds = GetUsedFilterIds(doc)
     unusedFilters = FilteredElementCollector(doc).OfClass(ParameterFilterElement).Excluding(usedFilterIds).ToElements()
     return list(unusedFilters)
+
+def remove_detached_suffix(s):
+    if s.endswith('_detached'):
+        return s[:-9]  # Remove the last 9 characters
+    return s
 
 # 🫷Check if the model is saved
 # Get the model path (supports both local and central models)
@@ -136,11 +146,6 @@ output_project_info = [["PROJECT INFO"]]
 output_project_info.append(("File Path", model_path))
 #print("File Path: " + model_path)
 
-# Extract the file name without the extension
-file_name = os.path.splitext(os.path.basename(model_path))[0]
-output_project_info.append(("File Name", file_name))
-#print("File Name: " + file_name)
-
 # Check if the document is workshared
 if doc.IsWorkshared:
     try:
@@ -148,17 +153,40 @@ if doc.IsWorkshared:
         # Extract basic file info, including the central path
         file_info = BasicFileInfo.Extract(model_path)
 
+        # Instead of getting the PathName which have the user appended, we get the CentralPath
+        model_path = file_info.CentralPath
+
+        # Extract the file name without the extension
+        file_name = os.path.splitext(os.path.basename(model_path))[0]
+        output_project_info.append(("File Name", file_name))
+        # print("File Name: " + file_name)
+        if file_name == "":
+            forms.alert('Save the model and try again.')
+            sys.exit()
+
         # Retrieve the central model path
         central_path = file_info.CentralPath
-        if central_path:
-            central_path = central_path
-            #print("Central File Path: " + central_path)
-        else:
-            central_path = "File hasn't been saved as a central model yet."
-            #print("Central File Path: " + central_path)
+        # if central_path:
+        #     central_path = central_path
+        #     #print("Central File Path: " + central_path)
+        # else:
+        #     central_path = "File hasn't been saved as a central model yet."
+        #     #print("Central File Path: " + central_path)
     except Exception as e:
-        central_path = "Error extracting central file path: {}".format(e)
+        # We will have exceptions when we open a central file as detached
+        # Extract the file name without the extension
+        file_name_detached = os.path.splitext(os.path.basename(model_path))[0]
+        file_name = remove_detached_suffix(file_name_detached)
+        output_project_info.append(("File Name", file_name))
+        # print("File Name: " + file_name)
+
+        central_path = "It is a detached model - Not central file path found."
 else:
+    # Extract the file name without the extension
+    file_name = os.path.splitext(os.path.basename(model_path))[0]
+    output_project_info.append(("File Name", file_name))
+    # print("File Name: " + file_name)
+
     central_path = "This document is not workshared."
     #print("Central File Path: " + central_path)
 
@@ -212,5 +240,3 @@ csv_file_path = os.path.join(documents_folder, new_file_name + ".csv")
 
 output = output_project_info + output_data
 export_to_csv(csv_file_path, output)
-
-

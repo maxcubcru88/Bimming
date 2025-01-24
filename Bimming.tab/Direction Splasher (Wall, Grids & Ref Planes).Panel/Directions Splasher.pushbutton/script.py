@@ -6,6 +6,12 @@ Each unique alignment is represented by a different color.
 
 Author: Máximo Cubero"""
 
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
+
 # IMPORTS
 #==================================================
 # Custom Libraries

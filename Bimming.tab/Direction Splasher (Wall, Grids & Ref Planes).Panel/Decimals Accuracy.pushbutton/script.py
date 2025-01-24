@@ -6,7 +6,11 @@ places are less than or equal to the specified number, and red if they exceed it
 
 Author: Máximo Cubero"""
 
-import sys
+#__helpurl__ = "https://www.bimming.uk"
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2025
+#__context__ = 'zero-doc'
+#__highlight__ = 'new'
 
 # IMPORTS
 #==================================================

@@ -23,7 +23,7 @@ doc   = __revit__.ActiveUIDocument.Document #type:Document
 # Reusable Snippets
 
 def url_folder_path (path):
-    url_folder_path = path.replace('\URL Settings.pulldown', '')
+    url_folder_path = path.replace('\Link Settings.pulldown', '')
     url_folder_path = url_folder_path.replace('pushbutton\script.py', r'urlbutton')
     return url_folder_path
 
