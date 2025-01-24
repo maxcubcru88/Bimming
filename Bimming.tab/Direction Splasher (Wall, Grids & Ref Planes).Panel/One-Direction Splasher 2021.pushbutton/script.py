@@ -6,8 +6,8 @@ elements parallel or perpendicular to the selected one are highlighted in green,
 Author: Máximo Cubero"""
 
 #__helpurl__ = "https://www.bimming.uk"
-__min_revit_ver__ = 2023
-__max_revit_ver__ = 2025
+__min_revit_ver__ = 2021
+__max_revit_ver__ = 2022
 #__context__ = 'zero-doc'
 #__highlight__ = 'new'
 
@@ -33,15 +33,26 @@ app   = __revit__.Application
 # MAIN
 #==================================================
 
-# app = __revit__.Application
-# rvt_year = int(app.VersionNumber)
+from Autodesk.Revit.UI.Selection import ISelectionFilter
+from Autodesk.Revit.DB import BuiltInCategory, ElementId
 
-# if rvt_year < 2022:
-#     # Code 🅰️
-#     print('Revit version smaller than 2022')
-# elif rvt_year >= 2022:
-#     # Code 🅱️
-#     print('Revit version equals or greater than 2022')
+class ISelectionFilter_Categories(ISelectionFilter):
+    def __init__(self, allowed_categories):
+        """ ISelectionFilter made to filter by categories.
+        allowed_categories: list of BuiltInCategory """
+        self.allowed_category_ids = [
+            ElementId(bic) for bic in allowed_categories
+        ]
+
+    def AllowElement(self, element):
+        """ Determines if the element is allowed. """
+        if element.Category and element.Category.Id in self.allowed_category_ids:
+            return True
+        return False
+
+    def AllowReference(self, reference, position):
+        """ Determines if the reference is allowed. """
+        return False  # Only elements are filtered in this case.
 
 #🫳 Select Wall, Grid or Ref Planes
 
@@ -53,17 +64,22 @@ sel_elem_filter = [el for el in sel_elem if issubclass(type(el), Wall) or issubc
 if len(sel_elem_filter) != 1:
     with forms.WarningBar(title='Select Wall, Grid or Ref Plane:'):
         try:
-            # Get Element - Selected in a projectBrowser
-            sel_elem_reference  = uidoc.Selection.PickObject(ObjectType.Element,
-                                                             IselectionFilter_Categories([BuiltInCategory.OST_Walls,
-                                                                                          BuiltInCategory.OST_Grids,
-                                                                                          BuiltInCategory.OST_CLines]),
-                                                             "Select elements")
+            # Prompt user to select an element from allowed categories
+            sel_elem_reference = uidoc.Selection.PickObject(
+                ObjectType.Element,
+                ISelectionFilter_Categories([
+                    BuiltInCategory.OST_Walls,
+                    BuiltInCategory.OST_Grids,
+                    BuiltInCategory.OST_CLines
+                ]),
+                "Select an element from the allowed categories"
+            )
+            # Get the selected element's ID and the element itself
             sel_elem_id = sel_elem_reference.ElementId
             sel_elem = doc.GetElement(sel_elem_id)
-        except:
-            # If None Selected - Prompt SelectViews from pyrevit.forms.select_views()
+        except Exception as e:
             forms.alert('No Elements Selected. Please Try Again', exitscript=True)
+
 else:
     sel_elem = sel_elem_filter[0] # Selecting the only element in the list
     pass
