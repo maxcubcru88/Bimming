@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-__title__ = "Power BI\nTemplate"
-__doc__ = """Download the Power BI Template.
+__title__ = "About"
+# __doc__ = """Download the Power BI Template.
+#
+# Author: Máximo Cubero"""
 
-Author: Máximo Cubero"""
+__context__ = 'zero-doc'
 
 from pyrevit import script
 

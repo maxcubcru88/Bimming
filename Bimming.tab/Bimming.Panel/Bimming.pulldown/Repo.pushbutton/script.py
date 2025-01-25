@@ -5,3 +5,5 @@ from pyrevit.versionmgr import urls
 url = 'https://github.com/maxcubcru88/Bimming'
 
 script.open_url(url)
+
+__context__ = 'zero-doc'
