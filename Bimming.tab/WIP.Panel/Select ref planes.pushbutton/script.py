@@ -1,38 +1,11 @@
 # -*- coding: utf-8 -*-
 __title__ = "Select\nRef Planes"
-__doc__ = """Version = 1.0
-Date    = 28.10.2024
-_____________________________________________________________________
-Description:
-Rename Views in Revit by using Find/Replace Logic
-_____________________________________________________________________
-How-to:
--> Click on the button
--> Select Views
--> Define Renaming Rules
--> Rename Views
-_____________________________________________________________________
-Last update:
-- [28.10.2024] - 1.1 First Release
-_____________________________________________________________________
+__doc__ = """ Description
+
 Author: Máximo Cubero"""
 
-import sys
-
-# ╦╔╦╗╔═╗╔═╗╦═╗╔╦╗╔═╗
-# ║║║║╠═╝║ ║╠╦╝ ║ ╚═╗
-# ╩╩ ╩╩  ╚═╝╩╚═ ╩ ╚═╝ IMPORTS
+# IMPORTS
 #==================================================
-# Regular + Autodesk
-from Autodesk.Revit.DB import *
-
-# pyRevit
-from pyrevit import revit, forms
-
-
-from Snippets._selection import *
-
-
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
@@ -41,19 +14,19 @@ from Autodesk.Revit.UI.Selection import ISelectionFilter
 
 from System.Collections.Generic import List
 from Autodesk.Revit.UI import TaskDialog
+import sys
 
-# ╦  ╦╔═╗╦═╗╦╔═╗╔╗ ╦  ╔═╗╔═╗
-# ╚╗╔╝╠═╣╠╦╝║╠═╣╠╩╗║  ║╣ ╚═╗
-#  ╚╝ ╩ ╩╩╚═╩╩ ╩╚═╝╩═╝╚═╝╚═╝ VARIABLES
+# VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# ╔╦╗╔═╗╦╔╗╔
-# ║║║╠═╣║║║║
-# ╩ ╩╩ ╩╩╝╚╝ MAIN
+# MAIN
 #==================================================
+
+__beta__ = True
+forms.inform_wip()
 
 """ Rename views on sheets
     SHEET NUMBER + DETAIL NUMBER + TITLE ON SHEET (IF POPULATED)

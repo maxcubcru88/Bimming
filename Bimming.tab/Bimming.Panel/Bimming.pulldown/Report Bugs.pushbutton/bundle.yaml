@@ -1,0 +1,5 @@
+title:
+  en_us: Report Bugs
+tooltip:
+  en_us: Opens the issue tracker on github to report bugs and issues
+context: zero-doc
