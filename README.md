@@ -1,5 +1,5 @@
 # BIMMING
-[bimming](https://github.com/maxcubcru88/Bimming/blob/main/Bimming_Overview.png)
+![bimming](https://github.com/maxcubcru88/Bimming/blob/main/Bimming_Overview.png)
 Developed by **Maximo Cubero**
 
 # What is this?
