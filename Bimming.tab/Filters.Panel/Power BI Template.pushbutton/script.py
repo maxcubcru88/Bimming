@@ -13,6 +13,6 @@ __max_revit_ver__ = 2025
 
 from pyrevit import script
 
-url = 'https://www.dropbox.com/scl/fi/d2lceh98ylvc407qclahm/Bimming-PowerBi-Template-Filter-Usage-v04.pbix?rlkey=giuch68yqu3kgjejlu4v039xp&dl=1'
+url = 'https://github.com/maxcubcru88/Bimming/raw/refs/heads/main/Support%20Files/Bimming-PowerBI-Filter%20Usage%20v1.0.7.pbix'
 
 script.open_url(url)
