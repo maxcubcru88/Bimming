@@ -34,9 +34,6 @@ THREE_D_VIEW_FAMILY_NAME = "Audit_Worksets"
 all_worksets = FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset)
 view_names_to_create = [VIEW_PREFIX + workset.Name for workset in all_worksets]
 
-t = Transaction(doc, 'Bimming-Set of Workset Views Created')
-t.Start()
-
 # 🕵️CHECKS
 # 1️⃣Check in the model is workshared
 if not forms.check_workshared(doc): sys.exit()
@@ -63,6 +60,9 @@ if doc.ActiveView.Name in view_names_to_create:
 
 
 # 🔥Creating Set of Views
+
+t = Transaction(doc, 'Bimming-Set of Workset Views Created')
+t.Start()
 
 # 1️⃣Delete all views in the new 3D View Type or with Name already in use
 all_views       = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Views).WhereElementIsNotElementType().ToElements()
