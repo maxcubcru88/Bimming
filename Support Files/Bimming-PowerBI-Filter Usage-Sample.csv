@@ -1,0 +1,1292 @@
+PROJECT INFO,,,,,,,,
+File Path,C:\Users\34644\BIMMING\Video Support\Snowdon Towers Sample Architectural.rvt,,,,,,,
+File Name,Snowdon Towers Sample Architectural,,,,,,,
+Central File Path,This document is not workshared.,,,,,,,
+Export by,maximo_cubero,,,,,,,
+Export Date,02/02/2025,,,,,,,
+Export Time,23:08:00,,,,,,,
+DATA,,,,,,,,
+Filter Id,Filter Name,Filter Enable,Filter Visibility,View Type,View Name,Is View Template,View Template Name Applied,Sheet Info
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Plan,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Plan,TRUE,N/A,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,View Template,Architectural Plan,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Architectural Plan,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Architectural Plan,TRUE,N/A,Not in a sheet
+2333020,Site - Roof Sculptures,TRUE,FALSE,View Template,Site Plan,TRUE,N/A,Not in a sheet
+149962,Interior,TRUE,FALSE,View Template,Export to Civil Engineering,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,WV_Section at Facades (Shaded),FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Section - Block 39,FALSE,Not View Template Assigned,Not in a sheet
+613365,Levels - Primary,TRUE,TRUE,Section,WV_Section - Block 39,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,WV_Section - Block 39,FALSE,Not View Template Assigned,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,Section,WV_Section - Block 39,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L5_SD,FALSE,Architectural Schematic Plan,SD105 - Fifth Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L5_SD,FALSE,Architectural Schematic Plan,SD105 - Fifth Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L5_SD,FALSE,Architectural Schematic Plan,SD105 - Fifth Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L5_SD,FALSE,Architectural Schematic Plan,SD105 - Fifth Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L3_SD,FALSE,Architectural Schematic Plan,SD103 - Third Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L3_SD,FALSE,Architectural Schematic Plan,SD103 - Third Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L3_SD,FALSE,Architectural Schematic Plan,SD103 - Third Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L3_SD,FALSE,Architectural Schematic Plan,SD103 - Third Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L2_SD,FALSE,Architectural Schematic Plan,SD102 - Second Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L2_SD,FALSE,Architectural Schematic Plan,SD102 - Second Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L2_SD,FALSE,Architectural Schematic Plan,SD102 - Second Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L2_SD,FALSE,Architectural Schematic Plan,SD102 - Second Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L4_SD,FALSE,Architectural Schematic Plan,SD104 - Fourth Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L4_SD,FALSE,Architectural Schematic Plan,SD104 - Fourth Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L4_SD,FALSE,Architectural Schematic Plan,SD104 - Fourth Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L4_SD,FALSE,Architectural Schematic Plan,SD104 - Fourth Floor Plan - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,ThreeD,Camera fr Above (Realistic) wo Point Cloud,FALSE,Cover,A901 - Perspective From Above - 1
+631942,_Phase 3D,TRUE,TRUE,ThreeD,Camera fr Above (Realistic) wo Point Cloud,FALSE,Cover,A901 - Perspective From Above - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,WV_Section - Block 41,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,WV_Section - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Parking_SD,FALSE,Architectural Schematic Plan,SD100 - Parking Deck Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Parking_SD,FALSE,Architectural Schematic Plan,SD100 - Parking Deck Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,Parking_SD,FALSE,Architectural Schematic Plan,SD100 - Parking Deck Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,Parking_SD,FALSE,Architectural Schematic Plan,SD100 - Parking Deck Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,R2_SD,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,R2_SD,FALSE,Not View Template Assigned,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,R2_SD,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,WV_Hide Levels,TRUE,N/A,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,View Template,WV_Hide Levels,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L1_SD,FALSE,Architectural Schematic Plan,SD101 - First Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L1_SD,FALSE,Architectural Schematic Plan,SD101 - First Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L1_SD,FALSE,Architectural Schematic Plan,SD101 - First Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L1_SD,FALSE,Architectural Schematic Plan,SD101 - First Floor Plan - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+796461,WV_Sections,TRUE,FALSE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Longitudinal Section,FALSE,Architectural Section,A301 - Building Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,ThreeD,Camera - Exterior Street View (Real),FALSE,Cover,A903 - 3D Views - 1
+631942,_Phase 3D,TRUE,TRUE,ThreeD,Camera - Exterior Street View (Real),FALSE,Cover,A903 - 3D Views - 1
+2333020,Site - Roof Sculptures,TRUE,FALSE,FloorPlan,Site Plan,FALSE,Site Plan,C101 - Site Plan - 1
+755980,Walls - L2 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,L1 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,TRUE,TRUE,FloorPlan,L1 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,L2 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,TRUE,TRUE,FloorPlan,L5 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,TRUE,TRUE,FloorPlan,L3 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,TRUE,TRUE,FloorPlan,L2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,TRUE,TRUE,FloorPlan,L4 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,FALSE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+1212157,Walls - Unconnected - Top,TRUE,TRUE,FloorPlan,R2 Wall Base,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,L5 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,L3 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,L4 Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,Parking Wall Top,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,View Template,WV_Wall Top Colors,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Rooms - L1 - Block 37,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Rooms - L1 - Block 43,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Rooms - M1,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,View Template,Schematic - Section,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+1962658,Schematic Roofs and Floors,TRUE,FALSE,View Template,Schematic - Stair Tower Section,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Cover,TRUE,N/A,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,View Template,Cover,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Mezzanine Plan,FALSE,Architectural Enlarged Plan,K101 - Café Kitchen - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Mezzanine Plan,FALSE,Architectural Enlarged Plan,K101 - Café Kitchen - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Café Kitchen - Section,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,ThreeD,3D Solar Study,FALSE,Not View Template Assigned,A904 - Solar Study - 1
+631942,_Phase 3D,TRUE,TRUE,ThreeD,3D Solar Study,FALSE,Not View Template Assigned,A904 - Solar Study - 1
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Rentable,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Rentable,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Rentable,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Rentable,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Rentable,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Rentable,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Rentable,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Rentable,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Rentable,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Rentable,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Rentable,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Rentable,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Rentable,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Rentable,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Rentable,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Rentable,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Rentable,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Rentable,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Rentable,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Rentable,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,R2,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,R2,FALSE,Not View Template Assigned,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,R2,FALSE,Not View Template Assigned,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,R2,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Gross,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Gross,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,AreaPlan,L1,FALSE,Area Plan - Gross,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Gross,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L1,FALSE,Area Plan - Gross,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,AreaPlan,L1,FALSE,Area Plan - Gross,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Gross,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Gross,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,AreaPlan,L2,FALSE,Area Plan - Gross,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Gross,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L2,FALSE,Area Plan - Gross,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,AreaPlan,L2,FALSE,Area Plan - Gross,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Gross,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Gross,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,AreaPlan,L3,FALSE,Area Plan - Gross,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Gross,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L3,FALSE,Area Plan - Gross,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,AreaPlan,L3,FALSE,Area Plan - Gross,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Gross,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Gross,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,AreaPlan,L4,FALSE,Area Plan - Gross,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Gross,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L4,FALSE,Area Plan - Gross,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,AreaPlan,L4,FALSE,Area Plan - Gross,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Gross,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Gross,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,AreaPlan,L5,FALSE,Area Plan - Gross,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Gross,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,L5,FALSE,Area Plan - Gross,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,AreaPlan,L5,FALSE,Area Plan - Gross,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Gross,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Gross,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,AreaPlan,Parking,FALSE,Area Plan - Gross,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Gross,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Gross,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,AreaPlan,Parking,FALSE,Area Plan - Gross,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,AreaPlan,R2,FALSE,Area Plan - Gross,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,R2,FALSE,Area Plan - Gross,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,AreaPlan,R2,FALSE,Area Plan - Gross,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,R2,FALSE,Area Plan - Gross,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,R2,FALSE,Area Plan - Gross,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,AreaPlan,R2,FALSE,Area Plan - Gross,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,North,FALSE,Architectural Elevation (Exterior),A201 - Building Elevations - 2
+631942,_Phase 3D,TRUE,TRUE,Elevation,North,FALSE,Architectural Elevation (Exterior),A201 - Building Elevations - 2
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,Elevation,North,FALSE,Architectural Elevation (Exterior),A201 - Building Elevations - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,South,FALSE,Architectural Elevation (Exterior),A201 - Building Elevations - 1
+631942,_Phase 3D,TRUE,TRUE,Elevation,South,FALSE,Architectural Elevation (Exterior),A201 - Building Elevations - 1
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,Elevation,South,FALSE,Architectural Elevation (Exterior),A201 - Building Elevations - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,WV_L1 Sizing Rectangles & Geo Therm,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+755978,Walls - L1 - Base - Block 37,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+755979,Walls - L1 - Base - Block 43,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+756360,Walls - L2 - Base,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+756361,Walls - L3 - Base,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+756362,Walls - L4 - Base,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+756363,Walls - L5 - Base,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+756364,Walls - R2 - Base,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+756404,Walls - Parking - Base,TRUE,TRUE,View Template,WV_Wall Base Colors,TRUE,N/A,Not in a sheet
+755977,Walls - L1 - Base - Block 35,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+755978,Walls - L1 - Base - Block 37,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+755979,Walls - L1 - Base - Block 43,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+756360,Walls - L2 - Base,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+756361,Walls - L3 - Base,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+756362,Walls - L4 - Base,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+756363,Walls - L5 - Base,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+756364,Walls - R2 - Base,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+756404,Walls - Parking - Base,FALSE,TRUE,View Template,Coordination - Structural,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,WV_Section at Trash Shute,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,FALSE,TRUE,FloorPlan,L5 Wall VR at Zero,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,R3,FALSE,Architectural Roof Plan,A107 - Roof Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,R3,FALSE,Architectural Roof Plan,A107 - Roof Plan - 1
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,FloorPlan,R3,FALSE,Architectural Roof Plan,A107 - Roof Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,R3,FALSE,Architectural Roof Plan,A107 - Roof Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,R3,FALSE,Architectural Roof Plan,A107 - Roof Plan - 1
+2287177,Elevations - Interior,TRUE,FALSE,FloorPlan,R3,FALSE,Architectural Roof Plan,A107 - Roof Plan - 1
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,WV_L1,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,WV_L1,FALSE,Not View Template Assigned,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,FALSE,CeilingPlan,WV_L1,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,WV_L2,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,WV_L2,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,WV_L2,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,WV_L2,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,WV_L3,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,WV_L3,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,WV_L3,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,WV_L3,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,WV_L4,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,WV_L4,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,WV_L4,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,WV_L4,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,WV_L5,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,WV_L5,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,WV_L5,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,WV_L5,FALSE,Architectural Reflected Ceiling Plan,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L1 Export to Civil,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Section at Grandstands,FALSE,Not View Template Assigned,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,Section,WV_Section at Grandstands,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,South - Block 39,FALSE,Not View Template Assigned,A202 - Building Elevations - 2
+631942,_Phase 3D,TRUE,TRUE,Elevation,South - Block 39,FALSE,Not View Template Assigned,A202 - Building Elevations - 2
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,Elevation,South - Block 39,FALSE,Not View Template Assigned,A202 - Building Elevations - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Residential Lobby - South,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 4
+796461,WV_Sections,TRUE,FALSE,Elevation,Residential Lobby - South,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 4
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Residential Lobby - South,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 4
+755977,Walls - L1 - Base - Block 35,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+755978,Walls - L1 - Base - Block 37,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+755979,Walls - L1 - Base - Block 43,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756360,Walls - L2 - Base,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756361,Walls - L3 - Base,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756362,Walls - L4 - Base,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756363,Walls - L5 - Base,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756364,Walls - R2 - Base,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+756404,Walls - Parking - Base,FALSE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+1212157,Walls - Unconnected - Top,TRUE,TRUE,View Template,WV_Lines Only,TRUE,N/A,Not in a sheet
+755977,Walls - L1 - Base - Block 35,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+756404,Walls - Parking - Base,FALSE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+1212157,Walls - Unconnected - Top,TRUE,TRUE,FloorPlan,R2 Roof Plan Layout Sketch,FALSE,Not View Template Assigned,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,ThreeD,WV_3D Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_L1 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_L1 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_L1 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_L1 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Café Kitchen A,FALSE,Architectural Elevation (Interior),K101 - Café Kitchen - 3
+796461,WV_Sections,TRUE,FALSE,Elevation,Café Kitchen A,FALSE,Architectural Elevation (Interior),K101 - Café Kitchen - 3
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Café Kitchen A,FALSE,Architectural Elevation (Interior),K101 - Café Kitchen - 3
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+796461,WV_Sections,TRUE,FALSE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,WV_Temp Section Horizontal,FALSE,WV_Section (Temp),Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,FALSE,ThreeD,WV_3D Concrete Walls Only,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_L2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_L2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_L2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_L2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,View Template,WV_Dimensions Check Large Scale,TRUE,N/A,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,View Template,WV_Dimensions Check Large Scale,TRUE,N/A,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,View Template,WV_Dimensions Check Large Scale,TRUE,N/A,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,View Template,WV_Dimensions Check Large Scale,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_L3 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_L3 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_L3 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_L3 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_L4 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_L4 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_L4 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_L4 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_L5 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_L5 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_L5 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_L5 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_R2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_R2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_R2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_R2 - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_Parking - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_Parking - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_Parking - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_Parking - Dimensions Large Scale,FALSE,WV_Dimensions Check Large Scale,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Parking,FALSE,Architectural Plan,A100 - Parking Deck Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Parking,FALSE,Architectural Plan,A100 - Parking Deck Floor Plan - 1
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,Parking,FALSE,Architectural Plan,A100 - Parking Deck Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,Parking,FALSE,Architectural Plan,A100 - Parking Deck Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,Parking,FALSE,Architectural Plan,A100 - Parking Deck Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L1,FALSE,Architectural Plan,A101 - First Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L1,FALSE,Architectural Plan,A101 - First Floor Plan - 1
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,L1,FALSE,Architectural Plan,A101 - First Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L1,FALSE,Architectural Plan,A101 - First Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L1,FALSE,Architectural Plan,A101 - First Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L2,FALSE,Architectural Plan,A102 - Second Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L2,FALSE,Architectural Plan,A102 - Second Floor Plan - 1
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,L2,FALSE,Architectural Plan,A102 - Second Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L2,FALSE,Architectural Plan,A102 - Second Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L2,FALSE,Architectural Plan,A102 - Second Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L3,FALSE,Architectural Plan,A103 - Third Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L3,FALSE,Architectural Plan,A103 - Third Floor Plan - 1
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,L3,FALSE,Architectural Plan,A103 - Third Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L3,FALSE,Architectural Plan,A103 - Third Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L3,FALSE,Architectural Plan,A103 - Third Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L4,FALSE,Architectural Plan,A104 - Fourth Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L4,FALSE,Architectural Plan,A104 - Fourth Floor Plan - 1
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,L4,FALSE,Architectural Plan,A104 - Fourth Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L4,FALSE,Architectural Plan,A104 - Fourth Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L4,FALSE,Architectural Plan,A104 - Fourth Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L5,FALSE,Architectural Plan,A105 - Fifth Floor Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L5,FALSE,Architectural Plan,A105 - Fifth Floor Plan - 1
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,L5,FALSE,Architectural Plan,A105 - Fifth Floor Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L5,FALSE,Architectural Plan,A105 - Fifth Floor Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L5,FALSE,Architectural Plan,A105 - Fifth Floor Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2282147,Floors - Green Roof - Turf,TRUE,TRUE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2282320,Floors - Green Roof - Scultpture,TRUE,TRUE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2282321,Floors - Green Roof - Tile,TRUE,TRUE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2282322,Floors - Green Roof - Planting,TRUE,TRUE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2282323,Floors - Green Roof - Decking,TRUE,TRUE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2282324,Floors - Green Roof - Brick,TRUE,TRUE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,R2,FALSE,Not View Template Assigned,A106 - Green Roof - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Enlarged Residential Lobby Plan,FALSE,Architectural Enlarged Plan,A404 - Residential Lobby - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Enlarged Residential Lobby Plan,FALSE,Architectural Enlarged Plan,A404 - Residential Lobby - 1
+796461,WV_Sections,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Rentable,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Rentable,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Rentable,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,AreaPlan,Parking,FALSE,Area Plan - Rentable,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,ThreeD,Green Roof - By Stair 1,FALSE,Cover,A903 - 3D Views - 3
+631942,_Phase 3D,TRUE,TRUE,ThreeD,Green Roof - By Stair 1,FALSE,Cover,A903 - 3D Views - 3
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+796461,WV_Sections,TRUE,FALSE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,WV_Temp Section Vertical,FALSE,WV_Section (Temp),Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,WV_Section (Temp),TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+796461,WV_Sections,TRUE,FALSE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Detail,Parapet Detail at Solar Wall,FALSE,Not View Template Assigned,A501 - Details - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Detail,Parapet Detail - Typical,FALSE,Not View Template Assigned,A501 - Details - 2
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,L1,FALSE,Architectural Reflected Ceiling Plan,A108 - First Floor Ceiling Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,L1,FALSE,Architectural Reflected Ceiling Plan,A108 - First Floor Ceiling Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,L1,FALSE,Architectural Reflected Ceiling Plan,A108 - First Floor Ceiling Plan - 1
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,L1,FALSE,Architectural Reflected Ceiling Plan,A108 - First Floor Ceiling Plan - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Architectural Elevation (Interior),TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Elevation (Interior),TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Elevation (Interior),TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Looking at Lobby Stair,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,WV_Looking at Lobby Stair,FALSE,Not View Template Assigned,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,Section,WV_Looking at Lobby Stair,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,WV_Working Section,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,WV_Working Section,TRUE,N/A,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,View Template,WV_Working Section,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,WV_Under Lobby Stair Landing,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,WV_Under Lobby Stair Landing,FALSE,Not View Template Assigned,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,Section,WV_Under Lobby Stair Landing,FALSE,Not View Template Assigned,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,ThreeD,Coord - Arch Walls,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_R2 - Sawtooth fr Above,FALSE,Not View Template Assigned,Not in a sheet
+1272623,Walls - Generic,TRUE,TRUE,FloorPlan,WV_R2 - Sawtooth fr Above,FALSE,Not View Template Assigned,Not in a sheet
+1476502,Walls - to Hide,TRUE,FALSE,FloorPlan,WV_R2 - Sawtooth fr Above,FALSE,Not View Template Assigned,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_R2 - Sawtooth fr Above,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Solar Wall - Elevation,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_R2 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,FloorPlan,WV_R2 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_R2 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+1935193,WV_Sections (Roof Modeling View1),TRUE,FALSE,FloorPlan,WV_R2 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_R2 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,FloorPlan,WV_R2 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_R2 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+1935193,WV_Sections (Roof Modeling View1),TRUE,FALSE,FloorPlan,WV_R2 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,FALSE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+1962658,Schematic Roofs and Floors,TRUE,FALSE,View Template,Architectural Section,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_L5 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,FloorPlan,WV_L5 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_L5 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+1935193,WV_Sections (Roof Modeling View1),TRUE,FALSE,FloorPlan,WV_L5 - Roof Modeling (w Sketch Items),FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,TRUE,FloorPlan,WV_L5 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,FloorPlan,WV_L5 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,TRUE,FloorPlan,WV_L5 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+1935193,WV_Sections (Roof Modeling View1),TRUE,FALSE,FloorPlan,WV_L5 - Roof Modeling,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,East,FALSE,Architectural Elevation (Exterior),A202 - Building Elevations - 1
+631942,_Phase 3D,TRUE,TRUE,Elevation,East,FALSE,Architectural Elevation (Exterior),A202 - Building Elevations - 1
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,Elevation,East,FALSE,Architectural Elevation (Exterior),A202 - Building Elevations - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Architectural Elevation (Exterior),TRUE,N/A,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,View Template,Architectural Elevation (Exterior),TRUE,N/A,Not in a sheet
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,View Template,Architectural Elevation (Exterior),TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,ThreeD,Camera in Stair 3 - Parking Level,FALSE,Not View Template Assigned,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,ThreeD,Camera in Stair 3 - Parking Level,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+1962658,Schematic Roofs and Floors,TRUE,FALSE,View Template,Architectural Section (Wall Section),TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Block 37 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Block 39 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Block 41 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 3
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Block 43 - Existing to New,FALSE,Architectural Section (Wall Section),A405 - Wall Sections - 4
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Block 35 - Solar Wall,FALSE,Schematic - Section,A406 - Wall Sections - 1
+796461,WV_Sections,TRUE,FALSE,View Template,Links - Hide Datum Elements,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Links - Hide Datum Elements,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Area Plan - Rentable,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Area Plan - Rentable,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Area Plan - Rentable,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Area Plan - Rentable,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Architectural - Camera View - Interior,TRUE,N/A,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,View Template,Architectural - Camera View - Interior,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Stair 1,FALSE,Architectural Section,A302 - Building Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Elevator 1,FALSE,Architectural Section,A302 - Building Sections - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Commercial - Grid 3,FALSE,Architectural Section,A303 - Building Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Commercial - Mezzanine Stair,FALSE,Architectural Section,A303 - Building Sections - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Stair 2,FALSE,Architectural Section,A304 - Building Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 5,FALSE,Architectural Section,A304 - Building Sections - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Retail Lobby Stair,FALSE,Architectural Section,A305 - Building Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Elevator 2,FALSE,Architectural Section,A305 - Building Sections - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 7,FALSE,Architectural Section,A306 - Building Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Stair 3,FALSE,Architectural Section,A307 - Building Sections - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 9,FALSE,Architectural Section,A307 - Building Sections - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+755980,Walls - L2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756356,Walls - L3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756357,Walls - L4 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756358,Walls - L5 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756359,Walls - R2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756369,Walls - R3 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+796461,WV_Sections,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+1501133,WV_Sections (Temp),TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Section,Transverse Section - Retail/Residential - Grid 8,FALSE,Architectural Section,A306 - Building Sections - 2
+631942,_Phase 3D,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+755977,Walls - L1 - Base - Block 35,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+755978,Walls - L1 - Base - Block 37,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+755979,Walls - L1 - Base - Block 43,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+755980,Walls - L2 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756356,Walls - L3 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756357,Walls - L4 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756358,Walls - L5 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756359,Walls - R2 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756360,Walls - L2 - Base,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756361,Walls - L3 - Base,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756362,Walls - L4 - Base,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756363,Walls - L5 - Base,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756364,Walls - R2 - Base,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756365,Walls - L1 - Top - Block 43,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756366,Walls - L1 - Top - Block 37,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756367,Walls - L1 - Top - Block 35,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756368,Walls - Parapet 1 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756369,Walls - R3 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+756370,Walls - Parapet 2 - Top,TRUE,TRUE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+2141717,Walls - Beam Wraps,TRUE,FALSE,ThreeD,WV_3D Beam Wraps,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Roof Plan,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Roof Plan,TRUE,N/A,Not in a sheet
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,View Template,Architectural Roof Plan,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Architectural Roof Plan,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Architectural Roof Plan,TRUE,N/A,Not in a sheet
+2287177,Elevations - Interior,TRUE,FALSE,View Template,Architectural Roof Plan,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Reflected Ceiling Plan,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Reflected Ceiling Plan,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Architectural Reflected Ceiling Plan,TRUE,N/A,Not in a sheet
+2290189,ADA Symbols,TRUE,FALSE,View Template,Architectural Reflected Ceiling Plan,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,L2,FALSE,Architectural Reflected Ceiling Plan,A109 - Second Floor Ceiling Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,L2,FALSE,Architectural Reflected Ceiling Plan,A109 - Second Floor Ceiling Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,L2,FALSE,Architectural Reflected Ceiling Plan,A109 - Second Floor Ceiling Plan - 1
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,L2,FALSE,Architectural Reflected Ceiling Plan,A109 - Second Floor Ceiling Plan - 1
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,L3,FALSE,Architectural Reflected Ceiling Plan,A110 - Third Floor Ceiling Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,L3,FALSE,Architectural Reflected Ceiling Plan,A110 - Third Floor Ceiling Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,L3,FALSE,Architectural Reflected Ceiling Plan,A110 - Third Floor Ceiling Plan - 1
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,L3,FALSE,Architectural Reflected Ceiling Plan,A110 - Third Floor Ceiling Plan - 1
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,L4,FALSE,Architectural Reflected Ceiling Plan,A111 - Fourth Floor Ceiling Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,L4,FALSE,Architectural Reflected Ceiling Plan,A111 - Fourth Floor Ceiling Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,L4,FALSE,Architectural Reflected Ceiling Plan,A111 - Fourth Floor Ceiling Plan - 1
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,L4,FALSE,Architectural Reflected Ceiling Plan,A111 - Fourth Floor Ceiling Plan - 1
+796461,WV_Sections,TRUE,FALSE,CeilingPlan,L5,FALSE,Architectural Reflected Ceiling Plan,A112 - Fifth Floor Ceiling Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,CeilingPlan,L5,FALSE,Architectural Reflected Ceiling Plan,A112 - Fifth Floor Ceiling Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,CeilingPlan,L5,FALSE,Architectural Reflected Ceiling Plan,A112 - Fifth Floor Ceiling Plan - 1
+2290189,ADA Symbols,TRUE,FALSE,CeilingPlan,L5,FALSE,Architectural Reflected Ceiling Plan,A112 - Fifth Floor Ceiling Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+2173366,4 Hour,TRUE,TRUE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+2173367,1 Hour,TRUE,TRUE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+2173368,2 Hour,TRUE,TRUE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+2173369,3 Hour,TRUE,TRUE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+2173370,1 Hour (Smoke),TRUE,TRUE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,Parking Life Safety Plan,FALSE,Architectural Life Safety Plan,G100 - Parking Deck Life Safety Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+2173366,4 Hour,TRUE,TRUE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+2173367,1 Hour,TRUE,TRUE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+2173368,2 Hour,TRUE,TRUE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+2173369,3 Hour,TRUE,TRUE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+2173370,1 Hour (Smoke),TRUE,TRUE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L1 Life Safety Plan,FALSE,Architectural Life Safety Plan,G101 - First Floor Life Safety Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+2173366,4 Hour,TRUE,TRUE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+2173367,1 Hour,TRUE,TRUE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+2173368,2 Hour,TRUE,TRUE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+2173369,3 Hour,TRUE,TRUE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+2173370,1 Hour (Smoke),TRUE,TRUE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L3 Life Safety Plan,FALSE,Architectural Life Safety Plan,G103 - Third Floor Life Safety Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+2173366,4 Hour,TRUE,TRUE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+2173367,1 Hour,TRUE,TRUE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+2173368,2 Hour,TRUE,TRUE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+2173369,3 Hour,TRUE,TRUE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+2173370,1 Hour (Smoke),TRUE,TRUE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L4 Life Safety Plan,FALSE,Architectural Life Safety Plan,G104 - Fourth Floor Life Safety Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+2173366,4 Hour,TRUE,TRUE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+2173367,1 Hour,TRUE,TRUE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+2173368,2 Hour,TRUE,TRUE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+2173369,3 Hour,TRUE,TRUE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+2173370,1 Hour (Smoke),TRUE,TRUE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L5 Life Safety Plan,FALSE,Architectural Life Safety Plan,G105 - Fifth Floor Life Safety Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+2173366,4 Hour,TRUE,TRUE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+2173367,1 Hour,TRUE,TRUE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+2173368,2 Hour,TRUE,TRUE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+2173369,3 Hour,TRUE,TRUE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+2173370,1 Hour (Smoke),TRUE,TRUE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,R3 Life Safety Plan,FALSE,Architectural Life Safety Roof Plan,G106 - Roof Plan Life Safety Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+2173366,4 Hour,TRUE,TRUE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+2173367,1 Hour,TRUE,TRUE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+2173368,2 Hour,TRUE,TRUE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+2173369,3 Hour,TRUE,TRUE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+2173370,1 Hour (Smoke),TRUE,TRUE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L2 Life Safety Plan,FALSE,Architectural Life Safety Plan,G102 - Second Floor Life Safety Plan - 1
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+2173366,4 Hour,TRUE,TRUE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+2173367,1 Hour,TRUE,TRUE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+2173368,2 Hour,TRUE,TRUE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+2173369,3 Hour,TRUE,TRUE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+2173370,1 Hour (Smoke),TRUE,TRUE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Architectural Life Safety Plan,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,L1 - Scope Box,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,L1 - Scope Box,FALSE,Not View Template Assigned,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,L1 - Scope Box,FALSE,Not View Template Assigned,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,L1 - Scope Box,FALSE,Not View Template Assigned,Not in a sheet
+2173366,4 Hour,TRUE,TRUE,Legend,Life Safety Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173367,1 Hour,TRUE,TRUE,Legend,Life Safety Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173368,2 Hour,TRUE,TRUE,Legend,Life Safety Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173369,3 Hour,TRUE,TRUE,Legend,Life Safety Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173370,1 Hour (Smoke),TRUE,TRUE,Legend,Life Safety Legend,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Schematic Plan,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Schematic Plan,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Architectural Schematic Plan,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Architectural Schematic Plan,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,R3_SD,FALSE,Not View Template Assigned,SD106 - Roof Plan - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,R3_SD,FALSE,Not View Template Assigned,SD106 - Roof Plan - 1
+1462329,Elements to Hide - Elements w Annotation,TRUE,FALSE,FloorPlan,R3_SD,FALSE,Not View Template Assigned,SD106 - Roof Plan - 1
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,R3_SD,FALSE,Not View Template Assigned,SD106 - Roof Plan - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Café Kitchen Plan,FALSE,Architectural Enlarged Plan,K101 - Café Kitchen - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Café Kitchen Plan,FALSE,Architectural Enlarged Plan,K101 - Café Kitchen - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Architectural Presentation 3D,TRUE,N/A,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,View Template,Architectural Presentation 3D,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,ThreeD,3D (Shaded) Uncropped,FALSE,Not View Template Assigned,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,ThreeD,3D (Shaded) Uncropped,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Area Plan - Gross,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Area Plan - Gross,TRUE,N/A,Not in a sheet
+1296850,Walls - Not Concrete,TRUE,TRUE,View Template,Area Plan - Gross,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Area Plan - Gross,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Area Plan - Gross,TRUE,N/A,Not in a sheet
+2286689,Walls - Concrete,TRUE,TRUE,View Template,Area Plan - Gross,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Enlarged Plan,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Enlarged Plan,TRUE,N/A,Not in a sheet
+1962658,Schematic Roofs and Floors,TRUE,TRUE,ThreeD,Coord - Arch Residential Cores,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Standard Live_Work Core A,FALSE,Architectural Enlarged Core Plans,A402 - Enlarged Live/Work Cores - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Standard Live_Work Core A,FALSE,Architectural Enlarged Core Plans,A402 - Enlarged Live/Work Cores - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Studio Live_Work Core A,FALSE,Architectural Enlarged Core Plans,A403 - Enlarged Live/Work Cores - 1
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Studio Live_Work Core A,FALSE,Architectural Enlarged Core Plans,A403 - Enlarged Live/Work Cores - 1
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Studio Live_Work Core B,FALSE,Architectural Enlarged Core Plans,A403 - Enlarged Live/Work Cores - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Studio Live_Work Core B,FALSE,Architectural Enlarged Core Plans,A403 - Enlarged Live/Work Cores - 2
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Studio Two Story Live_Work Core,FALSE,Architectural Enlarged Core Plans,A403 - Enlarged Live/Work Cores - 3
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Studio Two Story Live_Work Core,FALSE,Architectural Enlarged Core Plans,A403 - Enlarged Live/Work Cores - 3
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Enlarged Core Plans,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Enlarged Core Plans,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Standard Live_Work Core B,FALSE,Architectural Enlarged Core Plans,A402 - Enlarged Live/Work Cores - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Standard Live_Work Core B,FALSE,Architectural Enlarged Core Plans,A402 - Enlarged Live/Work Cores - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Live_Work Core - Standard - Kitchen Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 7
+796461,WV_Sections,TRUE,FALSE,Elevation,Live_Work Core - Standard - Kitchen Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 7
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Live_Work Core - Standard - Kitchen Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 7
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Live_Work Core - Standard - South Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 4
+796461,WV_Sections,TRUE,FALSE,Elevation,Live_Work Core - Standard - South Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 4
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Live_Work Core - Standard - South Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 4
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Live_Work Core - Standard - East Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 5
+796461,WV_Sections,TRUE,FALSE,Elevation,Live_Work Core - Standard - East Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 5
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Live_Work Core - Standard - East Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 5
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Live_Work Core - Standard - West Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 6
+796461,WV_Sections,TRUE,FALSE,Elevation,Live_Work Core - Standard - West Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 6
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Live_Work Core - Standard - West Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 6
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Live_Work Core - Standard - North Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 3
+796461,WV_Sections,TRUE,FALSE,Elevation,Live_Work Core - Standard - North Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 3
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Live_Work Core - Standard - North Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 3
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Live_Work Core - Standard - Workstation Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 8
+796461,WV_Sections,TRUE,FALSE,Elevation,Live_Work Core - Standard - Workstation Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 8
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Live_Work Core - Standard - Workstation Elevation,FALSE,Architectural Elevation (Interior),A402 - Enlarged Live/Work Cores - 8
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Green Roof Hardscape,FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Green Roof Hardscape,FALSE,Not View Template Assigned,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,Green Roof Hardscape,FALSE,Not View Template Assigned,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,Green Roof Hardscape,FALSE,Not View Template Assigned,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2069925,Walls - Living Wall,TRUE,FALSE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2282147,Floors - Green Roof - Turf,TRUE,TRUE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2282320,Floors - Green Roof - Scultpture,TRUE,TRUE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2282321,Floors - Green Roof - Tile,TRUE,TRUE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2282322,Floors - Green Roof - Planting,TRUE,TRUE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2282323,Floors - Green Roof - Decking,TRUE,TRUE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2282324,Floors - Green Roof - Brick,TRUE,TRUE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+2285508,Context Buildings - Across the Street,TRUE,FALSE,FloorPlan,Green Roof Materials Legend,FALSE,Not View Template Assigned,A106 - Green Roof - 2
+796461,WV_Sections,TRUE,FALSE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2282147,Floors - Green Roof - Turf,TRUE,TRUE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2282320,Floors - Green Roof - Scultpture,TRUE,TRUE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2282321,Floors - Green Roof - Tile,TRUE,TRUE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2282322,Floors - Green Roof - Planting,TRUE,TRUE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2282323,Floors - Green Roof - Decking,TRUE,TRUE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2282324,Floors - Green Roof - Brick,TRUE,TRUE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Green Roof Colors,TRUE,N/A,Not in a sheet
+2173366,4 Hour,TRUE,TRUE,Legend,Wall Material Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173367,1 Hour,TRUE,TRUE,Legend,Wall Material Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173368,2 Hour,TRUE,TRUE,Legend,Wall Material Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173369,3 Hour,TRUE,TRUE,Legend,Wall Material Legend,FALSE,Not View Template Assigned,Not in a sheet
+2173370,1 Hour (Smoke),TRUE,TRUE,Legend,Wall Material Legend,FALSE,Not View Template Assigned,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+755980,Walls - L2 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756356,Walls - L3 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756357,Walls - L4 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756358,Walls - L5 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756359,Walls - R2 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756369,Walls - R3 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+796461,WV_Sections,TRUE,FALSE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+1501133,WV_Sections (Temp),TRUE,FALSE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+1962658,Schematic Roofs and Floors,TRUE,FALSE,View Template,WV_Display Rooms,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Residential Lobby - North,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 2
+796461,WV_Sections,TRUE,FALSE,Elevation,Residential Lobby - North,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 2
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Residential Lobby - North,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Residential Lobby - West,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 5
+796461,WV_Sections,TRUE,FALSE,Elevation,Residential Lobby - West,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 5
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Residential Lobby - West,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 5
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Residential Lobby - East,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 3
+796461,WV_Sections,TRUE,FALSE,Elevation,Residential Lobby - East,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 3
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Residential Lobby - East,FALSE,Architectural Elevation (Interior),A404 - Residential Lobby - 3
+796461,WV_Sections,TRUE,FALSE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+2069925,Walls - Living Wall,TRUE,FALSE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+2173366,4 Hour,TRUE,TRUE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+2173367,1 Hour,TRUE,TRUE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+2173368,2 Hour,TRUE,TRUE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+2173369,3 Hour,TRUE,TRUE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+2173370,1 Hour (Smoke),TRUE,TRUE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+2285508,Context Buildings - Across the Street,TRUE,FALSE,View Template,Architectural Life Safety Roof Plan,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Café Kitchen B,FALSE,Architectural Elevation (Interior),K101 - Café Kitchen - 4
+796461,WV_Sections,TRUE,FALSE,Elevation,Café Kitchen B,FALSE,Architectural Elevation (Interior),K101 - Café Kitchen - 4
+845084,Elements to Hide - Grids,TRUE,FALSE,Elevation,Café Kitchen B,FALSE,Architectural Elevation (Interior),K101 - Café Kitchen - 4
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Existing North,FALSE,Architectural Elevation (Existing),A200 - Existing Conditions Elevations - 2
+631942,_Phase 3D,TRUE,TRUE,Elevation,Existing North,FALSE,Architectural Elevation (Existing),A200 - Existing Conditions Elevations - 2
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,Elevation,Existing North,FALSE,Architectural Elevation (Existing),A200 - Existing Conditions Elevations - 2
+613325,Elements to Hide - Levels,TRUE,FALSE,Elevation,Existing South,FALSE,Architectural Elevation (Existing),A200 - Existing Conditions Elevations - 1
+631942,_Phase 3D,TRUE,TRUE,Elevation,Existing South,FALSE,Architectural Elevation (Existing),A200 - Existing Conditions Elevations - 1
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,Elevation,Existing South,FALSE,Architectural Elevation (Existing),A200 - Existing Conditions Elevations - 1
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,Architectural Elevation (Existing),TRUE,N/A,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,View Template,Architectural Elevation (Existing),TRUE,N/A,Not in a sheet
+2290463,Walls - Rainscreen Dark Material,TRUE,TRUE,View Template,Architectural Elevation (Existing),TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+755980,Walls - L2 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756356,Walls - L3 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756357,Walls - L4 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756358,Walls - L5 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756359,Walls - R2 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756369,Walls - R3 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+796461,WV_Sections,TRUE,FALSE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+845084,Elements to Hide - Grids,TRUE,FALSE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+1501133,WV_Sections (Temp),TRUE,FALSE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Detail,North Wall Window Detail,FALSE,Not View Template Assigned,A501 - Details - 3
+613325,Elements to Hide - Levels,TRUE,FALSE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+755980,Walls - L2 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756356,Walls - L3 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756357,Walls - L4 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756358,Walls - L5 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756359,Walls - R2 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756365,Walls - L1 - Top - Block 43,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756366,Walls - L1 - Top - Block 37,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756367,Walls - L1 - Top - Block 35,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756368,Walls - Parapet 1 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756369,Walls - R3 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+756370,Walls - Parapet 2 - Top,FALSE,TRUE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+796461,WV_Sections,TRUE,FALSE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+845084,Elements to Hide - Grids,TRUE,FALSE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+1501133,WV_Sections (Temp),TRUE,FALSE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+1962658,Schematic Roofs and Floors,TRUE,FALSE,Detail,Typical Stair - Landing,FALSE,Not View Template Assigned,A501 - Details - 4
+613325,Elements to Hide - Levels,TRUE,FALSE,View Template,WV_3D,TRUE,N/A,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,View Template,WV_3D,TRUE,N/A,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,View Template,WV_3D,TRUE,N/A,Not in a sheet
+613325,Elements to Hide - Levels,TRUE,FALSE,ThreeD,{3D},FALSE,Not View Template Assigned,Not in a sheet
+631942,_Phase 3D,TRUE,TRUE,ThreeD,{3D},FALSE,Not View Template Assigned,Not in a sheet
+845084,Elements to Hide - Grids,TRUE,FALSE,ThreeD,{3D},FALSE,Not View Template Assigned,Not in a sheet
