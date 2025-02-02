@@ -32,17 +32,6 @@ app   = __revit__.Application
 # MAIN
 #==================================================
 
-# ADD PROJECT INFO
-# Current file name: Project1.rvt
-# Project Name: Project Name
-# Project Number: Project Number
-# Client Name: Owner
-
-# ADD SCRIP INFO:
-# Date of execution: DDMMYYYY HH:MM:SS
-# Execution Time: 29 seconds
-
-
 def export_to_csv(file_path, data):
     # Open the file with codecs and utf-8 encoding
     with codecs.open(file_path, 'w', 'utf-8') as file:
@@ -60,24 +49,6 @@ def GetFilterIds(view):
         filterIds = None
     return filterIds
 
-def GetUsedFilterIds(doc):
-    views = FilteredElementCollector(doc).OfClass(View).ToElements()
-    usedFilterIds = List[ElementId]()
-    for view in views:
-        viewFilterIds = []
-        try:
-            viewFilterIds = view.GetFilters()
-            for filter in viewFilterIds:
-                usedFilterIds.Add(filter)
-        except:
-            pass  # this exception happens when a view doesn't support filters
-    return usedFilterIds
-
-def GetUnusedFilters(doc):
-    usedFilterIds = GetUsedFilterIds(doc)
-    unusedFilters = FilteredElementCollector(doc).OfClass(ParameterFilterElement).Excluding(usedFilterIds).ToElements()
-    return list(unusedFilters)
-
 def remove_detached_suffix(s):
     if s.endswith('_detached'):
         return s[:-9]  # Remove the last 9 characters
@@ -91,9 +62,6 @@ if model_path == "":
     sys.exit()
 
 # 1️⃣Get filter information to be exported
-
-filters_used   = GetUsedFilterIds(doc)
-filters_unused = GetUnusedFilters(doc)
 
 output_filters, output_views = [], []
 output_data = [["DATA"], ["Filter Id", "Filter Name", "Filter Enable", "Filter Visibility", "View Type", "View Name", "Is View Template", "View Template Name Applied", "Sheet Info"]]
@@ -198,7 +166,8 @@ user_name = app.Username
 output_project_info.append(("Export by", user_name))
 #print("Export by: " + user_name)
 
-
+if len(output_data) == 2:
+    forms.alert("No filters are currently applied.\nThe report will not be exported.", exitscript=True)
 
 # 2️⃣Create directory where the report will be saved
 
