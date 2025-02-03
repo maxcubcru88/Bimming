@@ -38,18 +38,8 @@ view_names_to_create = [VIEW_PREFIX + workset.Name for workset in all_worksets]
 # 1️⃣Check in the model is workshared
 if not forms.check_workshared(doc): sys.exit()
 
-# 2️⃣Check in the 3D View Types 'Audit_Workset' is already created, if not, a new one will be created
+# 2️⃣Check if the Active View belongs to the threeD_view_family_type_name = "Audit_Workset"
 threeD_view_family_type = get_existing_3d_view_type(THREE_D_VIEW_FAMILY_NAME)
-
-if not threeD_view_family_type:
-    # Get a default 3D ViewFamilyType to duplicate
-    default_threeD_view_family_type_id = doc.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D)
-    default_threeD_view_family_type = doc.GetElement(default_threeD_view_family_type_id)
-    # Duplicate the default 3D ViewFamilyType to create a new one
-    threeD_view_family_type = default_threeD_view_family_type.Duplicate(THREE_D_VIEW_FAMILY_NAME)
-    #print("Created new 3D View Type '{}'.".format(new_view_type_name))
-
-# 3️⃣Check if the Active View belongs to the threeD_view_family_type_name = "Audit_Workset"
 message = 'The current view needs to be deleted.\nPlease switch to another view, ideally a non 3D-View'
 
 if doc.ActiveView.GetTypeId() == threeD_view_family_type.Id:
@@ -58,11 +48,19 @@ if doc.ActiveView.GetTypeId() == threeD_view_family_type.Id:
 if doc.ActiveView.Name in view_names_to_create:
     forms.alert(message, exitscript=True)
 
-
-# 🔥Creating Set of Views
-
 t = Transaction(doc, 'Bimming-Set of Workset Views Created')
 t.Start()
+
+# 3️⃣Check in the 3D View Types 'Audit_Workset' is already created, if not, a new one will be created
+if not threeD_view_family_type:
+    # Get a default 3D ViewFamilyType to duplicate
+    default_threeD_view_family_type_id = doc.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D)
+    default_threeD_view_family_type = doc.GetElement(default_threeD_view_family_type_id)
+    # Duplicate the default 3D ViewFamilyType to create a new one
+    threeD_view_family_type = default_threeD_view_family_type.Duplicate(THREE_D_VIEW_FAMILY_NAME)
+    #print("Created new 3D View Type '{}'.".format(new_view_type_name))
+
+# 🔥Creating Set of Views
 
 # 1️⃣Delete all views in the new 3D View Type or with Name already in use
 all_views       = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Views).WhereElementIsNotElementType().ToElements()
