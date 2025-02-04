@@ -42,7 +42,8 @@ if not forms.check_workshared(doc): sys.exit()
 threeD_view_family_type = get_existing_3d_view_type(THREE_D_VIEW_FAMILY_NAME)
 message = 'The current view needs to be deleted.\nPlease switch to another view, ideally a non 3D-View'
 
-if doc.ActiveView.GetTypeId() == threeD_view_family_type.Id:
+if threeD_view_family_type:
+    doc.ActiveView.GetTypeId() == threeD_view_family_type.Id
     forms.alert(message,exitscript=True)
 
 if doc.ActiveView.Name in view_names_to_create:
