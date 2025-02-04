@@ -80,9 +80,11 @@ def get_scope_box_angle(scope_box):
         vector = line.Direction
         if not (is_parallel_to_z(vector)):
             direction.append(vector)
-
     scope_box_angle = get_angles_against_x(direction)[4]
-    return scope_box_angle
+    if direction[4].X <= 0:
+        return scope_box_angle
+    else:
+        return -scope_box_angle
 
 # Function to rotate scope box
 def rotate_scope_box(scope_box, angle_degrees):
