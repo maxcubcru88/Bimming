@@ -6,17 +6,17 @@ Each unique alignment is represented by a different color.
 
 Author: Máximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
+
+# CONSTANTS
+#==================================================
+TRANSACTION_NAME = "Bimming-Directions Splasher"
 
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._MaxCreates import *
-
+from Snippets._bimming_graphics_override import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 
@@ -28,25 +28,22 @@ app   = __revit__.Application
 
 # MAIN
 #==================================================
-
-#3️⃣ COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
+# 3️⃣COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
 all_walls        = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(Wall).ToElements()
 all_grids        = FilteredElementCollector(doc, doc.ActiveView.Id).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
 all_ref_planes   = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(ReferencePlane).ToElements()
 
 collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
 
-#4️⃣ GROUPING THE ELEMENTS
-# Tuple(element, angle)
+# 4️⃣GROUPING THE ELEMENTS
 elements_tuple = []
 
 for element in collector:
-    # Getting the direction of the element
     direction   = get_direction(element)
-    if not direction: # Skip the element if it has not attribute direction
+    if not direction:
         continue
     vector_X    = XYZ(1,0,0)
-    angle  = get_angle_to_vector(direction, vector_X)[0] # it returns a list with 2 angles, so we need to select one
+    angle  = get_angle_to_vector(direction, vector_X)[0]
     # print ('Angle to Axis X: {}'.format(angle))
     angle_decimal = Decimal(angle)
     quadrant = get_vector_quadrant(direction)
@@ -66,20 +63,17 @@ for element in collector:
         angle = '%.12f' % (90 - angle_decimal)
         case = 'case 5'
     # print ('Angle in the first quadrant: {} - {}'.format(angle, case))
-    # Grouping the elements if 'sel_angle' and 'angle' match
+
     elements_tuple.append(tuple((element, angle)))
 
-# Group the items into a dictionary
 grouped_dict = group_by_second_arg(elements_tuple)
 
-# Convert the dictionary to a list of lists
 grouped_list = dict_to_list(grouped_dict)
 
-#5️⃣ OVERRIDING THE ELEMENTS
+# 5️⃣OVERRIDING THE ELEMENTS
 colors = generate_random_colors(len(grouped_list))
 
-# 🔓 Starting Transaction
-t = Transaction(doc, 'Bimming-Directions Splasher')
+t = Transaction(doc, TRANSACTION_NAME)
 t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id
@@ -90,4 +84,3 @@ for group, color in zip(grouped_list, colors):
         doc.ActiveView.SetElementOverrides(el.Id, settings)
 
 t.Commit()
-# 🔐 Finishing Transaction

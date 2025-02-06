@@ -4,14 +4,10 @@
 #==================================================
 import random
 import math
-
 from decimal import Decimal, getcontext, ROUND_HALF_UP
-
-from Snippets._convert import *
-
+from Snippets._bimming_convert import *
 from Autodesk.Revit.DB import *
 from pyrevit import forms
-
 from collections import defaultdict
 
 # Variables
@@ -21,109 +17,6 @@ uidoc = __revit__.ActiveUIDocument
 doc   = __revit__.ActiveUIDocument.Document #type:Document
 
 # Reusable Snippets
-
-def rotate_vector_with_transform(vector, axis, angle):
-    """
-    Rotates a vector using Revit's Transform class around a given axis by a specified angle.
-
-    Parameters:
-        vector: The vector to be rotated (XYZ object).
-        axis: The axis of rotation (XYZ object, should be normalized).
-        angle: The angle of rotation in radians.
-
-    Returns:
-        The rotated vector as an XYZ object.
-    """
-    # Create a rotation transform using the axis and angle
-    rotation_transform = Transform.CreateRotationAtPoint(axis, angle, XYZ(0, 0, 0))
-
-    # Apply the rotation transform to the vector (treated as a point from the origin)
-    rotated_vector = rotation_transform.OfPoint(vector)
-
-    return rotated_vector
-
-# # Example usage
-# vec = XYZ(1, 0, 0)  # Vector to rotate
-# axis = XYZ(0, 0, 1)  # Rotation axis (Z-axis)
-# angle = math.radians(90)  # Rotate by 90 degrees
-
-def group_walls_by_direction(walls, directions, tolerance=1e-14):
-    grouped_walls = []
-    visited = []
-
-    for i, wall in enumerate(walls):
-        if i in visited:
-            continue
-
-        group = [wall]
-        visited.append(i)
-        direction = directions[i]
-
-        for j, compare_wall in enumerate(walls):
-            if j <= i or j in visited:
-                continue
-
-            compare_direction = directions[j]
-            if are_vectors_parallel(direction, compare_direction, tolerance):
-                group.append(compare_wall)
-                visited.append(j)
-
-        grouped_walls.append(group)
-
-    return grouped_walls
-
-def are_vectors_parallel(norm_vec1, norm_vec2, tolerance=1e-14):
-    # Check if they are parallel or antiparallel by comparing normalized vectors
-    return norm_vec1.IsAlmostEqualTo(norm_vec2, tolerance) or norm_vec1.IsAlmostEqualTo(-norm_vec2, tolerance)
-
-def move_vector_to_first_quadrant(direction):
-    if direction.X < 0 and direction.Y > 0:                         # second quadrant - The vector is rotated -90 degrees
-        direction = rotate_vector_with_transform(vector=direction, axis=XYZ(0, 0, 1), angle=math.radians(-90))
-        #print(direction)
-    elif direction.X < 0 and direction.Y < 0:                       # third quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
-        direction = XYZ(-direction.X, -direction.Y, direction.Z)
-        #print(direction)
-    elif direction.X > 0 and direction.Y < 0:                       # fourth quadrant - The vector is rotated 90 degrees
-        direction = rotate_vector_with_transform(vector=direction, axis=XYZ(0, 0, 1), angle=math.radians(90))
-        #print(direction)
-    else: pass
-    return direction
-
-def move_vector_to_first_and_second_quadrant(direction):
-    # Set the precision high enough for calculations
-    getcontext().prec = 50  # High precision for intermediate calculations
-
-    X = Decimal(direction.X)
-    Y = Decimal(direction.Y)
-
-    rounded_value_X = X.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
-    rounded_value_Y = Y.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
-                                        # 0.1234567890123
-
-    if rounded_value_X <= 0 and rounded_value_Y < 0:                       # third quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
-        direction = XYZ(-direction.X, -direction.Y, direction.Z)
-    elif rounded_value_X >= 0 and rounded_value_Y < 0:                       # fourth quadrant - The vector is reversed to the second quadrant
-        direction = XYZ(-direction.X, -direction.Y, direction.Z)
-    else: pass
-    return direction
-
-def move_vector_to_first_and_fourth_quadrant(direction):
-    # Set the precision high enough for calculations
-    getcontext().prec = 50  # High precision for intermediate calculations
-
-    X = Decimal(direction.X)
-    Y = Decimal(direction.Y)
-
-    rounded_value_X = X.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
-    rounded_value_Y = Y.quantize(Decimal('0.0000000000001'), rounding=ROUND_HALF_UP)
-                                        # 0.1234567890123
-
-    if rounded_value_X < 0 and rounded_value_Y >= 0:                       # second quadrant  - The vector is reversed, but it could be rotated +- 180 degrees
-        direction = XYZ(-direction.X, -direction.Y, direction.Z)
-    elif rounded_value_X < 0 and rounded_value_Y <= 0:                       # third quadrant - The vector is reversed to the second quadrant
-        direction = XYZ(-direction.X, -direction.Y, direction.Z)
-    else: pass
-    return direction
 
 def set_graphics_override_direction(line_weight = -1 ,
                                     color_lines = Color.InvalidColorValue,
@@ -228,19 +121,6 @@ def lighten_color(color, factor=0.2):
     # Return the new lightened color
     return Color(new_r, new_g, new_b)
 
-def count_decimals_float(number):
-    """
-    count the number of decimals
-
-    :number: Float value
-    :return:
-    """
-    # Convert the float to a Decimal
-    decimal_number = Decimal(str(number))
-    # Get the decimal part only
-    decimal_part = abs(decimal_number - decimal_number.to_integral())
-    # Convert the decimal part to string and count the digits after the '.'
-    return max(0, -decimal_part.as_tuple().exponent)
 
 def count_decimals_string(string):
     """
@@ -337,16 +217,3 @@ def dict_to_list(grouped_dict):
     :return: List of lists
     """
     return list(grouped_dict.values())
-
-"""# Test data
-test = [('elem1', 'D'), ('elem2', 'A'), ('elem3', 'B'), ('elem4', 'D'), ('elem5', 'B')]
-
-# Group the items into a dictionary
-grouped_dict = group_by_second_arg(test)
-
-# Convert the dictionary to a list of lists
-grouped_list = dict_to_list(grouped_dict)
-
-# Print the results
-print("Grouped Dictionary:", grouped_dict)
-print("List of Lists:", grouped_list)"""

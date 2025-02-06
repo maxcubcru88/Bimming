@@ -4,17 +4,14 @@ __doc__ = """Retrieve the angle between a wall, reference plane, or grid line an
 
 Author: Máximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
 
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._MaxCreates import *
-from Snippets._selection import *
+from Snippets._bimming_graphics_override import *
+from Snippets._bimming_selection import *
 
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
@@ -32,7 +29,7 @@ app   = __revit__.Application
 # MAIN
 #==================================================
 
-#🫳 Select Wall, Grid or Ref Planes
+# 🫳Select Wall, Grid or Ref Planes
 
 # Get Views - Selected in a projectBrowser
 sel_el_ids      = uidoc.Selection.GetElementIds()
@@ -57,16 +54,16 @@ else:
     sel_elem = sel_elem_filter[0] # Selecting the only element in the list
     pass
 
-#🔥 Calculating the angle
+# 🔥Calculating the angle
 
-#1️⃣ Getting the direction of the element
+# 1️⃣Getting the direction of the element
 direction = get_direction(sel_elem)
 if direction == None:
     forms.alert('The element has not the attribute direction. Select a linear one.', exitscript=True)
 
 # print("Original direction: {}".format(direction))
 
-#2️⃣ ANGLE TO VECTOR X --> XYZ(1,0,0)
+# 2️⃣ANGLE TO VECTOR X --> XYZ(1,0,0)
 vector_X = XYZ(1,0,0)
 angle_to_X = get_angle_to_vector(direction, vector_X)
 vector_Y = XYZ(0,1,0)

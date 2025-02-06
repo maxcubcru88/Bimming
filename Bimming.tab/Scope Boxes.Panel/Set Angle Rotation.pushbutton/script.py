@@ -4,19 +4,19 @@ __doc__     = """Sets the rotation of the scope box relative to the X-axis.
 
 Author: Maximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
+
+# CONSTANTS
+#==================================================
+TRANSACTION_NAME = "Bimming-Rotate Scope Boxes"
 
 # IMPORTS
 #==================================================
-from Autodesk.Revit.DB import *
-from pyrevit import revit, forms
-import math
+from pyrevit import forms
 import clr
 clr.AddReference('System')
+from Snippets._bimming_scope_boxes import *
 
 # VARIABLES
 #==================================================
@@ -24,7 +24,7 @@ app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
 
-# MAIN
+# CLASS
 #==================================================
 class MyOption(forms.TemplateListItem):
     def __init__(self, item, el_name, angle, checked=False):
@@ -38,71 +38,8 @@ class MyOption(forms.TemplateListItem):
         el_id = str(self.item)
         return "Angle: {}  |  Name: {}".format(self.angle, self.el_name)
 
-# Define a function to check if a vector is parallel to the Z-axis
-def is_parallel_to_z(vector):
-    # Z-axis vector
-    z_axis = XYZ.BasisZ
-
-    # Calculate the dot product between the input vector and Z-axis vector
-    dot_product = vector.DotProduct(z_axis)
-
-    # Check if the dot product is close to 1 or -1
-    if abs(dot_product) > 0.9999:
-        return True
-    else:
-        return False
-
-def get_angles_against_x(vectors):
-    angles = []
-
-    # X-axis vector
-    x_axis = XYZ.BasisY
-
-    for vector in vectors:
-        # Calculate the angle between the vector and X-axis
-        angle = vector.AngleTo(x_axis)
-
-        # Convert angle from radians to degrees
-        angle_degrees = math.degrees(angle)
-
-        angles.append(angle_degrees)
-
-    return angles
-
-def get_scope_box_angle(scope_box):
-    options = Options()
-    options.DetailLevel = ViewDetailLevel.Undefined
-
-    geom = scope_box.Geometry[options]
-
-    direction = []
-    for line in geom:
-        vector = line.Direction
-        if not (is_parallel_to_z(vector)):
-            direction.append(vector)
-    scope_box_angle = get_angles_against_x(direction)[4]
-    if direction[4].X <= 0:
-        return scope_box_angle
-    else:
-        return -scope_box_angle
-
-# Function to rotate scope box
-def rotate_scope_box(scope_box, angle_degrees):
-
-    # Get the bounding box of the scope box
-    bounding_box = scope_box.get_BoundingBox(doc.ActiveView)
-
-    # Calculate the center point of the bounding box
-    center_point = (bounding_box.Min + bounding_box.Max) / 2.0
-
-    # Create a rotation axis
-    axis = Line.CreateBound(center_point, XYZ(center_point.X, center_point.Y, center_point.Z + 1))
-
-    # Convert angle from degrees to radians
-    angle_radians = math.radians(angle_degrees)
-
-    # Rotate the scope box
-    ElementTransformUtils.RotateElement(doc, scope_box.Id, axis, angle_radians)
+# MAIN
+#==================================================
 
 #1️⃣ Select Scope Boxes
 scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElements()
@@ -147,7 +84,7 @@ else:
 
 # 4️⃣ Rotate the specified angle the scope box selected
 
-t = Transaction(doc, 'Bimming-Rotate Scope Boxes')
+t = Transaction(doc, TRANSACTION_NAME)
 t.Start()
 
 scope_box_selected = [doc.GetElement(sb) for sb in res]

@@ -4,32 +4,31 @@ __doc__     = """Creates a 3D view for each workset in the project.
 
 Author: Maximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
+
+# CONSTANTS
+#==================================================
+VIEW_PREFIX = "Audit_Workset-"
+THREE_D_VIEW_FAMILY_NAME = "Audit_Worksets"
 
 # IMPORTS
+#==================================================
 from Snippets._bimming_views import get_existing_3d_view_type
 from Autodesk.Revit.DB import *
-# pyRevit
 from pyrevit import forms
 import sys
-#.NET Imports
 import clr
 clr.AddReference('System')
 
 # VARIABLES
+#==================================================
 app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
 
 #MAIN
-# 📝Constants
-VIEW_PREFIX = "Audit_Workset-"
-THREE_D_VIEW_FAMILY_NAME = "Audit_Worksets"
-
+#==================================================
 # ✍️Name of views that are going to be created
 all_worksets = FilteredWorksetCollector(doc).OfKind(WorksetKind.UserWorkset)
 view_names_to_create = [VIEW_PREFIX + workset.Name for workset in all_worksets]

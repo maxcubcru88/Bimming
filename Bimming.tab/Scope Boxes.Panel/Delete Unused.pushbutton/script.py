@@ -4,11 +4,12 @@ __doc__     = """Deletes unused scope boxes from the project.
 
 Author: Maximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
+
+# CONSTANTS
+#==================================================
+TRANSACTION_NAME = "Bimming-Delete Unused Scope Boxes"
 
 # IMPORTS
 #==================================================
@@ -24,9 +25,8 @@ app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
 
-# MAIN
+# CLASS
 #==================================================
-
 class MyOption(forms.TemplateListItem):
     def __init__(self, item, el_name, checked=False):
         self.item = item #Id of the element
@@ -38,6 +38,8 @@ class MyOption(forms.TemplateListItem):
         el_id = str(self.item)
         return "Name: {}".format(self.el_name)
 
+# MAIN
+#==================================================
 # 1️⃣ Collect all Scope Boxes in the project
 scope_boxes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_VolumeOfInterest).WhereElementIsNotElementType().ToElements()
 
@@ -84,7 +86,7 @@ unused_scope_boxes = [scope_box for scope_box in scope_boxes if scope_box.Id not
 scope_boxes_sorted = sorted(unused_scope_boxes, key=lambda sb: sb.Name)
 
 if not unused_scope_boxes:
-    forms.alert("All the scope boxes are in use.", warn_icon=False, exitscript=True)
+    forms.alert("All scope boxes are in use.", warn_icon=False, exitscript=True)
 
 # 4️⃣ WPF Form to select scope boxes
 scope_box_list = []
@@ -102,7 +104,7 @@ if not res:
 unused_scope_boxes = [doc.GetElement(i) for i in res]
 
 # 5️⃣ Delete Scope Boxes
-t = Transaction(doc, 'Bimming-Delete Unused Scope Boxes')
+t = Transaction(doc, TRANSACTION_NAME)
 t.Start()
 counter = 0
 for scope_box in unused_scope_boxes:
@@ -114,3 +116,5 @@ for scope_box in unused_scope_boxes:
     except Exception as e:
         print("Error deleting Scope Box {scope_box.Name}: {e}".format(scope_box=scope_box, e=e))
 t.Commit()
+
+forms.alert("{} scope boxes deleted successfully.".format(counter), warn_icon=False)

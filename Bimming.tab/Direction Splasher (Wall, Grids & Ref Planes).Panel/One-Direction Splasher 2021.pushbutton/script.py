@@ -5,22 +5,21 @@ elements parallel or perpendicular to the selected one are highlighted in green,
 
 Author: Máximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2022
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
+
+# CONSTANTS
+#==================================================
+TRANSACTION_NAME = "Bimming-One Direction Splasher"
 
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._MaxCreates import *
-from Snippets._selection import *
-
+from Snippets._bimming_graphics_override import *
+from Snippets._bimming_selection import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
-
 # pyRevit
 from pyrevit import forms
 
@@ -54,7 +53,7 @@ class ISelectionFilter_Categories(ISelectionFilter):
         """ Determines if the reference is allowed. """
         return False  # Only elements are filtered in this case.
 
-#🫳 Select Wall, Grid or Ref Planes
+# 🫳Select Wall, Grid or Ref Planes
 
 # Get Views - Selected in a projectBrowser
 sel_el_ids      = uidoc.Selection.GetElementIds()
@@ -84,13 +83,13 @@ else:
     sel_elem = sel_elem_filter[0] # Selecting the only element in the list
     pass
 
-#🔥 Splashing!
-#1️⃣ Getting the direction of the element selected
+# 🔥Splashing!
+# 1️⃣Getting the direction of the element selected
 direction = get_direction(sel_elem)
 if direction == None:
     forms.alert('The element has not the attribute direction. Select a linear one.', exitscript=True)
 
-#2️⃣ "Reversing" and "Rotating" vectors to have them all in the first quadrant to read the angle against X axis
+# 2️⃣"Reversing" and "Rotating" vectors to have them all in the first quadrant to read the angle against X axis
 sel_angle = get_angle_to_vector(direction, XYZ(1,0,0))[0]
 # print ('Angle to Axis X: {}'.format(sel_angle))
 sel_angle_decimal = Decimal(sel_angle)
@@ -108,24 +107,23 @@ elif sel_quadrant == 'Quadrant 4':
 # print ('Angle in the first quadrant - sel_angle: {}'.format(sel_angle))
 # print ('Type: {}'.format(type(sel_angle)))
 
-#3️⃣ COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
+# 3️⃣COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
 all_walls        = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(Wall).ToElements()
 all_grids        = FilteredElementCollector(doc, doc.ActiveView.Id).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
 all_ref_planes   = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(ReferencePlane).ToElements()
 
 collector = list(all_walls) + list(all_grids) + list(all_ref_planes)
 
-#4️⃣ GROUPING THE ELEMENTS
+# 4️⃣GROUPING THE ELEMENTS
 items_group_1 = [] # Group that includes the elements which are parallel or perpendicular to the one selected
 items_group_2 = [] # Group for the rest of the elements
 
 for element in collector:
-    # Getting the direction of the element
     direction   = get_direction(element)
-    if not direction: # Skip the element if it has not attribute direction
+    if not direction:
         continue
     vector_X    = XYZ(1,0,0)
-    angle  = get_angle_to_vector(direction, vector_X)[0] # it returns a list with 2 angles, so we need to select one
+    angle  = get_angle_to_vector(direction, vector_X)[0]
     # print ('Angle to Axis X: {}'.format(angle))
     angle_decimal = Decimal(angle)
     quadrant = get_vector_quadrant(direction)
@@ -145,19 +143,17 @@ for element in collector:
         angle = '%.12f' % (90 - angle_decimal)
         case = 'case 5'
     # print ('Angle in the first quadrant: {} - {}'.format(angle, case))
-    # Grouping the elements if 'sel_angle' and 'angle' match
+
     if  angle == sel_angle:
         items_group_1.append(element)
     else:
         items_group_2.append(element)
 
-#5️⃣ OVERRIDING THE ELEMENTS
-#colors = generate_random_colors(len(groups))
+# 5️⃣OVERRIDING THE ELEMENTS
 color_green = Color(0, 210, 0)
 color_red   = Color(255, 0, 0)
 
-# 🔓 Starting Transaction
-t = Transaction(doc, 'Bimming-One Direction Splasher')
+t = Transaction(doc, TRANSACTION_NAME)
 t.Start()
 
 solid_fill_pattern = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting, '<Solid Fill>').Id
@@ -171,4 +167,3 @@ for element in items_group_2:
     doc.ActiveView.SetElementOverrides(element.Id, settings)
 
 t.Commit()
-# 🔐 Finishing Transaction

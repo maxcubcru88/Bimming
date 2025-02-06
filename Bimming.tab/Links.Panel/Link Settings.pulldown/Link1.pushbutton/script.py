@@ -4,15 +4,12 @@ __doc__ = """Sets the button name and the URL, directory, or file path for Link 
 
 Author: Máximo Cubero"""
 
-# __helpurl__ = 'www.bimming.uk'
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-# __context__ = 'zero-doc'
-# __highlight__ = 'new'
 
 # IMPORTS
 #==================================================
-from Snippets._buttonupdates import *
+from Snippets._bimming_buttonupdates import *
 import os
 
 # VARIABLES
@@ -23,15 +20,9 @@ app   = __revit__.Application
 
 # MAIN
 #==================================================
-
 current_script_path = os.path.abspath(__file__)
-#print(current_script_path)
-
 current_url_folder_path = url_folder_path(current_script_path)
-#print(current_url_folder_path)
-
 current_yaml_file_path = yaml_file_path(current_url_folder_path)
-#print(current_yaml_file_path)
 
 # Update the title and the URL Path in the yaml file
 title_and_path = button_update_title_and_path(current_url_folder_path, current_yaml_file_path)

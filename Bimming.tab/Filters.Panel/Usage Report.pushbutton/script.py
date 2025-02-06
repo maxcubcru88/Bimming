@@ -6,22 +6,19 @@ TIP: Use the 'Power BI Template' command to download the template and link the .
 
 Author: Máximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
 
 # IMPORTS
 #==================================================
 from Autodesk.Revit.DB import *
-from System.Collections.Generic import List
-import csv
-import codecs
 import os
 import datetime
-from pyrevit import forms
 import sys
+from pyrevit import forms
+from Snippets._bimming_export import *
+from Snippets._bimming_strings import *
+from Snippets._bimming_views import *
 
 # VARIABLES
 #==================================================
@@ -31,29 +28,6 @@ app   = __revit__.Application
 
 # MAIN
 #==================================================
-
-def export_to_csv(file_path, data):
-    # Open the file with codecs and utf-8 encoding
-    with codecs.open(file_path, 'w', 'utf-8') as file:
-        writer = csv.writer(file, lineterminator='\n')
-        writer.writerows(data)
-    return  file_path
-    # print("Data exported to: " + file_path)
-
-def GetFilterIds(view):
-    filterIds = None
-    try:
-        filterIds = view.GetFilters()
-    except Exception as e:
-        #print("Error collecting filters in view: {}".format(view), e)
-        filterIds = None
-    return filterIds
-
-def remove_detached_suffix(s):
-    if s.endswith('_detached'):
-        return s[:-9]  # Remove the last 9 characters
-    return s
-
 # 🫷Check if the model is saved
 # Get the model path (supports both local and central models)
 model_path = doc.PathName
@@ -62,7 +36,6 @@ if model_path == "":
     sys.exit()
 
 # 1️⃣Get filter information to be exported
-
 output_filters, output_views = [], []
 output_data = [["DATA"], ["Filter Id", "Filter Name", "Filter Enable", "Filter Visibility", "View Type", "View Name", "Is View Template", "View Template Name Applied", "Sheet Info"]]
 
@@ -108,7 +81,6 @@ for v in views:
 
 
 # 2️⃣PROJECT INFO
-
 output_project_info = [["PROJECT INFO"]]
 
 output_project_info.append(("File Path", model_path))
@@ -170,7 +142,6 @@ if len(output_data) == 2:
     forms.alert("No filters are currently applied.\nThe report will not be exported.", exitscript=True)
 
 # 2️⃣Create directory where the report will be saved
-
 # Get the user's Documents directory
 documents_folder = os.path.expanduser("~\\Documents\\Bimming_Filter_Usage_Reports")
 
@@ -185,7 +156,6 @@ os.startfile(documents_folder)
 
 
 # 3️⃣Name of the report: File Name + Date + Time
-
 # Get the current date and time
 now = datetime.datetime.now()
 
@@ -198,11 +168,7 @@ output_project_info.append((("Export Time", now.strftime("%H:%M:%S"))))
 # Concatenate the file name with the formatted date and time
 new_file_name = "{}_{}".format(file_name, formatted_datetime)
 
-# Print the result
-# print("Concatenated File Name:", new_file_name)
-
 # 4️⃣Export the report
-
 # Create the full file path with the .csv extension
 csv_file_path = os.path.join(documents_folder, new_file_name + ".csv")
 # print(csv_file_path)

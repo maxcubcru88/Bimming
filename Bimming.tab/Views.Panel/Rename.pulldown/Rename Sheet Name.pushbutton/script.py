@@ -4,28 +4,31 @@ __doc__ = """Renames the sheet names of the selected sheets in the project.
 
 Author: Máximo Cubero"""
 
-#__helpurl__ = "https://www.bimming.uk"
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
-#__context__ = 'zero-doc'
-#__highlight__ = 'new'
+
+# CONSTANTS
+#==================================================
+TRANSACTION_NAME = "Bimming-Rename Sheet Number"
+ALERT_NO_SHEETS = "No Sheets Selected. Please Try Again"
+ALERT_NO_RULES = "Rules to rename have not been defined. Please Try Again"
 
 # IMPORTS
 #==================================================
 from Autodesk.Revit.DB import *
+from Autodesk.Revit.UI import DockablePanes, DockablePane
 from pyrevit import forms
+from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
 
 # VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
-app   = __revit__.Application
 
 # MAIN
 #==================================================
 
-#1️⃣ Select Views
-
+# 1️⃣Select Views
 # Get Views - Selected in a projectBrowser
 sel_el_ids  = uidoc.Selection.GetElementIds()
 sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
@@ -38,19 +41,9 @@ if not sel_sheets:
 
 # Ensure Views Selected
 if not sel_sheets:
-    forms.alert('No Sheets Selected. Please Try Again', exitscript=True)
+    forms.alert(ALERT_NO_SHEETS, exitscript=True)
 
-
-# #2️⃣🅰️ Define Renaming Rules
-# prefix  = 'pre-'
-# find    = 'Level'
-# replace = 'MC-Level'
-# suffix  = '-suf'
-
-# 2️⃣🅱️ Define Renaming Rules (UI FORM)
-# https://revitpythonwrapper.readthedocs.io/en/latest/ui/forms.html?highlight=forms#flexform
-from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
-
+# 2️⃣Define Renaming Rules (UI FORM)
 components = [Label('Prefix:'),  TextBox('prefix'),
               Label('Find:'),    TextBox('find'),
               Label('Replace:'), TextBox('replace'),
@@ -68,21 +61,20 @@ try:
     replace = user_inputs['replace']
     suffix  = user_inputs['suffix']
 except:
-    forms.alert('Rules to rename have not been defined. Please Try Again', exitscript=True)
+    forms.alert(ALERT_NO_RULES, exitscript=True)
 
-#🔒 Start Transaction to make changes in project
-t = Transaction(doc, 'Bimming-Rename Sheet Name')
-
+# 3️⃣Renumber Sheets
+t = Transaction(doc, TRANSACTION_NAME)
 print('The following sheet names have been renamed:')
+t.Start()
 
-t.Start()  #🔓
+project_browser_id = DockablePanes.BuiltInDockablePanes.ProjectBrowser
+project_browser = DockablePane(project_browser_id)
+project_browser.Hide()
+
 for sheet in sel_sheets:
-
-    #3️⃣ Create New View Name
     old_sheet_name = sheet.Name
     new_sheet_name = prefix + old_sheet_name.replace(find, replace) + suffix
-
-    #4️⃣ Rename Sheets (Sheet can be the same)
     try:
         sheet.Name = new_sheet_name
         print('{} -> {}'.format(old_sheet_name, new_sheet_name))
@@ -90,7 +82,7 @@ for sheet in sel_sheets:
         # Handle errors explicitly
         print("Error renaming sheet '{}': {}".format(old_sheet_name, e))
 
-t.Commit() #🔒
+t.Commit()
 
 print ('---'*30)
 print ('Job done!')
