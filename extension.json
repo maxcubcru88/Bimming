@@ -4,7 +4,7 @@
     "type": "extension",
     "rocket_mode_compatible": "False",
     "name": "Bimming",
-    "description": "Extensions for PyRevit",
+    "description": "Extension for PyRevit",
     "author": "Maximo Cubero",
     "author_profile": "https://github.com/maxcubcru88",
     "url": "https://github.com/maxcubcru88/Bimming",
