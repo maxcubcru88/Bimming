@@ -10,13 +10,11 @@ __max_revit_ver__ = 2025
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._bimming_graphics_override import *
+from Snippets._bimming_vectors import *
 from Snippets._bimming_selection import *
-
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
-
 # pyRevit
 from pyrevit import forms
 

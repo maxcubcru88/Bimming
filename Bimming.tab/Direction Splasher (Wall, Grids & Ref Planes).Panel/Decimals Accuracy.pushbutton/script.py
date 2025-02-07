@@ -17,10 +17,9 @@ TRANSACTION_NAME = "Bimming-Decimals Accuracy"
 #==================================================
 # Custom Libraries
 from Snippets._bimming_graphics_override import *
-
+from Snippets._bimming_vectors import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
-
 # pyRevit
 from pyrevit import forms
 

@@ -17,6 +17,7 @@ TRANSACTION_NAME = "Bimming-One Direction Splasher"
 # Custom Libraries
 from Snippets._bimming_graphics_override import *
 from Snippets._bimming_selection import *
+from Snippets._bimming_vectors import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType

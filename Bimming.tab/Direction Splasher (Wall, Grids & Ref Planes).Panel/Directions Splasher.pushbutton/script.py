@@ -17,6 +17,8 @@ TRANSACTION_NAME = "Bimming-Directions Splasher"
 #==================================================
 # Custom Libraries
 from Snippets._bimming_graphics_override import *
+from Snippets._bimming_vectors import *
+from Snippets._bimming_lists import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 
@@ -68,7 +70,7 @@ for element in collector:
 
 grouped_dict = group_by_second_arg(elements_tuple)
 
-grouped_list = dict_to_list(grouped_dict)
+grouped_list = list(grouped_dict.values())
 
 # 5️⃣OVERRIDING THE ELEMENTS
 colors = generate_random_colors(len(grouped_list))

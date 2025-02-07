@@ -22,7 +22,21 @@ def set_graphics_override_direction(line_weight = -1 ,
                                     color_lines = Color.InvalidColorValue,
                                     color_surfaces = Color.InvalidColorValue,
                                     fill_pattern_id = ElementId.InvalidElementId):
+    """Creates and returns an OverrideGraphicSettings object with specified overrides.
 
+    Args:
+        line_weight (int, optional): Line weight for projection and cut lines. Defaults to -1 (no override).
+        color_lines (Color, optional): Color for projection and cut lines. Defaults to Color.InvalidColorValue.
+        color_surfaces (Color, optional): Color for surface and cut patterns. Defaults to Color.InvalidColorValue.
+        fill_pattern_id (ElementId, optional): Fill pattern ID for surface and cut patterns. Defaults to ElementId.InvalidElementId.
+
+    Returns:
+        OverrideGraphicSettings: The configured override settings object.
+
+    Notes:
+        - `Color.InvalidColorValue` means no override for colors.
+        - `ElementId.InvalidElementId` means no override for fill patterns.
+    """
     # Color.InvalidColorValue       -> means no override for the color is set.
     # ElementId.InvalidElementId    -> means no override for the fill pattern is set
 
@@ -50,40 +64,15 @@ def set_graphics_override_direction(line_weight = -1 ,
 
     return override_settings
 
-def get_direction(element):
-    """
-    get direction of element
-    :param element
-    :return XYZ vector
-    """
-    direction = None
-    try:
-        if isinstance(element, Wall):
-            direction = element.Location.Curve.Direction
-        elif isinstance(element, Grid):
-            direction = element.Curve.Direction
-        elif isinstance(element, ReferencePlane):
-            direction = element.Direction
-        else:
-            pass
-    except: pass
-    return direction
-
-def get_vector_quadrant(direction):
-    X = direction.X
-    Y = direction.Y
-    if X > 0 and Y > 0:
-        return 'Quadrant 1'
-    elif X < 0 and Y > 0:
-        return 'Quadrant 2'
-    elif X < 0 and Y < 0:
-        return 'Quadrant 3'
-    elif X > 0 and Y < 0:
-        return 'Quadrant 4'
-    else:
-        return 'Align with X or Y Axis'
-
 def generate_random_colors(n):
+    """Generates a list of random Revit colors.
+
+    Args:
+        n (int): The number of colors to generate.
+
+    Returns:
+        list[Color]: A list of Revit Color objects with random RGB values.
+    """
     colors = []
     for _ in range(n):
         # Generate random RGB values
@@ -102,10 +91,13 @@ def lighten_color(color, factor=0.2):
     """
     Lightens the given color by increasing its RGB values.
 
-    :param color: Autodesk.Revit.DB.Color object
-    :param factor: Float value (0 to 1) to determine how much lighter to make the color.
-                   Default is 0.2 (20% lighter).
-    :return: New Autodesk.Revit.DB.Color object with lightened RGB values.
+    Args:
+        color (Color): Autodesk.Revit.DB.Color object.
+        factor (float, optional): Percentage (0 to 1) of how much lighter the color should be.
+                                  Default is 0.2 (20% lighter).
+
+    Returns:
+        Color: New Autodesk.Revit.DB.Color object with lightened RGB values.
     """
     # Ensure the factor is between 0 and 1
     factor = max(0, min(factor, 1))
@@ -120,100 +112,3 @@ def lighten_color(color, factor=0.2):
 
     # Return the new lightened color
     return Color(new_r, new_g, new_b)
-
-
-def count_decimals_string(string):
-    """
-    count the number of decimals
-    :string: Float value
-    :return:
-    """
-    # Convert the float to a Decimal
-    decimal_number = Decimal(str(string)).normalize()  # normalize() removes trailing zeros
-    # This expression calculates the number of decimal places in a Decimal number.
-    # - decimal_number.as_tuple().exponent: Retrieves the exponent of the Decimal number,
-    #   which indicates the position of the decimal point relative to the integer part.
-    # - The negative sign (-) reverses the exponent to give the count of decimal places.
-    # - max(0, ...): Ensures that the result is non-negative, returning 0 if the number has no decimal part.
-    number_of_decimals = max(0, -decimal_number.as_tuple().exponent)
-    return number_of_decimals
-
-def custom_round(value, precision='0.000000000005', rounding=ROUND_HALF_UP):
-    """
-    Rounds a given value to the nearest multiple of 0.000000000005 with high precision.
-
-    This function uses the Decimal module to ensure precision and avoids
-    floating-point errors. It first converts the input value to a Decimal,
-    defines a quantization step of 0.000000000005 to manage rounding, and
-    performs the rounding using the ROUND_HALF_UP method.
-
-    Parameters:
-        value (float or str): The value to be rounded.
-
-    Returns:
-        Decimal: The value rounded to the nearest 0.000000000005.
-    """
-    # Convert to Decimal for precision
-    decimal_value = Decimal(value)
-
-    # Define the quantization step (0.0001, to control 4th decimal place)
-    step = Decimal(precision)
-
-    # Quantize the value to the nearest 0.0005
-    rounded_value = (decimal_value / step).quantize(Decimal('1'), rounding) * step
-    return rounded_value
-
-def get_angle_to_vector(vector1, vector2=XYZ(1, 0, 0)):
-    """
-    Input vector 1 and vector 2, and the script will return the angle between them + the
-    supplementary angle.
-    : vector1: vector 1
-    : vector2: vector 2
-    : return: angle between vector 1 and vector 2
-    : return: supplementary angle between vector 1 and vector 2
-    """
-    # Calculate angle using the method 'AngleTo' of the Revit API
-    angle_to_X = vector1.AngleTo(vector2)
-
-    # Convert radians to degrees - Maximum number of decimals is 9
-    angle_to_X_degrees = convert_internal_units(angle_to_X, False, 'degrees')
-    # print('Angle from radians {} to degrees:\n{}'.format(angle_to_X, angle_to_X_degrees))
-
-    # Set the precision high enough for calculations -- Not entirely sure why we need this.
-    getcontext().prec = 50  # High precision for intermediate calculations
-
-    # With 'Decimals' we read up to 44 decimals
-    angle_to_X_decimals = Decimal(angle_to_X_degrees)
-    # print('Angle with more precision using the modulo "Decimals":\n{}'.format(angle_to_X_decimals))
-
-    # We use the function 'custom_round' which Rounds a given value to the nearest multiple of 0.000000000005 (12 decimals) with high precision.
-    angle_to_X_rounded = custom_round(angle_to_X_decimals, precision='0.000000000005', rounding=ROUND_HALF_UP)
-    supplementary_angle = 180 - angle_to_X_rounded
-
-    # Format the output to always show 12 decimal places and avoid results like E0-12
-    angle_to_X_formated = '%.12f' % (angle_to_X_rounded)
-    supplementary_angle_formated = '%.12f' % (supplementary_angle)
-
-    return angle_to_X_formated, supplementary_angle_formated
-
-def group_by_second_arg(items):
-    """
-    Group items by the second element in each tuple.
-
-    :param items: List of tuples
-    :return: Dictionary with grouped items
-    """
-    grouped = defaultdict(list)
-    for item in items:
-        key = item[1]  # The second element of the tuple
-        grouped[key].append(item[0])  # Append the first element to the group
-    return dict(grouped)
-
-def dict_to_list(grouped_dict):
-    """
-    Convert a grouped dictionary into a list of lists.
-
-    :param grouped_dict: Dictionary with grouped items
-    :return: List of lists
-    """
-    return list(grouped_dict.values())

@@ -8,12 +8,10 @@ import time
 import stat
 import sys
 
-from pyrevit import revit, forms
-
+from pyrevit import forms
 from Autodesk.Revit.DB import *
-
 from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
-
+from Snippets._bimming_strings import *
 # Variables
 #==================================================
 app   = __revit__.Application
@@ -21,43 +19,53 @@ uidoc = __revit__.ActiveUIDocument
 doc   = __revit__.ActiveUIDocument.Document #type:Document
 
 # Reusable Snippets
-
+#==================================================
 def url_folder_path (path):
+    """Generates a modified folder path by replacing specific substrings.
+
+    Args:
+        path (str): The original file path.
+
+    Returns:
+        str: The modified folder path.
+    """
     url_folder_path = path.replace('\Link Settings.pulldown', '')
     url_folder_path = url_folder_path.replace('pushbutton\script.py', r'urlbutton')
     return url_folder_path
 
 def yaml_file_path (yaml_folder_path):
+    """Constructs the full path to a YAML file within a given folder.
+
+    Args:
+        yaml_folder_path (str): The folder containing the YAML file.
+
+    Returns:
+        str: The full path to 'bundle.yaml'.
+    """
     return yaml_folder_path + r'\bundle.yaml'
 
-def remove_quotes(input_string):
-    if input_string.startswith(("'", '"')) and input_string.endswith(("'", '"')):
-        return input_string[1:-1]
-    return input_string
-
-def find_index_with_prefix(items, prefix):
-    for index, item in enumerate(items):
-        if item.startswith(prefix):
-            return index
-    return -1  # Returns -1 if no item starts with the prefix
-
-def is_file_in_use(filepath):
-    """Check if the specified file is in use by any process."""
-    for proc in psutil.process_iter(['open_files']):
-        try:
-            if filepath in [f.path for f in proc.info['open_files'] or []]:
-                return True
-        except psutil.AccessDenied:
-            continue
-    return False
-
 def handle_remove_readonly(func, path, exc_info):
-    """Change the permissions of read-only files and retry deletion."""
+    """Removes the read-only attribute from a file and retries the operation.
+
+    Args:
+        func (callable): The function that attempted to remove the file.
+        path (str): The file path.
+        exc_info (tuple): Exception information.
+    """
     os.chmod(path, stat.S_IWRITE)
     func(path)
 
 def delete_folder_with_retries(folder_path, retries=5, delay=1):
-    """Attempts to delete a folder with retries to handle file locks."""
+    """Attempts to delete a folder with retries to handle file locks.
+
+    Args:
+        folder_path (str): The path of the folder to delete.
+        retries (int, optional): Number of retry attempts. Defaults to 5.
+        delay (int, optional): Delay in seconds between retries. Defaults to 1.
+
+    Raises:
+        Exception: If the folder cannot be deleted after the specified attempts.
+    """
     for attempt in range(retries):
         try:
             shutil.rmtree(folder_path, onerror=handle_remove_readonly)
@@ -68,7 +76,17 @@ def delete_folder_with_retries(folder_path, retries=5, delay=1):
     raise Exception("Failed to delete the folder after {} attempts".format(retries))
 
 def rename_folder_with_retries(src, dst, retries=5, delay=1):
-    """Attempts to rename a folder with retries to handle file locks."""
+    """Attempts to rename a folder with retries to handle file locks.
+
+    Args:
+        src (str): The current folder path.
+        dst (str): The new folder path.
+        retries (int, optional): Number of retry attempts. Defaults to 5.
+        delay (int, optional): Delay in seconds between retries. Defaults to 1.
+
+    Raises:
+        Exception: If renaming fails after the specified attempts.
+    """
     for attempt in range(retries):
         try:
             os.rename(src, dst)
@@ -79,7 +97,14 @@ def rename_folder_with_retries(src, dst, retries=5, delay=1):
     raise Exception("Failed to rename the folder after {} attempts".format(retries))
 
 def duplicate_and_replace_folder(folder_path):
-    # Check if the folder exists and is a directory
+    """Duplicates a folder, deletes the original, and renames the copy to the original name.
+
+    Args:
+        folder_path (str): The path of the folder to duplicate.
+
+    Raises:
+        ValueError: If the specified folder does not exist or is not a directory.
+    """
     if not os.path.isdir(folder_path):
         raise ValueError("The specified folder path does not exist or is not a directory.")
 
@@ -96,12 +121,25 @@ def duplicate_and_replace_folder(folder_path):
     rename_folder_with_retries(temp_folder_path, folder_path)
 
 def button_update_title_and_path (url_folder_path, yaml_file_path):
+    """Updates the title and hyperlink fields in a YAML file based on user input.
+
+    Args:
+        url_folder_path (str): The directory where the YAML file is located.
+        yaml_file_path (str): The full path to the YAML file.
+
+    Returns:
+        list: A list containing the updated title and hyperlink values.
+
+    Raises:
+        SystemExit: If the user cancels the form or leaves required fields empty.
+        Exception: If the YAML file cannot be modified.
+    """
     # Read the current content_new of the script
     with open(yaml_file_path, 'r') as file:
         content_current = file.readlines()
         content_new = list(content_current)
 
-    # 2️⃣🅱️ Define Renaming Rules (UI FORM)
+    # Define Renaming Rules (UI FORM)
     # https://revitpythonwrapper.readthedocs.io/en/latest/ui/forms.html?highlight=forms#flexform
     components = [Label('Button Name:'),                    TextBox('button_name', content_new[0].split(": ", 1)[1][:-1]),
                   Label('URL, Directory or File Path:'),    TextBox('button_url', content_new[1].split(": ", 1)[1][1:-1]),
