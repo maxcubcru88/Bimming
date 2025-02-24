@@ -54,3 +54,22 @@ def find_index_with_prefix(items, prefix):
         if item.startswith(prefix):
             return index
     return -1  # Returns -1 if no item starts with the prefix
+
+
+def crop_number_string(s, decimals):
+    """
+    Crops a numeric string to a specified number of decimal places.
+
+    Parameters:
+    s (str): The input numeric string containing a decimal point.
+    decimals (int): The number of decimal places to keep.
+
+    Returns:
+    str: The cropped string with the specified decimal places.
+    """
+    pos = s.find('.')
+    if pos == -1:
+        return s  # Return the original string if '.' is not found
+
+    new_pos = pos + decimals + 1
+    return s[:new_pos]  # Return substring up to the adjusted position

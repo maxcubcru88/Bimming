@@ -60,3 +60,22 @@ def custom_round(value, precision='0.000000000005', rounding=ROUND_HALF_UP):
     # Quantize the value to the nearest 0.0005
     rounded_value = (decimal_value / step).quantize(Decimal('1'), rounding) * step
     return rounded_value
+
+
+def scaled_decimal(value, n):
+    """
+    Converts an integer input into a decimal number following a specific pattern.
+
+    The function returns `value / 10^n`, which results in:
+    - `scaled_decimal(5, 2)` → `0.05`
+    - `scaled_decimal(5, 4)` → `0.0005`
+    - `scaled_decimal(10, 3)` → `0.01`
+
+    Args:
+        value (int or Decimal): The numerator of the fraction.
+        n (int): The scaling factor for the decimal output.
+
+    Returns:
+        Decimal: The computed decimal value.
+    """
+    return Decimal(value) / (10 ** n)

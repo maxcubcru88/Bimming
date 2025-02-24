@@ -91,7 +91,7 @@ def get_vector_quadrant(direction):
     else:
         return 'Align with X or Y Axis'
 
-def get_angle_to_vector(vector1, vector2=XYZ(1, 0, 0)):
+def get_angle_to_vector(vector1, vector2=XYZ(1, 0, 0), precision='0.000000000005'):
     """
     Calculates the angle and its supplementary angle between two vectors.
 
@@ -117,7 +117,7 @@ def get_angle_to_vector(vector1, vector2=XYZ(1, 0, 0)):
     # print('Angle with more precision using the modulo "Decimals":\n{}'.format(angle_to_X_decimals))
 
     # We use the function 'custom_round' which Rounds a given value to the nearest multiple of 0.000000000005 (12 decimals) with high precision.
-    angle_to_X_rounded = custom_round(angle_to_X_decimals, precision='0.000000000005', rounding=ROUND_HALF_UP)
+    angle_to_X_rounded = custom_round(angle_to_X_decimals, precision, rounding=ROUND_HALF_UP)
     supplementary_angle = 180 - angle_to_X_rounded
 
     # Format the output to always show 12 decimal places and avoid results like E0-12
