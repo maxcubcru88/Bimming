@@ -19,6 +19,7 @@ TRANSACTION_NAME = "Bimming-Decimals Accuracy"
 from Snippets._bimming_graphics_override import *
 from Snippets._bimming_vectors import *
 # Regular + Autodesk
+import sys
 from Autodesk.Revit.DB import *
 # pyRevit
 from pyrevit import forms
@@ -32,24 +33,22 @@ app   = __revit__.Application
 # MAIN
 #==================================================
 
-# 👆WPF Form to set the number of decimals to be checked
+lst_dict = {}
+for e in range(1,12):
+    lst_dict[str(e) + ' decimals'] = e
 
-UI_angle = forms.ask_for_string(            # User Input (UI)
-    default='2',
-    prompt='Enter the maximum number of decimal places (0-12):',
-    title='Splash!')
+number_of_decimals = forms.ask_for_one_item(
+                                            sorted(lst_dict.keys(), key=lambda x: int(x.split()[0])),
+                                                default='2 decimals',
+                                                prompt='Select the maximum number of decimal places that walls, grids\n'
+                                                       'reference planes should have. Elements with a higher number of\n'
+                                                       'decimals will be highlighted in red in the current view.',
+                                                title='Bimming-Directions Splasher'
+                                            )
+if not number_of_decimals:
+    sys.exit()
 
-# Check that the input is correct
-warning_message = "Please enter an integer between 0 and 12, then press 'Splash!'.\ne.g., '2' or '3'"
-
-# Check that the input is a integer
-try: UI_max_number_of_decimals = int(UI_angle)
-except: forms.alert(warning_message, exitscript=True)
-
-# Check that the integer is between 0 and 12
-if UI_max_number_of_decimals in list(range(0, 13)): pass# list [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-else: forms.alert(warning_message, exitscript=True)
-
+UI_max_number_of_decimals = lst_dict[number_of_decimals]
 # 🔥Splashing walls
 
 # 1️⃣COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
@@ -68,13 +67,13 @@ for element in collector:
     if not direction:
         continue
     vector_X    = XYZ(1,0,0)
-    angle_to_X  = get_angle_to_vector(direction, vector_X)[0]
+    angle_to_X  = get_angle_to_vector(direction, vector_X, scaled_decimal(1, 11))[0]
     # print ('Angle to Axis X: {}'.format(angle_to_X))
 
-    number_of_decimals = count_decimals_string(angle_to_X)
-    # print ('Number of decimals: {}'.format(number_of_decimals))
+    counting_decimals = count_decimals_string(angle_to_X)
+    # print ('Number of decimals: {}'.format(counting_decimals))
 
-    if  number_of_decimals <= UI_max_number_of_decimals:
+    if  counting_decimals <= UI_max_number_of_decimals:
         items_group_1.append(element)
     else:
         items_group_2.append(element)

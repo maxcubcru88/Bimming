@@ -53,6 +53,19 @@ class ISelectionFilter_Categories(ISelectionFilter):
         """ Determines if the reference is allowed. """
         return False  # Only elements are filtered in this case.
 
+lst_dict = {}
+for e in range(1,12):
+    lst_dict[str(e) + ' decimals'] = e
+
+number_of_decimals = forms.ask_for_one_item(
+                                            sorted(lst_dict.keys(), key=lambda x: int(x.split()[0])),
+                                                default='6 decimals',
+                                                prompt='Select the number of decimals to consider when checking\nif walls, ref. planes and grids are parallel/perpendicular',
+                                                title='Set Tolerance'
+                                            )
+if not number_of_decimals:
+    sys.exit()
+
 # 🫳Select Wall, Grid or Ref Planes
 
 # Get Views - Selected in a projectBrowser
@@ -90,7 +103,7 @@ if direction == None:
     forms.alert('The element has not the attribute direction. Select a linear one.', exitscript=True)
 
 # 2️⃣"Reversing" and "Rotating" vectors to have them all in the first quadrant to read the angle against X axis
-sel_angle = get_angle_to_vector(direction, XYZ(1,0,0))[0]
+sel_angle = get_angle_to_vector(direction, XYZ(1,0,0), scaled_decimal(1, lst_dict[number_of_decimals]))[0]
 # print ('Angle to Axis X: {}'.format(sel_angle))
 sel_angle_decimal = Decimal(sel_angle)
 sel_quadrant = get_vector_quadrant(direction)
@@ -123,7 +136,7 @@ for element in collector:
     if not direction:
         continue
     vector_X    = XYZ(1,0,0)
-    angle  = get_angle_to_vector(direction, vector_X)[0]
+    angle  = get_angle_to_vector(direction, vector_X, scaled_decimal(1, lst_dict[number_of_decimals]))[0]
     # print ('Angle to Axis X: {}'.format(angle))
     angle_decimal = Decimal(angle)
     quadrant = get_vector_quadrant(direction)

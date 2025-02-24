@@ -9,6 +9,8 @@ Author: Máximo Cubero"""
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
 
+import sys
+
 # CONSTANTS
 #==================================================
 TRANSACTION_NAME = "Bimming-Directions Splasher"
@@ -30,6 +32,20 @@ app   = __revit__.Application
 
 # MAIN
 #==================================================
+
+lst_dict = {}
+for e in range(1,12):
+    lst_dict[str(e) + ' decimals'] = e
+
+number_of_decimals = forms.ask_for_one_item(
+                                            sorted(lst_dict.keys(), key=lambda x: int(x.split()[0])),
+                                                default='6 decimals',
+                                                prompt='Select the number of decimals to consider when checking\nif walls, ref. planes and grids are parallel/perpendicular',
+                                                title='Bimming-Directions Splasher'
+                                            )
+if not number_of_decimals:
+    sys.exit()
+
 # 3️⃣COLLECTING WALLS, GRIDS AND REFERENCE PLANES IN THE ACTIVE VIEW
 all_walls        = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(Wall).ToElements()
 all_grids        = FilteredElementCollector(doc, doc.ActiveView.Id).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements()
@@ -45,27 +61,21 @@ for element in collector:
     if not direction:
         continue
     vector_X    = XYZ(1,0,0)
-    angle  = get_angle_to_vector(direction, vector_X)[0]
+    angle  = get_angle_to_vector(direction, vector_X, scaled_decimal(1, lst_dict[number_of_decimals]))[0]
     # print ('Angle to Axis X: {}'.format(angle))
     angle_decimal = Decimal(angle)
     quadrant = get_vector_quadrant(direction)
     if angle_decimal == 0 or angle_decimal == 90 or angle_decimal == 180:
         angle = '%.12f' % (0)
-        case = 'case 1'
     elif quadrant == 'Quadrant 1':
         angle = angle
-        case = 'case 2'
     elif quadrant == 'Quadrant 2':
         angle = '%.12f' % (angle_decimal - 90)
-        case = 'case 3'
     elif quadrant == 'Quadrant 3':
         angle = '%.12f' % (180 - angle_decimal)
-        case = 'case 4'
     elif quadrant == 'Quadrant 4':
         angle = '%.12f' % (90 - angle_decimal)
-        case = 'case 5'
-    # print ('Angle in the first quadrant: {} - {}'.format(angle, case))
-
+    # print ('Angle to Axis X: {}'.format(angle))
     elements_tuple.append(tuple((element, angle)))
 
 grouped_dict = group_by_second_arg(elements_tuple)
