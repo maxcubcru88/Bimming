@@ -140,7 +140,7 @@ for e in res:
 
 # 2️⃣Extracting data
 elements_to_delete = []
-info_report = [[],["DATA"],['CATEGORY', 'ELEMENT ID', 'FAMILLY NAME', 'TYPE NAME', 'VIEW TYPE', 'VIEW TYPE NAME', 'VIEW NAME', 'IS HIDDEN']]
+info_report = [[],["DATA"],['CATEGORY', 'ELEMENT ID', 'FAMILLY NAME', 'TYPE NAME','SHEET INFO', 'VIEW TYPE', 'VIEW TYPE NAME', 'VIEW NAME', 'IS HIDDEN']]
 for e in collector:
     if e.ViewSpecific:
         # Info Start
@@ -152,6 +152,7 @@ for e in collector:
         view_type = doc.GetElement(view.GetTypeId()).FamilyName
         view_type_name = get_view_type_name(doc,view)
         view_name = view.Name
+        sheet_info = view.get_Parameter(BuiltInParameter.VIEW_SHEET_VIEWPORT_INFO).AsString()
 
         if type_name == 'Masking Region':
             family_name = 'Masking Region'
@@ -181,7 +182,7 @@ for e in collector:
 
         if is_hidden:
             elements_to_delete.append(e.Id)
-            info_report.append([cat, element_id, family_name, type_name, view_type, view_type_name, view_name, is_hidden])
+            info_report.append([cat, element_id, family_name, type_name, sheet_info, view_type, view_type_name, view_name, is_hidden])
 
 # Check if there are elements to be deleted
 if not elements_to_delete:
