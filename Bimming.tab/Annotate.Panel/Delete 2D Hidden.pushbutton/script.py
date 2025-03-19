@@ -96,10 +96,12 @@ cats_01 =  [BuiltInCategory.OST_Dimensions,
             BuiltInCategory.OST_SpotSlopes]
 List_cats = List[BuiltInCategory](cats_01)
 multi_cat_filter = ElementMulticategoryFilter(List_cats)
-collector_dimensions = FilteredElementCollector(doc).WherePasses(multi_cat_filter).ToElements()
+collector_dimensions_all = FilteredElementCollector(doc).WherePasses(multi_cat_filter).ToElements()
+collector_dimensions     = [e for e in collector_dimensions_all if e not in exclusion_list_groups_members]
 
 # DETAIL - DETAIL LINES
-collector_detail_lines      = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Lines).WhereElementIsNotElementType().ToElements()
+collector_detail_lines_all = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Lines).WhereElementIsNotElementType().ToElements()
+collector_detail_lines     = [e for e in collector_detail_lines_all if e not in exclusion_list_groups_members]
 
 # DETAIL - COMPONENTS, FILLED REGIONS AND MASK REGIONS
 collector_detail_items_all = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DetailComponents).WhereElementIsNotElementType().ToElementIds()
@@ -112,10 +114,12 @@ for e in collector_detail_items_all:
     collector_detail_items.append(doc.GetElement(e))
 
 # DETAIL - INSULATION
-collector_insulation_lines  = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_InsulationLines).WhereElementIsNotElementType().ToElements()
+collector_insulation_lines_all = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_InsulationLines).WhereElementIsNotElementType().ToElements()
+collector_insulation_lines     = [e for e in collector_insulation_lines_all if e not in exclusion_list_groups_members]
 
 # TEXT
-collector_text_notes        = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TextNotes).WhereElementIsNotElementType().ToElements()
+collector_text_notes_all       = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_TextNotes).WhereElementIsNotElementType().ToElements()
+collector_text_notes           = [e for e in collector_text_notes_all if e not in exclusion_list_groups_members]
 
 # TAGS
 all_built_in_categories = list(System.Enum.GetValues(BuiltInCategory))
@@ -124,8 +128,9 @@ for bic in all_built_in_categories:
     if 'tag' in str(bic).lower():
         cats_02.append(bic)
 List_cats = List[BuiltInCategory](cats_02)
-multi_cat_filter = ElementMulticategoryFilter(List_cats)
-collector_tags = FilteredElementCollector(doc).WherePasses(multi_cat_filter).ToElements()
+multi_cat_filter   = ElementMulticategoryFilter(List_cats)
+collector_tags_all = FilteredElementCollector(doc).WherePasses(multi_cat_filter).ToElements()
+collector_tags     = [e for e in collector_tags_all if e not in exclusion_list_groups_members]
 
 # COLLECTOR
 collector = []
