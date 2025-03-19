@@ -135,13 +135,14 @@ collector_tags                   = [e for e in collector_tags_all if e.Id not in
 # COLLECTOR
 collector = []
 for e in res:
-    if     e == 'Detail Groups': collector.extend(list(collector_detail_groups))
-    elif   e == 'Dimensions': collector.extend(list(collector_dimensions))
+    if     e == 'Dimensions': collector.extend(list(collector_dimensions))
     elif   e == 'Detail Lines': collector.extend(list(collector_detail_lines))
     elif   e == 'Detail Components (Components, Filled and Mask Regions)': collector.extend(list(collector_detail_items))
     elif   e == 'Insulation Lines': collector.extend(list(collector_insulation_lines))
     elif   e == 'Text Notes': collector.extend(list(collector_text_notes))
     elif   e == 'Tags': collector.extend(list(collector_tags))
+    elif   e == 'Detail Groups': collector.extend(list(collector_detail_groups))
+
 
 # 2️⃣Extracting data
 elements_to_delete = []
@@ -221,21 +222,14 @@ if res == "Delete the instances and save an Excel Report" or res == "Don't delet
     data = project_info + info_report
     export_to_csv(csv_file_path, data)
 
-problems_to_delete = []
+# problems_to_delete = []
 if res == "Delete the instances and save an Excel Report":
     with Transaction(doc, TRANSACTION_NAME) as t:
         t.Start()
         for element_id in elements_to_delete:
             try: doc.Delete(element_id)
-            except: problems_to_delete.append(element_id)
+            except: pass #problems_to_delete.append(element_id)
         t.Commit()  # Commit the transaction
 
     message = '{} Elements have been deleted'.format(len(elements_to_delete))
     forms.alert(message,'title', warn_icon=False)
-
-if problems_to_delete:
-    print("The following elements couldn't be deleted:")
-    for e in problems_to_delete:
-        print(e)
-else:
-    print('all elements deleted')
