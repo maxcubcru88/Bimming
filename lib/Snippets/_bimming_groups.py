@@ -30,6 +30,7 @@ def collect_all_group_members(doc, group):
     allowed_categories = {
         int(BuiltInCategory.OST_DetailComponents),
         int(BuiltInCategory.OST_Lines),
+        int(BuiltInCategory.OST_CLines), # Reference Planes
         int(BuiltInCategory.OST_TextNotes),
         int(BuiltInCategory.OST_InsulationLines),
         int(BuiltInCategory.OST_GenericAnnotation),
