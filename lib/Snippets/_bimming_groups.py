@@ -35,7 +35,8 @@ def collect_all_group_members(doc, group):
         int(BuiltInCategory.OST_InsulationLines),
         int(BuiltInCategory.OST_GenericAnnotation),
         int(BuiltInCategory.OST_RevisionClouds),
-        int(BuiltInCategory.OST_IOSDetailGroups)  # Include detail groups
+        int(BuiltInCategory.OST_IOSDetailGroups),  # Include detail groups
+        int(BuiltInCategory.OST_Dimensions)
     }
 
     all_members = []

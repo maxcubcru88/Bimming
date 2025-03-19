@@ -232,3 +232,5 @@ if problems_to_delete:
     print("The following elements couldn't be deleted:")
     for e in problems_to_delete:
         print(e)
+else:
+    print('all elements deleted')
