@@ -125,3 +125,49 @@ def get_angle_to_vector(vector1, vector2=XYZ(1, 0, 0), precision='0.000000000005
     supplementary_angle_formated = '%.12f' % (supplementary_angle)
 
     return angle_to_X_formated, supplementary_angle_formated
+
+def angle_with_x_axis(vector):
+    """
+    Calculates the signed angle between a given vector and the X-axis (1,0,0).
+    Positive for clockwise, negative for counterclockwise.
+    """
+    x_axis = XYZ(1, 0, 0)
+
+    # Normalize input vector
+    vector = vector.Normalize()
+
+    # Compute dot product and angle
+    dot_product = vector.DotProduct(x_axis)
+    angle = math.acos(max(min(dot_product, 1), -1))  # Clamp to avoid domain errors
+
+    # Compute cross product to determine the sign of the angle
+    cross_product = x_axis.CrossProduct(vector)
+
+    # If cross product's Z component is negative, the rotation is counterclockwise
+    if cross_product.Z < 0:
+        angle = -angle
+
+    return math.degrees(angle)
+
+def angle_with_y_axis(vector):
+    """
+    Calculates the signed angle between a given vector and the X-axis (1,0,0).
+    Positive for clockwise, negative for counterclockwise.
+    """
+    y_axis = XYZ(0, 1, 0)
+
+    # Normalize input vector
+    vector = vector.Normalize()
+
+    # Compute dot product and angle
+    dot_product = vector.DotProduct(y_axis)
+    angle = math.acos(max(min(dot_product, 1), -1))  # Clamp to avoid domain errors
+
+    # Compute cross product to determine the sign of the angle
+    cross_product = y_axis.CrossProduct(vector)
+
+    # If cross product's Z component is negative, the rotation is counterclockwise
+    if cross_product.Z < 0:
+        angle = -angle
+
+    return math.degrees(angle)
