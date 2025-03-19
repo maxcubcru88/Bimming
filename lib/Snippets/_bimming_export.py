@@ -7,6 +7,7 @@ from Autodesk.Revit.DB import *
 import csv
 import codecs
 import os
+from Snippets._bimming_strings import *
 
 # Variables
 #==================================================
