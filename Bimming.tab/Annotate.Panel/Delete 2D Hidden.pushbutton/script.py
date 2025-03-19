@@ -216,14 +216,19 @@ if res == "Delete the instances and save an Excel Report" or res == "Don't delet
     data = project_info + info_report
     export_to_csv(csv_file_path, data)
 
+problems_to_delete = []
 if res == "Delete the instances and save an Excel Report":
-
     with Transaction(doc, TRANSACTION_NAME) as t:
         t.Start()
         for element_id in elements_to_delete:
-            doc.Delete(element_id)
+            try: doc.Delete(element_id)
+            except: problems_to_delete.append(element_id)
         t.Commit()  # Commit the transaction
 
     message = '{} Elements have been deleted'.format(len(elements_to_delete))
-
     forms.alert(message,'title', warn_icon=False)
+
+if problems_to_delete:
+    print("The following elements couldn't be deleted:")
+    for e in problems_to_delete:
+        print(e)
