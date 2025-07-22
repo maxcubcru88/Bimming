@@ -9,9 +9,11 @@ Author: Maximo Cubero"""
 __min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
 
+import sys
+
 # CONSTANTS
 #==================================================
-TRANSACTION_NAME = "View Auto Section Box"
+TRANSACTION_NAME = "Bimming-View Auto Section Box"
 
 # IMPORTS
 #==================================================
@@ -65,12 +67,13 @@ if active_view.ViewType in [ViewType.AreaPlan, ViewType.FloorPlan]:
     new_box = adjust_bounding_box_z(new_box,new_min_z=view_depth, new_max_z=cut_plane)
 
 # 3️⃣SELECTING THE 3D VIEW WE WANT TO USE
-t =  DB.Transaction(doc, TRANSACTION_NAME) # 🔓
-t.Start()
+
 if EXEC_PARAMS.config_mode: #if SHIFT-Click
     ThreeD_view = forms.select_views(
         title='Select 3D Views',
-        filterfunc=lambda x: x.ViewType == DB.ViewType.ThreeD)[0]
+        filterfunc=lambda x: x.ViewType == DB.ViewType.ThreeD)
+    if ThreeD_view: ThreeD_view = ThreeD_view[0]
+    else: sys.exit()
 else:
     view_name = 'Bimming - Auto Section Box'
     if get_3d_view_by_name(doc, view_name):
@@ -80,13 +83,18 @@ else:
         default_threeD_view_family_type_id = doc.GetDefaultElementTypeId(ElementTypeGroup.ViewType3D)
         default_threeD_view_family_type = doc.GetElement(default_threeD_view_family_type_id)
         # Create 3D View
-        ThreeD_view = View3D.CreateIsometric(doc, default_threeD_view_family_type.Id)
-        # Rename 3D View
-        ThreeD_view.Name = view_name
-        # Set Detail Level to Fine
-        ThreeD_view.DetailLevel = ViewDetailLevel.Fine
+        with DB.Transaction(doc, "Bimming-Create 3D View") as t:
+            t.Start() #🔓
+            ThreeD_view = View3D.CreateIsometric(doc, default_threeD_view_family_type.Id)
+            # Rename 3D View
+            ThreeD_view.Name = view_name
+            # Set Detail Level to Fine
+            ThreeD_view.DetailLevel = ViewDetailLevel.Fine
+            t.Commit() #🔒
 
 # 4️⃣ASSIGNING THE BOUNDING BOX TO THE 3D VIEW
+t =  DB.Transaction(doc, TRANSACTION_NAME)
+t.Start() #🔓
 section_box = ThreeD_view.SetSectionBox(new_box)
 
 # 5️⃣SELECTING AND TRANSFORMING (MOVE AND ROTATE) THE SECTION BOX
@@ -108,7 +116,6 @@ if active_view.ViewType in [ViewType.Section, ViewType.Elevation, ViewType.Detai
     move_element(doc, section_box_element, XYZ(0,0,0), origin)
 elif active_view.ViewType in [ViewType.AreaPlan, ViewType.FloorPlan]:
     move_element_xy(doc, section_box_element, XYZ(0,0,0), origin)
-
 t.Commit() #🔒
 
 # 6️⃣SETTING THE ORIENTATION OF THE 2D VIEW TO THE 3D VIEW
