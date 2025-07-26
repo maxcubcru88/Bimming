@@ -34,3 +34,6 @@ doc    = __revit__.ActiveUIDocument.Document #type:Document
 
 # MAIN
 #==================================================
+
+__beta__ = False # 'TRUE' won't show the command and 'FALSE' will show the command
+forms.inform_wip()
