@@ -5,6 +5,10 @@ Delete_Filters_Unabled_or_Not_Overriden_in_Views.pushbutton
 
 Author: Máximo Cubero"""
 
+# CONSTANTS
+#==================================================
+TRANSACTION_NAME = "Bimming-Delete Filters"
+
 # IMPORTS
 #==================================================
 # Regular + Autodesk
@@ -12,6 +16,18 @@ from Autodesk.Revit.DB import *
 
 # pyRevit
 from pyrevit import revit, forms
+
+import clr
+clr.AddReference('System')
+import System
+from System.Collections.Generic import List
+from Snippets._bimming_views import *
+from Snippets._bimming_inspect import *
+from Snippets._bimming_groups import *
+from Snippets._bimming_collect import *
+from Snippets._bimming_export import *
+from Snippets._bimming_functions import *
+import sys
 
 # VARIABLES
 #==================================================
@@ -22,60 +38,18 @@ app   = __revit__.Application
 # MAIN
 #==================================================
 
-views_with_VT, views_with_no_VT = [], [] # views WITH and WITHOUT view templates
-
-info = [["Filter Name",
-         "Enable Filter",
-         "Visibility",
-         "Projection Line Pattern",
-         "Projection Line Color",
-         "Projection Line Weight",
-         "Projection Patterns Foreground Visible",
-         "Projection Patterns Foreground Pattern",
-         "Projection Patterns Foreground Color",
-         "Projection Patterns Background Visible",
-         "Projection Patterns Background Pattern",
-         "Projection Patterns Background Color",
-         "Projection Transparency",
-         "Cut Line Pattern",
-         "Cut Line Color",
-         "Cut Line Weight",
-         "Cut Patterns Foreground Visible",
-         "Cut Patterns Foreground Pattern",
-         "Cut Patterns Foreground Color",
-         "Cut Patterns Background Visible",
-         "Cut Patterns Background Pattern",
-         "Cut Patterns Background Color",
-         "Halftone",
-         ]]
-
-# Get the active view
-view = doc.ActiveView
-
-default_ogs = OverrideGraphicSettings()
-filter_ids = view.GetFilters()
-
-
-
-for filter_id in filter_ids:
-
+def filters_is_overidden(view, filter_id):
     aux = []
-
-    filter_elem = doc.GetElement(filter_id)
-    aux.append(filter_elem.Name)
 
     overrides = view.GetFilterOverrides(filter_id)
 
-    ########################################### ENABLE FILTER AND VISIBILITY ###########################################
-
-    is_enabled = view.GetIsFilterEnabled(filter_id)
-    aux.append(is_enabled)
+    ########################################### VISIBILITY ###########################################
 
     is_visible = view.GetFilterVisibility(filter_id)
-    aux.append(is_visible)
+    aux.append(not(is_visible))
 
     ########################################### PROJECTION OVERRIDES ###########################################
-
+    # LINE
     # Projection Line Pattern
     projection_line_pattern = doc.GetElement(overrides.ProjectionLinePatternId)
     aux.append(projection_line_pattern.Name if projection_line_pattern else None)
@@ -91,8 +65,9 @@ for filter_id in filter_ids:
     weight = overrides.ProjectionLineWeight
     aux.append(None if weight == -1 else weight)
 
+    # PATTERN
     # Projection Patterns Foreground Visible
-    aux.append(overrides.IsSurfaceForegroundPatternVisible)
+    aux.append(not (overrides.IsSurfaceForegroundPatternVisible))
 
     # Projection Patterns - Foreground Pattern
     projection_foreground_pattern = doc.GetElement(overrides.SurfaceForegroundPatternId)
@@ -106,8 +81,7 @@ for filter_id in filter_ids:
         aux.append(None)
 
     # Projection Patterns Background Visible
-    aux.append(overrides.IsSurfaceBackgroundPatternVisible)
-
+    aux.append(not (overrides.IsSurfaceBackgroundPatternVisible))
 
     # Projection Patterns - Background Pattern
     projection_background_pattern = doc.GetElement(overrides.SurfaceBackgroundPatternId)
@@ -120,12 +94,13 @@ for filter_id in filter_ids:
     except:
         aux.append(None)
 
+    #TRANSPARENCY
     # Projection Transparency
     projection_transparency = overrides.Transparency
     aux.append(projection_transparency)
 
     ########################################### CUT OVERRIDES ###########################################
-
+    # LINE
     # Cut Line Pattern
     Cut_line_pattern = doc.GetElement(overrides.CutLinePatternId)
     aux.append(Cut_line_pattern.Name if Cut_line_pattern else None)
@@ -141,8 +116,9 @@ for filter_id in filter_ids:
     weight = overrides.CutLineWeight
     aux.append(None if weight == -1 else weight)
 
+    # PATTERN
     # Cut Patterns Foreground Visible
-    aux.append(overrides.IsCutForegroundPatternVisible)
+    aux.append(not (overrides.IsCutForegroundPatternVisible))
 
     # Cut Patterns - Foreground Pattern
     Cut_foreground_pattern = doc.GetElement(overrides.CutForegroundPatternId)
@@ -156,7 +132,7 @@ for filter_id in filter_ids:
         aux.append(None)
 
     # Cut Patterns Background Visible
-    aux.append(overrides.IsCutBackgroundPatternVisible)
+    aux.append(not (overrides.IsCutBackgroundPatternVisible))
 
     # Cut Patterns - Background Pattern
     Cut_background_pattern = doc.GetElement(overrides.CutBackgroundPatternId)
@@ -169,7 +145,6 @@ for filter_id in filter_ids:
     except:
         aux.append(None)
 
-
     ########################################### HALTONE ###########################################
 
     is_halftone = overrides.Halftone
@@ -177,21 +152,116 @@ for filter_id in filter_ids:
 
     ###############################################################################################
 
+    return any(aux)
+    # info.append(aux)
 
 
-    info.append(aux)
+# COLLECT ALL VIEWS IN THE MODEL
 
-for e in info:
+views = FilteredElementCollector(doc).OfClass(View).WhereElementIsNotElementType().ToElements()
+ok, errors = [], []
+
+views_to_check = []
+
+info_report = [['View Name', 'View Type', 'Filter Name', 'Description']]
+
+elements_to_delete = []
+
+for view in views:
+    try:
+        filter_ids = view.GetFilters()
+
+        if view.IsTemplate:
+            views_to_check.append(view)
+
+        elif view.ViewTemplateId == ElementId(-1):
+            views_to_check.append(view)
+
+        else:
+            # 1. Parameter to check
+            param_id_to_check = ElementId(BuiltInParameter.VIS_GRAPHICS_FILTERS)
+
+            # 2. Get the list of non-controlled parameters
+            view_template = doc.GetElement(view.ViewTemplateId)
+            non_controlled_param_ids = view_template.GetNonControlledTemplateParameterIds()
+
+            # 3. Check if the parameter is NOT in the non_controlled_param_ids list
+            is_included = param_id_to_check not in non_controlled_param_ids
+
+            if not is_included:
+                views_to_check.append(view)
+    except:
+        pass
+        # print(view.Name)
+
+for v in views_to_check:
+    print([v.IsTemplate, type(v),v.Name])
+    if v.IsTemplate:
+         view_type = "View Template"
+    else:
+         try: view_type = doc.GetElement(v.GetTypeId()).FamilyName
+         except: view_type = "Unknown"
+    filter_ids = v.GetFilters()
+    # print(filter_ids)
+
+    for filter_id in filter_ids:
+        is_enabled = v.GetIsFilterEnabled(filter_id)
+        filter_elem = doc.GetElement(filter_id)
+        filter_elem_name = filter_elem.Name
+        # print("NAME: {}".format(filter_elem_name))
+        # print("ENABLE: {}".format(str(is_enabled)))
+        # print("OVERRIDEN: {}".format(str(filters_is_overidden(v, filter_id))))
+        # print("############################")
+        if not is_enabled:
+            info_report.append([v.Name, view_type, filter_elem_name, "The filter is not enabled."])
+            elements_to_delete.append(filter_id)
+            continue
+        elif is_enabled and not filters_is_overidden(v, filter_id):
+            info_report.append([v.Name, view_type, filter_elem_name, "The filter is not overriding the graphics."])
+            elements_to_delete.append(filter_id)
+            continue
+        else:
+            pass
+
+for e in info_report:
     print(e)
 
-test = [True,None,False]
+print(elements_to_delete)
 
-if any(test):
-    print("TRUE")
-else:
-    print("FALSE")
+# 3️⃣Deciding what to do with the elements that can be deleted
+# If there are elements to be deleted, decide what to do
+res = forms.alert("{} filters can be deleted. How would you like to proceed?".format(len(info_report)),
+                  options=["Delete the filters and save an Excel Report",
+                           "Don't delete the filters and save an Excel Report",
+                           "Exit. Thanks for the information"],
+                  warn_icon = False)
 
-print(test)
+# Actions based of the decision
+if res == "Delete the filters and save an Excel Report" or res == "Don't delete the filters and save an Excel Report":
 
-# __beta__ = False
-# forms.inform_wip()
+    project_info = get_project_info(doc, app)
+
+    directory = create_report_directory('Bimming_Filters_Clean_Up')
+
+    dic = list_to_dict(project_info)
+    file_name = dic['File Name']
+    report_name = generate_report_name(file_name)
+
+    # 4️⃣Export the report
+    # Create the full file path with the .csv extension
+    csv_file_path = os.path.join(directory, report_name[0] + ".csv")
+    print(csv_file_path)
+    data = project_info + info_report
+    export_to_csv(csv_file_path, data)
+
+# problems_to_delete = []
+if res == "Delete the filters and save an Excel Report":
+    # with Transaction(doc, TRANSACTION_NAME) as t:
+    #     t.Start()
+    #     for element_id in elements_to_delete:
+    #         try: doc.Delete(element_id)
+    #         except: pass #problems_to_delete.append(element_id)
+    #     t.Commit()  # Commit the transaction
+
+    message = '{} Elements have been deleted'.format(len(info_report))
+    forms.alert(message,'title', warn_icon=False)
