@@ -130,4 +130,7 @@ def get_project_info(doc, app):
     # Get the current user's name
     output_project_info.append(("Export by", app.Username))
 
+    # Add an extra blank line
+    output_project_info.append(("",""))
+
     return output_project_info
