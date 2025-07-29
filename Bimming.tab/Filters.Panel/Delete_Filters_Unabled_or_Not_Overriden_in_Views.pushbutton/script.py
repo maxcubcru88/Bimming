@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__ = "Remove Not USed\nFilters"
+__title__ = "Clean Up\nFlts in Views"
 __doc__ = """Description:
 Delete_Filters_Unabled_or_Not_Overriden_in_Views.pushbutton
 
@@ -195,7 +195,7 @@ for view in views:
         # print(view.Name)
 
 for v in views_to_check:
-    print([v.IsTemplate, type(v),v.Name])
+    # print([v.IsTemplate, type(v),v.Name])
     if v.IsTemplate:
          view_type = "View Template"
     else:
@@ -214,30 +214,36 @@ for v in views_to_check:
         # print("############################")
         if not is_enabled:
             info_report.append([v.Name, view_type, filter_elem_name, "The filter is not enabled."])
-            elements_to_delete.append(filter_id)
+            elements_to_delete.append((v, filter_id))
             continue
         elif is_enabled and not filters_is_overidden(v, filter_id):
             info_report.append([v.Name, view_type, filter_elem_name, "The filter is not overriding the graphics."])
-            elements_to_delete.append(filter_id)
+            elements_to_delete.append((v, filter_id))
             continue
         else:
             pass
 
-for e in info_report:
-    print(e)
-
-print(elements_to_delete)
+# for e in info_report:
+#     print(e)
+#
+# print(elements_to_delete)
 
 # 3️⃣Deciding what to do with the elements that can be deleted
+
+# OPTIONS:
+option_1 = "Delete the filters and save an Excel Report"
+option_2 = "Don't delete the filters and save an Excel Report"
+option_3 = "Exit. Thanks for the information"
+
 # If there are elements to be deleted, decide what to do
 res = forms.alert("{} filters can be deleted. How would you like to proceed?".format(len(info_report)),
-                  options=["Delete the filters and save an Excel Report",
-                           "Don't delete the filters and save an Excel Report",
-                           "Exit. Thanks for the information"],
+                  options=[option_1,
+                           option_2,
+                           option_3],
                   warn_icon = False)
 
 # Actions based of the decision
-if res == "Delete the filters and save an Excel Report" or res == "Don't delete the filters and save an Excel Report":
+if res == option_1 or res == option_2:
 
     project_info = get_project_info(doc, app)
 
@@ -250,18 +256,19 @@ if res == "Delete the filters and save an Excel Report" or res == "Don't delete 
     # 4️⃣Export the report
     # Create the full file path with the .csv extension
     csv_file_path = os.path.join(directory, report_name[0] + ".csv")
-    print(csv_file_path)
     data = project_info + info_report
     export_to_csv(csv_file_path, data)
 
 # problems_to_delete = []
-if res == "Delete the filters and save an Excel Report":
-    # with Transaction(doc, TRANSACTION_NAME) as t:
-    #     t.Start()
-    #     for element_id in elements_to_delete:
-    #         try: doc.Delete(element_id)
-    #         except: pass #problems_to_delete.append(element_id)
-    #     t.Commit()  # Commit the transaction
+if res == option_1:
+    with Transaction(doc, TRANSACTION_NAME) as t:
+        t.Start()
+        for element in elements_to_delete:
+            try:
+                print(element)
+                element[0].RemoveFilter(element[1])
+            except: pass #problems_to_delete.append(element_id)
+        t.Commit()  # Commit the transaction
 
     message = '{} Elements have been deleted'.format(len(info_report))
     forms.alert(message,'title', warn_icon=False)
