@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 __title__ = "Clean Up\nFlts in Views"
-__doc__ = """Description:
-Delete_Filters_Unabled_or_Not_Overriden_in_Views.pushbutton
+__doc__ = """Finds filters in views that are either disabled or not overriding graphics.
 
 Author: Máximo Cubero"""
 
 # CONSTANTS
 #==================================================
-TRANSACTION_NAME = "Bimming-Delete Filters"
+TRANSACTION_NAME = "Bimming-Clean Up Filters in Views"
 
 # IMPORTS
 #==================================================
@@ -35,7 +34,7 @@ doc   = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 app   = __revit__.Application
 
-# MAIN
+# FUNCTIONS
 #==================================================
 
 def filters_is_overidden(view, filter_id):
@@ -153,19 +152,20 @@ def filters_is_overidden(view, filter_id):
     ###############################################################################################
 
     return any(aux)
-    # info.append(aux)
 
+# MAIN
+#==================================================
 
-# COLLECT ALL VIEWS IN THE MODEL
+# 1️⃣COLLECT ALL VIEWS IN THE MODEL
 
 views = FilteredElementCollector(doc).OfClass(View).WhereElementIsNotElementType().ToElements()
+
 ok, errors = [], []
-
 views_to_check = []
-
+elements_to_delete = []
 info_report = [['View Name', 'View Type', 'Filter Name', 'Description']]
 
-elements_to_delete = []
+# 2️⃣IDENTIFY VIEWS TO CHECK
 
 for view in views:
     try:
@@ -193,6 +193,8 @@ for view in views:
     except:
         pass
         # print(view.Name)
+
+# 3️⃣CHECK FILTERS IN EACH VIEW
 
 for v in views_to_check:
     # print([v.IsTemplate, type(v),v.Name])
@@ -223,12 +225,13 @@ for v in views_to_check:
         else:
             pass
 
-# for e in info_report:
-#     print(e)
-#
-# print(elements_to_delete)
+# 4️⃣EXIT EARLY IF ANYTHING TO CLEAN
 
-# 3️⃣Deciding what to do with the elements that can be deleted
+if not elements_to_delete:
+    forms.alert('There are no filters to clean up. Good job!', warn_icon=False, exitscript=True)
+    sys.exit()
+
+# 5️⃣USER DECISION
 
 # OPTIONS:
 option_1 = "Delete the filters and save an Excel Report"
@@ -253,13 +256,12 @@ if res == option_1 or res == option_2:
     file_name = dic['File Name']
     report_name = generate_report_name(file_name)
 
-    # 4️⃣Export the report
+    # Export the report
     # Create the full file path with the .csv extension
     csv_file_path = os.path.join(directory, report_name[0] + ".csv")
     data = project_info + info_report
     export_to_csv(csv_file_path, data)
 
-# problems_to_delete = []
 if res == option_1:
     with Transaction(doc, TRANSACTION_NAME) as t:
         t.Start()
