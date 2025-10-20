@@ -29,6 +29,20 @@ uidoc = __revit__.ActiveUIDocument
 # MAIN
 #==================================================
 
+# # 1️⃣Select Views
+# # Get Views Selected in the projectBrowser
+# sel_el_ids  = uidoc.Selection.GetElementIds()
+# sel_elem    = [doc.GetElement(e_id) for e_id in sel_el_ids]
+#
+# for e in sel_elem:
+#     print(e)
+#     # family_name = doc.GetElement(e.GetTypyeId())
+#     family_type = doc.GetElement(e.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM).AsElementId())
+#     family_name = family_type.get_Parameter(BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM).AsString()
+#     print(family_name)
+
+########################################################################################
+
 # 1️⃣ Collect all Family elements (loadable families)
 families = FilteredElementCollector(doc)\
     .OfClass(Family)\
@@ -55,17 +69,27 @@ instances = FilteredElementCollector(doc)\
     .OfClass(FamilyInstance)\
     .WhereElementIsNotElementType()\
     .ToElements()
+print(instances)
 
 # 5️⃣ Filter only those whose Family.Name matches the selected families
-selected_instances = [
-    i for i in instances if i.Symbol.Family.Name in selected_families
-]
+selected_instances = []
+for i in instances:
+    try:
+        if i.Symbol.Family.Name in selected_families:
+            selected_instances.append(i)
+    except:
+        family_type = doc.GetElement(i.get_Parameter(BuiltInParameter.ELEM_TYPE_PARAM).AsElementId())
+        family_name = family_type.get_Parameter(BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM).AsString()
+        if family_name in selected_families:
+            selected_instances.append(i)
+print(selected_families)
 
 # 6️⃣ Select these elements in Revit’s UI
-element_ids = List[ElementId]([i.Id for i in selected_instances])
+element_ids = List[ElementId]([i.Id for i in instances])
 uidoc.Selection.SetElementIds(element_ids)
 
 forms.alert("{0} instances selected.".format(len(selected_instances)), title="Selection Complete")
+
 ########################################################################################
 
 # # 1️⃣Select Views
