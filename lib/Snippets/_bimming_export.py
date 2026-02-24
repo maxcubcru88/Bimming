@@ -18,7 +18,7 @@ doc   = __revit__.ActiveUIDocument.Document #type:Document
 # Functions
 #==================================================
 
-def export_to_csv(file_path, data):
+def export_to_csv(file_path, data, open_file=False):
     """Exports the given data to a CSV file at the specified file path.
 
     Args:
@@ -32,6 +32,9 @@ def export_to_csv(file_path, data):
     with codecs.open(file_path, 'w', 'utf-8') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerows(data)
+    # Optionally open file (Windows only)
+    if open_file:
+        os.startfile(file_path)
     return  file_path
 
 def create_report_directory(folder_name="NEW DIRECTORY", open_directory=True):
