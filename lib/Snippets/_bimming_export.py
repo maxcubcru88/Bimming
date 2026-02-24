@@ -34,7 +34,7 @@ def export_to_csv(file_path, data):
         writer.writerows(data)
     return  file_path
 
-def create_report_directory(folder_name="NEW DIRECTORY"):
+def create_report_directory(folder_name="NEW DIRECTORY", open_directory=True):
     """Creates a directory with the specified folder name in the user's Documents folder if it doesn't already exist.
 
     Args:
@@ -50,7 +50,8 @@ def create_report_directory(folder_name="NEW DIRECTORY"):
     if not os.path.exists(documents_folder):
         os.makedirs(documents_folder)
 
-    os.startfile(documents_folder)
+    if open_directory:
+        os.startfile(documents_folder)
 
     return documents_folder
 
