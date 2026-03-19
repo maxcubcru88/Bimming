@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-__title__ = "One-Direction\nSplasher"
+__title__ = "Rename\nWindows"
 __doc__ = """Colors elements in the active view based on their alignment with the selected wall, reference plane, or grid:\
 elements parallel or perpendicular to the selected one are highlighted in green, while all others are highlighted in red.
 
 Author: Máximo Cubero"""
 
-__min_revit_ver__ = 2023
+__min_revit_ver__ = 2021
 __max_revit_ver__ = 2025
 
 # CONSTANTS
@@ -18,6 +18,7 @@ TRANSACTION_NAME = "Bimming-One Direction Splasher"
 from Snippets._bimcore_graphics_override import *
 from Snippets._bimcore_selection import *
 from Snippets._bimcore_vectors import *
+from Snippets._bimcore_convert import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
@@ -34,25 +35,35 @@ app   = __revit__.Application
 # MAIN
 #==================================================
 
-lst_dict = {}
-for e in range(1,12):
-    lst_dict[str(e) + ' decimals'] = e
-
-number_of_decimals = forms.ask_for_one_item(
-                                            sorted(lst_dict.keys(), key=lambda x: int(x.split()[0])),
-                                                default='6 decimals',
-                                                prompt='Select the number of decimals to consider when checking\nif walls, ref. planes and grids are parallel/perpendicular',
-                                                title='Set Tolerance'
-                                            )
-if not number_of_decimals:
-    sys.exit()
-
 # 🫳Select Wall, Grid or Ref Planes
 
-# Get Views - Selected in a projectBrowser
-sel_el_ids      = uidoc.Selection.GetElementIds()
-sel_elem        = [doc.GetElement(e_id) for e_id in sel_el_ids]
-sel_elem_filter = [el for el in sel_elem if issubclass(type(el), Wall) or issubclass(type(el), Grid) or issubclass(type(el), ReferencePlane)]
+types = FilteredElementCollector(doc)\
+        .OfCategory(BuiltInCategory.OST_Windows)\
+        .WhereElementIsElementType()\
+        .ToElements()
+
+for type in types:
+    # print(type)
+    width_internal   = type.get_Parameter(BuiltInParameter.DOOR_WIDTH).AsDouble()
+    heigth_internal  = type.get_Parameter(BuiltInParameter.GENERIC_HEIGHT).AsDouble()
+    width_mm = convert_internal_units(width_internal, False, 'mm')
+    height_mm = convert_internal_units(heigth_internal, False, 'mm')
+
+    print('WIDTH: {}'.format(width_mm))
+    print('HEIGTH: {}'.format(height_mm))
+
+sys.exit()
+window_type = doc.GetElement(sel_elem[0].GetTypeId())
+
+# rename it
+t = Transaction(doc, "Rename Window Type")
+t.Start()
+
+window_type.Name = "My New Window Type Name"
+
+t.Commit()
+
+sys.exit()
 
 if len(sel_elem_filter) != 1:
     with forms.WarningBar(title='Select Wall, Grid or Ref Plane:'):

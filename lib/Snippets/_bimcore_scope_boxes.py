@@ -2,7 +2,7 @@
 
 # Imports
 #==================================================
-from Snippets._bimming_vectors import  *
+from Snippets._bimcore_vectors import  *
 
 # Variables
 #==================================================

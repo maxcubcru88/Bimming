@@ -4,9 +4,9 @@
 #==================================================
 import sys
 from pyrevit import forms
-from Snippets._bimming_export import *
-from Snippets._bimming_import import *
-from Snippets._bimming_functions import *
+from Snippets._bimcore_export import *
+from Snippets._bimcore_import import *
+from Snippets._bimcore_functions import *
 from pyrevit import EXEC_PARAMS
 
 # Variables

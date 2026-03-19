@@ -16,8 +16,8 @@ TRANSACTION_NAME = "Bimming-Decimals Accuracy"
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._bimming_graphics_override import *
-from Snippets._bimming_vectors import *
+from Snippets._bimcore_graphics_override import *
+from Snippets._bimcore_vectors import *
 # Regular + Autodesk
 import sys
 from Autodesk.Revit.DB import *

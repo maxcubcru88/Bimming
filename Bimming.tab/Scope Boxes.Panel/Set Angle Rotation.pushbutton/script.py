@@ -16,7 +16,7 @@ TRANSACTION_NAME = "Bimming-Rotate Scope Boxes"
 from pyrevit import forms
 import clr
 clr.AddReference('System')
-from Snippets._bimming_scope_boxes import *
+from Snippets._bimcore_scope_boxes import *
 
 # VARIABLES
 #==================================================

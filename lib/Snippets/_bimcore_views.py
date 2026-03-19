@@ -14,6 +14,21 @@ doc   = __revit__.ActiveUIDocument.Document #type:Document
 
 # Reusable Snippets
 
+def activate_splashscreen(doc, ui_doc, splash_name="Splashscreen"):
+    """
+    Opens and activates the Splashscreen sheet, if it exists.
+    Returns the ElementId of the sheet, or None.
+    """
+    sheets = FilteredElementCollector(doc).OfClass(ViewSheet).ToElements()
+
+    for sheet in sheets:
+        if sheet.Name == splash_name:
+            # Activate the view
+            ui_doc.ActiveView = sheet
+            return sheet.Id
+
+    return None
+
 def get_existing_3d_view_type(view_type_name):
     """Retrieves a 3D view family type by its name.
 

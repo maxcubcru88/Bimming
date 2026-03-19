@@ -10,9 +10,9 @@ __max_revit_ver__ = 2025
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._bimming_vectors import *
-from Snippets._bimming_selection import *
-from Snippets._bimming_strings import crop_number_string
+from Snippets._bimcore_vectors import *
+from Snippets._bimcore_selection import *
+from Snippets._bimcore_strings import crop_number_string
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType

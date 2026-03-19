@@ -17,11 +17,11 @@ TRANSACTION_NAME = "View Auto Section Box"
 #==================================================
 import clr
 clr.AddReference('System')
-from Snippets._bimming_views import *
-from Snippets._bimming_functions import *
-from Snippets._bimming_vectors import *
-from Snippets._bimming_transform import *
-from Snippets._bimming_convert import *
+from Snippets._bimcore_views import *
+from Snippets._bimcore_functions import *
+from Snippets._bimcore_vectors import *
+from Snippets._bimcore_transform import *
+from Snippets._bimcore_convert import *
 
 import sys
 from Autodesk.Revit.DB import *

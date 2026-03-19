@@ -21,7 +21,7 @@ TRANSACTION_NAME = "Bimming-All Annotations OFF"
 import clr
 from traceback import print_tb
 clr.AddReference('System')
-from Snippets._bimming_convert import *
+from Snippets._bimcore_convert import *
 
 # VARIABLES
 #==================================================

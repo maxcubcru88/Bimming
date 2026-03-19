@@ -9,7 +9,7 @@ __max_revit_ver__ = 2025
 
 # IMPORTS
 #==================================================
-from Snippets._bimming_buttonupdates import *
+from Snippets._bimcore_buttonupdates import *
 
 # VARIABLES
 #==================================================

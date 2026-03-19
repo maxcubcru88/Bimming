@@ -2,7 +2,7 @@
 
 # Imports
 #==================================================
-from Snippets._bimming_numbers import *
+from Snippets._bimcore_numbers import *
 from Autodesk.Revit.DB import *
 
 # Variables

@@ -11,7 +11,7 @@ import sys
 from pyrevit import forms
 from Autodesk.Revit.DB import *
 from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
-from Snippets._bimming_strings import *
+from Snippets._bimcore_strings import *
 # Variables
 #==================================================
 app   = __revit__.Application

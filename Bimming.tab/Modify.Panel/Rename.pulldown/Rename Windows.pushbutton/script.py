@@ -16,7 +16,7 @@ import sys
 # IMPORTS
 #==================================================
 
-from Snippets._bimming_complex_def import *
+from Snippets._bimcore_complex_def import *
 
 # VARIABLES
 #==================================================

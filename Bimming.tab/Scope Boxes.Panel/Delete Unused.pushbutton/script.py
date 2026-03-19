@@ -47,9 +47,10 @@ if not scope_boxes:
     forms.alert("There are not any scope box in the model.", warn_icon=False, exitscript=True)
 
 # 2️⃣ Collect all views and elements that might reference scope boxes
-views = FilteredElementCollector(doc).OfClass(View).ToElements()
-grids = FilteredElementCollector(doc).OfClass(Grid).ToElements()
-reference_planes = FilteredElementCollector(doc).OfClass(ReferencePlane).ToElements()
+views               = FilteredElementCollector(doc).OfClass(View).ToElements()
+levels              = FilteredElementCollector(doc).OfClass(Level).ToElements()
+grids               = FilteredElementCollector(doc).OfClass(Grid).ToElements()
+reference_planes    = FilteredElementCollector(doc).OfClass(ReferencePlane).ToElements()
 
 # Set to store used scope box IDs
 used_scope_box_ids = set()
@@ -61,6 +62,14 @@ for view in views:
         continue
     try:
         scope_box_id = view.get_Parameter(BuiltInParameter.VIEWER_VOLUME_OF_INTEREST_CROP).AsElementId()
+        used_scope_box_ids.add(scope_box_id)
+    except:
+        continue
+
+# Check levels
+for level in levels:
+    try:
+        scope_box_id = level.get_Parameter(BuiltInParameter.DATUM_VOLUME_OF_INTEREST).AsElementId()
         used_scope_box_ids.add(scope_box_id)
     except:
         continue

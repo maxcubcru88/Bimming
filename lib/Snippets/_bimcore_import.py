@@ -3,7 +3,7 @@
 
 # Imports
 #==================================================
-from Snippets._bimming_strings import *
+from Snippets._bimcore_strings import *
 
 import clr
 

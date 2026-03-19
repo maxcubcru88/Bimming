@@ -18,9 +18,9 @@ TRANSACTION_NAME = "Bimming-Directions Splasher"
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._bimming_graphics_override import *
-from Snippets._bimming_vectors import *
-from Snippets._bimming_lists import *
+from Snippets._bimcore_graphics_override import *
+from Snippets._bimcore_vectors import *
+from Snippets._bimcore_lists import *
 # Regular + Autodesk
 from Autodesk.Revit.DB import *
 

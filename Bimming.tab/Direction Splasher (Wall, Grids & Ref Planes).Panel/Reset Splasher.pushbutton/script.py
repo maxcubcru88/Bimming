@@ -14,7 +14,7 @@ TRANSACTION_NAME = "Bimming-Reset Splash"
 # IMPORTS
 #==================================================
 # Custom Libraries
-from Snippets._bimming_graphics_override import *
+from Snippets._bimcore_graphics_override import *
 
 # Regular + Autodesk
 from Autodesk.Revit.DB import *

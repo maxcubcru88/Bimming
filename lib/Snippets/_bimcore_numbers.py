@@ -6,7 +6,7 @@ from Autodesk.Revit.DB import *
 import random
 import math
 from decimal import Decimal, getcontext, ROUND_HALF_UP
-from Snippets._bimming_convert import *
+from Snippets._bimcore_convert import *
 from Autodesk.Revit.DB import *
 from pyrevit import forms
 from collections import defaultdict

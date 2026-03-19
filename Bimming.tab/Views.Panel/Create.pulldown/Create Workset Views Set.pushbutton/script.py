@@ -14,7 +14,7 @@ THREE_D_VIEW_FAMILY_NAME = "Audit_Worksets"
 
 # IMPORTS
 #==================================================
-from Snippets._bimming_views import get_existing_3d_view_type
+from Snippets._bimcore_views import get_existing_3d_view_type
 from Autodesk.Revit.DB import *
 from pyrevit import forms
 import sys

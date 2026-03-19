@@ -32,12 +32,12 @@ import clr
 clr.AddReference('System')
 import System
 from System.Collections.Generic import List
-from Snippets._bimming_views import *
-from Snippets._bimming_inspect import *
-from Snippets._bimming_groups import *
-from Snippets._bimming_collect import *
-from Snippets._bimming_export import *
-from Snippets._bimming_functions import *
+from Snippets._bimcore_views import *
+from Snippets._bimcore_inspect import *
+from Snippets._bimcore_groups import *
+from Snippets._bimcore_collect import *
+from Snippets._bimcore_export import *
+from Snippets._bimcore_functions import *
 import sys
 
 # VARIABLES

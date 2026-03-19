@@ -20,8 +20,8 @@ TRANSACTION_NAME = "Bimming-All Annotations OFF"
 #==================================================
 import clr
 clr.AddReference('System')
-from Snippets._bimming_views import *
-from Snippets._bimming_convert import *
+from Snippets._bimcore_views import *
+from Snippets._bimcore_convert import *
 
 from Autodesk.Revit.UI import TaskDialog, TaskDialogCommonButtons, TaskDialogResult
 

@@ -16,9 +16,9 @@ import os
 import datetime
 import sys
 from pyrevit import forms
-from Snippets._bimming_export import *
-from Snippets._bimming_strings import *
-from Snippets._bimming_views import *
+from Snippets._bimcore_export import *
+from Snippets._bimcore_strings import *
+from Snippets._bimcore_views import *
 
 # VARIABLES
 #==================================================
