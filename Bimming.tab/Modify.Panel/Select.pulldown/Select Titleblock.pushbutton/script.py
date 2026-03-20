@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __title__ = "Select\nTitleblocks by Sheet"
-__doc__ = """Renames the sheet numbers of the selected sheets in the project.
+__doc__ = """Select titleblocks by sheet.
 
 Author: Máximo Cubero"""
 

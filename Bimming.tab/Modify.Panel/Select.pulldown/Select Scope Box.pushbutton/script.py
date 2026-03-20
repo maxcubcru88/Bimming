@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __title__   = "Select Scope Box"
-__doc__     = """Sets the rotation of the scope box relative to the X-axis.
+__doc__     = """Select scope Boxes.
 
 Author: Maximo Cubero"""
 
