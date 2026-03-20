@@ -14,16 +14,17 @@ doc   = __revit__.ActiveUIDocument.Document #type:Document
 
 # Reusable Snippets
 
-def activate_splashscreen(doc, ui_doc, splash_name="Splashscreen"):
+def activate_splashscreen(doc, ui_doc):
     """
-    Opens and activates the Splashscreen sheet, if it exists.
+    Opens and activates the Splashscreen sheet (any casing/spacing).
     Returns the ElementId of the sheet, or None.
     """
     sheets = FilteredElementCollector(doc).OfClass(ViewSheet).ToElements()
 
     for sheet in sheets:
-        if sheet.Name == splash_name:
-            # Activate the view
+        name_normalized = sheet.Name.strip().replace(" ", "").lower()
+
+        if name_normalized == "splashscreen":
             ui_doc.ActiveView = sheet
             return sheet.Id
 

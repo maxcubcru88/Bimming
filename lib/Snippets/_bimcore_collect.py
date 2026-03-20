@@ -66,60 +66,77 @@ def get_bounding_box_points(bounding_box):
     else:
         return None
 
-def get_views_to_delete(doc, prefix_to_keep="MX_"):
+def get_views_to_delete(doc, prefix_to_keep="MX_", view_types_to_keep=None):
     """
-    Collects all views in the model that are safe to delete, excluding:
-    - Revision Schedule views
-    - View Templates
-    - Views whose name starts with prefix_to_keep
-    - Splashscreen sheet
-    - System / Project Browser views
-    - Views that cannot be printed
+    Returns a list of View Ids that are safe to delete based on multiple filters.
 
-    Returns a list of ElementIds.
+    Args:
+        doc: Revit document
+        prefix_to_keep (str): Views starting with this prefix will NOT be deleted
+        view_types_to_keep (set): Set of ViewType enums to preserve
+
+    Returns:
+        List[ElementId]: View Ids sorted so dependent views are deleted first
     """
+
+    # Ensure we always work with a set (avoids mutable default argument issues)
+    if view_types_to_keep is None:
+        view_types_to_keep = set()
+
     views = FilteredElementCollector(doc).OfClass(View).ToElements()
-
     views_to_delete = []
 
     for v in views:
 
-        # --- EXCLUSIONS ---
-
-        # Splashscreen sheet
-        if isinstance(v, ViewSheet) and v.Name == "Splashscreen":
+        # Skip splash screen sheet (special case)
+        if isinstance(v, ViewSheet) and v.Name.strip().replace(" ", "").lower() == "splashscreen":
             continue
 
-        # View Templates
+        # Skip view templates
         if v.IsTemplate:
             continue
 
-        # Revision Schedules
+        # Skip revision schedules inside titleblocks
         if hasattr(v, "IsTitleblockRevisionSchedule") and v.IsTitleblockRevisionSchedule:
             continue
 
-        # Key Schedules
+        # Skip key schedules
         try:
             if v.ViewType == ViewType.Schedule and v.Definition.IsKeySchedule:
                 continue
         except:
             pass
 
-        # Prefix-based protection
+        # Skip views whose type is explicitly protected (custom view types)
+        if v.ViewType in view_types_to_keep:
+            continue
+
+        # Skip views with protected prefix
         if prefix_to_keep and v.Name.startswith(prefix_to_keep):
             continue
 
-        # System views
+        # Skip system/internal browser views
         if v.ViewType in (ViewType.ProjectBrowser, ViewType.SystemBrowser):
             continue
 
-        # Keep schedules even if not printable
+        # Skip views that cannot be printed (except schedules)
         if v.ViewType != ViewType.Schedule and not v.CanBePrinted:
             continue
 
-        views_to_delete.append(v.Id)
+        # If none of the "keep" conditions matched → mark for deletion
+        views_to_delete.append(v)
 
-    return views_to_delete
+    # ✅ Sort: dependent views first
+    # Dependent views must be deleted before their parent views
+    def is_dependent(v):
+        try:
+            return v.GetPrimaryViewId() != ElementId.InvalidElementId
+        except:
+            return False
+
+    views_sorted = sorted(views_to_delete, key=lambda v: is_dependent(v), reverse=True)
+
+    return [v.Id for v in views_sorted]
 
 def get_cad_links_to_delete(doc):
     """Collect all ImportInstance (CAD links) to delete."""
@@ -129,17 +146,18 @@ def get_cad_links_to_delete(doc):
             .ToElements()]
 
 def get_revit_links_to_delete(doc):
-    """Collect all Revit links to delete (instances, not types)."""
-    return [e.Id for e in FilteredElementCollector(doc)
-            .OfCategory(BuiltInCategory.OST_RvtLinks)
-            .WhereElementIsNotElementType()  # Use instance, not type
-            .ToElements()]
+    """Collects only top-level Revit link types (excludes nested attachments)."""
+    # Collect all link types in the document
+    all_links = FilteredElementCollector(doc).OfClass(RevitLinkType).ToElements()
+
+    # Filter for types that are NOT nested attachments
+    return [link.Id for link in all_links if not link.IsNestedLink]
 
 def get_images_to_delete(doc):
     """Collect all raster images to delete."""
     return [e.Id for e in FilteredElementCollector(doc)
             .OfCategory(BuiltInCategory.OST_RasterImages)
-            .WhereElementIsNotElementType()
+            .WhereElementIsElementType()
             .ToElements()]
 
 def get_unused_scope_boxes(doc):
