@@ -59,7 +59,7 @@ for e in range(1,12):
 
 number_of_decimals = forms.ask_for_one_item(
                                             sorted(lst_dict.keys(), key=lambda x: int(x.split()[0])),
-                                                default='6 decimals',
+                                                default='11 decimals',
                                                 prompt='Select the number of decimals to consider when checking\nif walls, ref. planes and grids are parallel/perpendicular',
                                                 title='Set Tolerance'
                                             )

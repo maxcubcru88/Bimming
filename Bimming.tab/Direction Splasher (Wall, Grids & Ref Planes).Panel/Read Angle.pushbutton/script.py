@@ -9,6 +9,7 @@ __max_revit_ver__ = 2025
 
 # IMPORTS
 #==================================================
+import sys
 # Custom Libraries
 from Snippets._bimcore_vectors import *
 from Snippets._bimcore_selection import *
@@ -34,7 +35,7 @@ for e in range(1,12):
 
 number_of_decimals = forms.ask_for_one_item(
                                             sorted(lst_dict.keys(), key=lambda x: int(x.split()[0])),
-                                                default='6 decimals',
+                                                default='11 decimals',
                                                 prompt='Select the number of decimals to round',
                                                 title='Bimming-Read Angle'
                                             )
