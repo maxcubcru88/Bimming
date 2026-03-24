@@ -4,6 +4,7 @@
 # Imports
 #==================================================
 from Autodesk.Revit.DB import *
+import re
 
 # Variables
 #==================================================
@@ -73,3 +74,30 @@ def crop_number_string(s, decimals):
 
     new_pos = pos + decimals + 1
     return s[:new_pos]  # Return substring up to the adjusted position
+
+def sanitize_filename(name):
+    """
+    Clean a string so it can be safely used as a Windows file name.
+
+    Operations performed:
+    - Replaces forbidden characters (\ / : * ? " < > |) with spaces
+    - Collapses multiple spaces into a single space
+    - Trims leading and trailing whitespace
+    - Removes trailing dots (not allowed in Windows file names)
+
+    Args:
+        name (str): Original file name (e.g. from Revit schedule.Name)
+
+    Returns:
+        str: Sanitized file name safe for file system use
+    """
+    # Replace invalid characters with space
+    name = re.sub(r'[\\/*?:"<>|]', ' ', name)
+
+    # Collapse multiple spaces into one
+    name = re.sub(r'\s+', ' ', name).strip()
+
+    # Strip leading/trailing spaces
+    name = name.rstrip('.')
+
+    return name

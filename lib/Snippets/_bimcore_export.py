@@ -8,6 +8,8 @@ import csv
 import codecs
 import os
 from Snippets._bimcore_strings import *
+import datetime
+
 
 # Variables
 #==================================================
@@ -47,7 +49,7 @@ def create_report_directory(folder_name="NEW DIRECTORY", open_directory=True):
         str: The full path of the created or existing directory.
     """
     # Get the user's Documents directory
-    documents_folder = os.path.expanduser("~\\Documents\\{}".format(folder_name))
+    documents_folder = os.path.expanduser("~\\Documents\\PyRevit_Exports\\{}".format(folder_name))
 
     # Check if the folder exists, if not, create it
     if not os.path.exists(documents_folder):
@@ -57,8 +59,6 @@ def create_report_directory(folder_name="NEW DIRECTORY", open_directory=True):
         os.startfile(documents_folder)
 
     return documents_folder
-
-import datetime
 
 def generate_report_name(file_name):
     """Generates a report name by concatenating the file name with the current date and time.
@@ -86,7 +86,6 @@ def generate_report_name(file_name):
 
     # Return the new file name and export date/time
     return new_file_name, export_date, export_time
-
 
 def get_project_info(doc, app):
     """Retrieves project information including file path, name, central file path, and export user.
@@ -138,3 +137,33 @@ def get_project_info(doc, app):
     output_project_info.append(("",""))
 
     return output_project_info
+
+def create_excel_file(folder_path, file_name):
+    """
+    Create an empty Excel file path, ensuring the folder exists.
+
+    Operations performed:
+    - Appends ".xlsx" extension if missing
+    - Creates the target directory if it does not exist
+    - Creates an empty file at the specified location
+
+    Args:
+        folder_path (str): Directory where the file will be created
+        file_name (str): Desired file name (with or without .xlsx)
+
+    Returns:
+        str: Full path to the created file
+    """
+
+    if not file_name.endswith(".xlsx"):
+        file_name += ".xlsx"
+
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
+    full_path = os.path.join(folder_path, file_name)
+
+    with open(full_path, "w") as f:
+        pass
+
+    return full_path

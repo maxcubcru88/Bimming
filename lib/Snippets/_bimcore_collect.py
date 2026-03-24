@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # Imports
 #==================================================
 from Autodesk.Revit.DB import *
@@ -221,3 +220,29 @@ def get_unused_scope_boxes(doc):
     unused_scope_boxes_sorted = sorted(unused_scope_boxes, key=lambda sb: sb.Name)
 
     return [sb.Id for sb in unused_scope_boxes_sorted]
+
+def get_data_schedules(list_schedules):
+    """Collect data from schedule"""
+
+    if not hasattr(list_schedules, "__iter__"):
+        list_schedules = [list_schedules]
+
+    result = {}
+    for schedule in list_schedules:
+        table = schedule.GetTableData().GetSectionData(SectionType.Body)
+        schedule_name = Element.Name.GetValue(schedule)
+        nRows = table.NumberOfRows
+        nColumns = table.NumberOfColumns
+
+        dataListRow = []
+        for row in range(nRows):
+            dataListColum = []
+            for column in range(nColumns):
+                dataListColum.append(
+                    TableView.GetCellText(schedule, SectionType.Body, row, column)
+                )
+            dataListRow.append(dataListColum)
+
+        result[schedule_name] = dataListRow
+
+    return result
