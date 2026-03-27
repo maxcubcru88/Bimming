@@ -138,6 +138,57 @@ def get_project_info(doc, app):
 
     return output_project_info
 
+def get_project_info_excel(doc, app):
+    """Retrieves project information including file path, name, central file path, and export user.
+
+    Args:
+        doc (Document): The active Revit document.
+        app (Application): The Revit application instance.
+
+    Returns:
+        list: A list of tuples containing project information.
+    """
+    model_path = doc.PathName
+    output_project_info = [["PROJECT INFO", ""]]
+
+    output_project_info.append(["File Path", model_path])
+
+    # Check if the document is workshared
+    if doc.IsWorkshared:
+        try:
+            # Extract file info including the central path
+            file_info = BasicFileInfo.Extract(model_path)
+
+            # Get central model path
+            model_path = file_info.CentralPath
+            file_name = os.path.splitext(os.path.basename(model_path))[0]
+
+            if not file_name:
+                forms.alert('Save the model and try again.')
+                sys.exit()
+
+            central_path = file_info.CentralPath
+
+        except Exception:
+            # Handle detached central file cases
+            file_name_detached = os.path.splitext(os.path.basename(model_path))[0]
+            file_name = remove_detached_suffix(file_name_detached)
+            central_path = "It is a detached model - No central file path found."
+    else:
+        file_name = os.path.splitext(os.path.basename(model_path))[0]
+        central_path = "This document is not workshared."
+
+    output_project_info.append(["File Name", file_name])
+    output_project_info.append(["Central File Path", central_path])
+
+    # Get the current user's name
+    output_project_info.append(["Export by", app.Username])
+
+    # Add an extra blank line
+    # output_project_info.append(["",""])
+
+    return output_project_info
+
 def create_excel_file(folder_path, file_name):
     """
     Create an empty Excel file path, ensuring the folder exists.
