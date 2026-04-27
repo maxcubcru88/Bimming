@@ -157,3 +157,73 @@ def excel_rows_to_dict(data, start_row, key_col=0, value_col=1, stop_on_empty=Tr
     return result
 
     return result
+
+def list_to_dict_excel(data, key_col_index=0, keyword=None):
+    """
+    Converts a 2D list (such as data read from Excel) into a dictionary
+    keyed by a specified column, optionally filtering out headers
+    containing a keyword, and detecting duplicate keys.
+
+    Args:
+        data (list[list]): The full dataset where data[0] contains headers.
+        key_col_index (int, optional): Index of the column used as the dictionary key.
+                                       Default is 0.
+        keyword (str, optional): If provided, any column whose header contains this keyword
+                                 (case-insensitive) will be skipped.
+
+    Returns:
+        dict: A dictionary where each key is taken from key_col_index and maps to
+              a sub-dictionary of remaining header/value pairs.
+
+    Raises:
+        SystemExit: If duplicate keys are found in key_col_index.
+    """
+
+    headers = data[0]
+    result = {}
+    duplicates = []
+
+    for row in data[1:]:
+        # Skip empty or insufficient rows
+        if not row or len(row) <= key_col_index:
+            continue
+
+        key = row[key_col_index]
+        if key is None:
+            continue
+
+        # Detect duplicates
+        if key in result:
+            duplicates.append(key)
+            continue
+
+        item = {}
+        for i, value in enumerate(row):
+            if i < len(headers):
+                header = headers[i]
+
+                # Skip the key column
+                if i == key_col_index:
+                    continue
+
+                # Skip fields whose header contains the keyword
+                if keyword and keyword.lower() in str(header).lower():
+                    continue
+
+                item[header] = value
+
+        result[key] = item
+
+    # ---------------------------------------
+    # POP-UP WARNING AND STOP SCRIPT
+    # ---------------------------------------
+    if duplicates:
+        message = (
+            "Duplicate keys were found:\n\n{}\n\n"
+            "Please fix the data and run the script again."
+        ).format(", ".join(map(str, duplicates)))
+
+        TaskDialog.Show("Duplicate Keys Found", message)
+        raise SystemExit("Duplicate keys detected")
+
+    return result

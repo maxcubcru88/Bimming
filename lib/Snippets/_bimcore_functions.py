@@ -66,3 +66,20 @@ def get_3d_view_by_name(doc, view_name):
          if view.Name == view_name),
         None
     )
+
+def get_parameter_by_name(element, param_name):
+    """
+    Returns the Revit Parameter object from an element
+    using the parameter's name text.
+
+    Args:
+        element: Revit element
+        param_name (str): Parameter name
+
+    Returns:
+        Parameter object or None if not found
+    """
+    for param in element.Parameters:
+        if param.Definition.Name == param_name:
+            return param
+    return None

@@ -81,7 +81,6 @@ def is_detail_group(element):
     """
     return element.Category and element.Category.Id.IntegerValue == int(BuiltInCategory.OST_IOSDetailGroups)
 
-
 def is_revision_cloud(element):
     """Checks if the given element is a detail group.
 
@@ -92,7 +91,6 @@ def is_revision_cloud(element):
         bool: True if the element is a revision cloud, False otherwise.
     """
     return element.Category and element.Category.Id.IntegerValue == int(BuiltInCategory.OST_RevisionClouds)
-
 
 def is_shared(family_instance):
     """
@@ -130,7 +128,6 @@ def is_element_hidden_permanent(view, element):
         return True  # Element is hidden using 'Hide Elements'
 
     return False
-
 
 def is_callout_view(view):
     """
