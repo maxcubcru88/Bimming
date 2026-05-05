@@ -5,7 +5,7 @@ __doc__     = """Select scope Boxes.
 Author: Maximo Cubero"""
 
 __min_revit_ver__ = 2021
-__max_revit_ver__ = 2025
+__max_revit_ver__ = 2026
 
 # CONSTANTS
 #==================================================

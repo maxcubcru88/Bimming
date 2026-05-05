@@ -6,7 +6,7 @@ elements parallel or perpendicular to the selected one are highlighted in green,
 Author: Máximo Cubero"""
 
 __min_revit_ver__ = 2023
-__max_revit_ver__ = 2025
+__max_revit_ver__ = 2026
 
 # CONSTANTS
 #==================================================

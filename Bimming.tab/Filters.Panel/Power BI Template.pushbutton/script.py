@@ -5,7 +5,7 @@ __doc__ = """Download the Power BI Template.
 Author: Máximo Cubero"""
 
 __min_revit_ver__ = 2021
-__max_revit_ver__ = 2025
+__max_revit_ver__ = 2026
 
 from pyrevit import script
 

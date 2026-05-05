@@ -5,7 +5,7 @@ __doc__ = """Retrieve the angle between a wall, reference plane, or grid line an
 Author: Máximo Cubero"""
 
 __min_revit_ver__ = 2023
-__max_revit_ver__ = 2025
+__max_revit_ver__ = 2026
 
 # IMPORTS
 #==================================================

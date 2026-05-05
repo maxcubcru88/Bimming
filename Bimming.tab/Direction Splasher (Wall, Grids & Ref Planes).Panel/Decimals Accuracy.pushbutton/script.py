@@ -7,7 +7,7 @@ places are less than or equal to the specified number, and red if they exceed it
 Author: Máximo Cubero"""
 
 __min_revit_ver__ = 2021
-__max_revit_ver__ = 2025
+__max_revit_ver__ = 2026
 
 # CONSTANTS
 #==================================================

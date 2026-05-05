@@ -8,7 +8,7 @@ __doc__     = """Ensures the Section Box is visible and active in the current vi
 Author: Maximo Cubero"""
 
 __min_revit_ver__ = 2021
-__max_revit_ver__ = 2025
+__max_revit_ver__ = 2026
 
 __context__ = ["active-3d-view"]
 
