@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 __title__ = "One-Direction\nSplasher"
-__doc__ = """Colors elements in the active view based on their alignment with the selected wall, reference plane, or grid:\
-elements parallel or perpendicular to the selected one are highlighted in green, while all others are highlighted in red.
+__doc__ = """Colors elements in the active view based on their alignment with the selected wall, reference plane, or grid: elements parallel or perpendicular to the selected one are highlighted in green, while all others are highlighted in red.
 
 Author: Máximo Cubero"""
 

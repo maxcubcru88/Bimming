@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 __title__ = "Directions\nSplasher"
-__doc__ = """Colors elements in the active view based on their alignment. Walls, reference planes, \
-and grids that are parallel or perpendicular to each other are highlighted in the same color. \
-Each unique alignment is represented by a different color.
+__doc__ = """Colors elements in the active view based on their alignment. Walls, reference planes, and grids that are parallel or perpendicular to each other are highlighted in the same color. Each unique alignment is represented by a different color.
 
 Author: Máximo Cubero"""
 

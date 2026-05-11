@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 __title__ = "Decimals\nAccuracy"
-__doc__ = """Colors elements in the active view based on decimal precision: \
-walls, reference planes, and grids are highlighted green if their decimal \
-places are less than or equal to the specified number, and red if they exceed it.
+__doc__ = """Colors elements in the active view based on decimal precision: walls, reference planes, and grids are highlighted green if their decimal places are less than or equal to the specified number, and red if they exceed it.
 
 Author: Máximo Cubero"""
 
