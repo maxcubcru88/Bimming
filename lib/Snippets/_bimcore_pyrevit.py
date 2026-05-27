@@ -14,7 +14,7 @@ doc   = __revit__.ActiveUIDocument.Document #type:Document
 # Functions
 #==================================================
 
-def dump(xlfile, datadict):
+def dump(xlfile, datadict, bold_header=False): # last update to make the header bold and auto-adjust the column width
     """Write structured data to an Excel workbook.
 
     Behavior:
@@ -42,13 +42,20 @@ def dump(xlfile, datadict):
                     ]
                 }
 
+        bold_header (bool):
+            If True, the first row of each sheet is written in bold.
+            Defaults to False.
+
     Notes:
         - Worksheet names are automatically set to "Sheet1" when only one
           dataset is provided, to match Excel defaults.
         - When multiple datasets are provided, worksheet names must be unique
           and comply with Excel naming rules (<= 31 chars, no []:*?/\\).
+        - Column widths are auto-fitted based on cell content, capped at 50
+          characters, with a 2-character padding margin.
     """
     xlwb = xlsxwriter.Workbook(xlfile)
+    header_format = xlwb.add_format({'bold': True}) if bold_header else None
 
     single_sheet = len(datadict) == 1
 
@@ -56,10 +63,22 @@ def dump(xlfile, datadict):
         sheet_name = "Sheet1" if single_sheet else xlsheetname
         xlsheet = xlwb.add_worksheet(sheet_name)
 
+        col_widths = {}
+        max_width = 80
+
         for idx, data in enumerate(xlsheetdata):
             if not isinstance(data, (list, tuple)):
                 data = [data]
-            xlsheet.write_row(idx, 0, data)
+
+            fmt = header_format if (bold_header and idx == 0) else None
+            xlsheet.write_row(idx, 0, data, fmt)
+
+            for col_idx, cell in enumerate(data):
+                cell_len = len(str(cell))
+                col_widths[col_idx] = max(col_widths.get(col_idx, 0), cell_len)
+
+        for col_idx, width in col_widths.items():
+            xlsheet.set_column(col_idx, col_idx, min(width + 2, max_width))
 
     xlwb.close()
 

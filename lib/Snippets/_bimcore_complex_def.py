@@ -166,3 +166,204 @@ def rename_types(category):
 
         data = project_info + output_data
         export_to_csv(csv_file_path, data)
+
+def create_folder_dictionary(directory_path):
+    folder_dict = {}
+
+    pattern = re.compile(r'^(\d{3})_(.+)$')
+
+    try:
+        for item in os.listdir(directory_path):
+            full_path = os.path.join(directory_path, item)
+            if os.path.isdir(full_path):
+                match = pattern.match(item)
+                if match:
+                    number = match.group(1)
+                    description = match.group(2)
+
+                    folder_dict[number] = item
+
+    except OSError:
+        print("Cannot access path '{0}'".format(directory_path))
+
+    return folder_dict
+
+def parameter_type_updater(category, excel_file_path):
+    # type: (str, str) -> tuple
+    """
+    Reads an Excel Type Parameter Table for the given category,
+    matches element types in the model by their MODEL parameter,
+    and populates the corresponding Revit type parameters.
+
+    Args:
+        category        (str): Must match a key in the mapping dict.
+                               e.g. "CEILING TYPES", "DOORS TYPES EXTERNAL", "DOORS TYPES INTERNAL",
+                               "FLOOR & ROOF TYPES", "METALWORK TYPES", "PRECAST ELEMENTS", "WALL TYPES", "WINDOW TYPES"
+        excel_file_path (str): Full path to the Excel file.
+                               e.g. r"C:\Projects\123_ProjectName\...\123-WALL TYPES.xlsx"
+    """
+
+    # MAPPING
+    #==================================================
+    mapping = {
+        "CEILING TYPES":        [BuiltInCategory.OST_Ceilings],
+        "DOORS TYPES EXTERNAL": [BuiltInCategory.OST_Doors],
+        "DOORS TYPES INTERNAL": [BuiltInCategory.OST_Doors],
+        "FLOOR & ROOF TYPES":   [BuiltInCategory.OST_Roofs, BuiltInCategory.OST_Floors],
+        "METALWORK TYPES":      [BuiltInCategory.OST_GenericModel],
+        "PRECAST ELEMENTS":     [BuiltInCategory.OST_GenericModel],
+        "WALL TYPES":           [BuiltInCategory.OST_Walls],
+        "WINDOW TYPES":         [BuiltInCategory.OST_Windows],
+    }
+
+    categories_model_value_mandatory = ["WINDOW TYPES", "CEILING TYPES", "FLOOR & ROOF TYPES"]
+
+    # VALIDATE INPUT
+    #==================================================
+    category = category.upper().strip()
+    if category not in mapping:
+        forms.alert(
+            "Category '{}' not found in mapping.\n\nValid options:\n{}".format(
+                category, "\n".join(mapping.keys())
+            ),
+            "Invalid Category",
+            exitscript=True
+        )
+
+    # 1️⃣ READ EXCEL
+    #==================================================
+    try:
+        table = excel_read_via_com(excel_file_path, sheet_name="Sheet1", required_col_index=1, stop_on_empty_first_row_col=True)
+    except:
+        forms.alert(
+            "The Excel document could not be found:\n\n{}".format(excel_file_path),
+            "Warning - Excel Path",
+            sub_msg="Talk to the BIM Team for support",
+            exitscript=True
+        )
+
+    data_dict  = list_to_dict_excel(table, key_col_index=0, keyword=None)
+    parameters = table[0][1:]
+
+    # 2️⃣ COLLECT ELEMENTS
+    #==================================================
+    category_selected = mapping[category]
+
+    iList = List[BuiltInCategory]()
+    for cat in category_selected:
+        iList.Add(cat)
+
+    if BuiltInCategory.OST_GenericModel in category_selected:
+        all_generic = (
+            FilteredElementCollector(doc)
+            .WherePasses(ElementMulticategoryFilter(iList))
+            .WhereElementIsElementType()
+            .ToElements()
+        )
+        prefixes = sorted(set(
+            m.group(0)
+            for key in data_dict.keys()
+            for m in [re.match(r"[A-Za-z]+", key)]
+            if m
+        ))
+        collector = [
+            e for e in all_generic
+            if e.get_Parameter(BuiltInParameter.ALL_MODEL_MODEL).AsString()
+            and any(e.get_Parameter(BuiltInParameter.ALL_MODEL_MODEL).AsString().startswith(p) for p in prefixes)
+        ]
+    else:
+        collector = (
+            FilteredElementCollector(doc)
+            .WherePasses(ElementMulticategoryFilter(iList))
+            .WhereElementIsElementType()
+            .ToElements()
+        )
+
+    # 3️⃣ POPULATE PARAMETERS
+    #==================================================
+    errors_1 = [['ID', 'Family Name', 'Type', 'Model', 'Error/Warning Description']]
+    errors_2 = [['Model', 'Parameter', 'Error Description']]
+
+    t = Transaction(doc, TRANSACTION_NAME)
+    t.Start()
+
+    for elem_type in collector:
+        elem_id     = str(elem_type.Id)
+        type_name   = elem_type.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString()
+        family_name = getattr(elem_type, "FamilyName", elem_id)
+        model_value = elem_type.get_Parameter(BuiltInParameter.ALL_MODEL_MODEL).AsString()
+
+        error = False
+        if not model_value:
+            error_description_1 = "WARNING: MODEL value empty"
+            error = True
+        elif model_value not in data_dict and category in categories_model_value_mandatory:
+            error_description_1 = "ERROR: '{}' not found in Excel table '{}'".format(model_value, excel_file_path)
+            error = True
+        elif model_value not in data_dict:
+            error_description_1 = "WARNING: '{}' not found in '{}'. Ignore if code is not applicable.".format(model_value, excel_file_path)
+            error = True
+
+        if error:
+            errors_1.append([elem_id, family_name, type_name, model_value, error_description_1])
+            continue
+
+        for parameter in parameters:
+            revit_parameter = get_parameter_by_name(elem_type, parameter)
+
+            if not revit_parameter:
+                errors_2.append([model_value, parameter,
+                    "Parameter not found. Check: A) exists in project  B) linked to category  C) is a Type parameter."])
+                continue
+
+            parameter_storage_type = revit_parameter.StorageType
+            data_type              = revit_parameter.Definition.GetDataType()
+            raw_value              = data_dict[model_value][parameter]
+
+            if raw_value is None or raw_value == "":
+                errors_2.append([model_value, parameter,
+                    "Excel cell is EMPTY. Use 'TBC', 'N/A', '-' for text or '0' for numeric."])
+                continue
+
+            if parameter_storage_type == StorageType.Integer:
+                if data_type == SpecTypeId.Boolean.YesNo:
+                    val = str(raw_value).upper()
+                    if   val == 'TRUE':  parameter_value = 1
+                    elif val == 'FALSE': parameter_value = 0
+                    else:
+                        errors_2.append([model_value, parameter,
+                            "'{}' is YES/NO — value '{}' invalid. Use TRUE or FALSE.".format(parameter, raw_value)])
+                        continue
+                else:
+                    try:    parameter_value = int(raw_value)
+                    except:
+                        errors_2.append([model_value, parameter,
+                            "'{}' is INTEGER — '{}' could not be converted.".format(parameter, raw_value)])
+                        continue
+
+            elif parameter_storage_type == StorageType.Double:
+                try:
+                    fval = float(raw_value)
+                    if   data_type == SpecTypeId.Length: parameter_value = convert_internal_units(fval, get_internal=True, units='mm')
+                    elif data_type == SpecTypeId.Area:   parameter_value = convert_internal_units(fval, get_internal=True, units='m2')
+                    elif data_type == SpecTypeId.Number: parameter_value = fval
+                    else:
+                        errors_2.append([model_value, parameter,
+                            "'{}' is DOUBLE (DataType={}) — unsupported spec type.".format(parameter, data_type.TypeId)])
+                        continue
+                except:
+                    errors_2.append([model_value, parameter,
+                        "'{}' is DOUBLE — '{}' could not be converted.".format(parameter, raw_value)])
+                    continue
+
+            elif parameter_storage_type == StorageType.String:
+                try:    parameter_value = str(raw_value)
+                except:
+                    errors_2.append([model_value, parameter,
+                        "'{}' is STRING — '{}' could not be converted.".format(parameter, raw_value)])
+                    continue
+
+            revit_parameter.Set(parameter_value)
+
+    t.Commit()
+    return errors_1, errors_2
