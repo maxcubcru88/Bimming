@@ -9,6 +9,8 @@ from Snippets._bimcore_import import *
 from Snippets._bimcore_functions import *
 from pyrevit import EXEC_PARAMS
 
+from System.Collections.Generic import List
+
 # Variables
 #==================================================
 app   = __revit__.Application
@@ -207,8 +209,8 @@ def parameter_type_updater(category, excel_file_path):
     #==================================================
     mapping = {
         "CEILING TYPES":        [BuiltInCategory.OST_Ceilings],
-        "DOORS TYPES EXTERNAL": [BuiltInCategory.OST_Doors],
-        "DOORS TYPES INTERNAL": [BuiltInCategory.OST_Doors],
+        "DOOR TYPES EXTERNAL": [BuiltInCategory.OST_Doors],
+        "DOOR TYPES INTERNAL": [BuiltInCategory.OST_Doors],
         "FLOOR & ROOF TYPES":   [BuiltInCategory.OST_Roofs, BuiltInCategory.OST_Floors],
         "METALWORK TYPES":      [BuiltInCategory.OST_GenericModel],
         "PRECAST ELEMENTS":     [BuiltInCategory.OST_GenericModel],
@@ -284,7 +286,7 @@ def parameter_type_updater(category, excel_file_path):
     errors_1 = [['ID', 'Family Name', 'Type', 'Model', 'Error/Warning Description']]
     errors_2 = [['Model', 'Parameter', 'Error Description']]
 
-    t = Transaction(doc, TRANSACTION_NAME)
+    t = Transaction(doc, "KCA-Parameter Types Update-{}".format(category))
     t.Start()
 
     for elem_type in collector:
