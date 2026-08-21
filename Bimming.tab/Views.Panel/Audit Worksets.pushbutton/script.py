@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__title__   = "Set of 3D Views to audit Worksets"
+__title__   = "Audit\nWorksets"
 __doc__     = """Creates a 3D view for each workset in the project.
 
 Author: Maximo Cubero"""
