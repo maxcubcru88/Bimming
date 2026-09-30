@@ -151,7 +151,7 @@ for e in collector:
     if e.ViewSpecific:
         # Info Start
         cat = e.Category.Name
-        element_id = e.Id.IntegerValue
+        element_id = get_elementid_value(e.Id)
         type_name = Element.Name.GetValue(e)
         if type_name == 'Detail Filled Region': type_name = Element.Name.GetValue(doc.GetElement(e.GetTypeId()))
         view = doc.GetElement(e.OwnerViewId)
@@ -164,7 +164,7 @@ for e in collector:
             family_name = 'Masking Region'
         else:
             try: family_name = doc.GetElement(e.GetTypeId()).FamilyName
-            except: family_name = e.Id.IntegerValue
+            except: family_name = get_elementid_value(e.Id)
         # Info Ends
 
         if is_detail_group(e):

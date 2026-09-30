@@ -6,12 +6,15 @@
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI import TaskDialog
 import sys
+from pyrevit.compat import get_elementid_value_func
 
 # Variables
 #==================================================
 app   = __revit__.Application
 uidoc = __revit__.ActiveUIDocument
 doc   = __revit__.ActiveUIDocument.Document #type:Document
+
+get_elementid_value = get_elementid_value_func()  # Returns .Value (2024+) or .IntegerValue (<2024), compatible across Revit versions
 
 # Functions
 #==================================================
@@ -46,13 +49,13 @@ def check_parameter_binding(doc, param_name, categories_to_check):
         if definition.Name == param_name:
             # Get bound categories
             bound_cats = [cat for cat in binding.Categories]
-            bound_cat_ids = [c.Id.IntegerValue for c in bound_cats]
+            bound_cat_ids = [get_elementid_value(c.Id) for c in bound_cats]
 
             # Check which categories are missing
             missing_cats = []
             for bic in categories_to_check:
                 cat = doc.Settings.Categories.get_Item(bic)
-                if cat.Id.IntegerValue not in bound_cat_ids:
+                if get_elementid_value(cat.Id) not in bound_cat_ids:
                     missing_cats.append(cat.Name)
 
             if missing_cats:
@@ -79,7 +82,7 @@ def is_detail_group(element):
     Returns:
         bool: True if the element is a detail group, False otherwise.
     """
-    return element.Category and element.Category.Id.IntegerValue == int(BuiltInCategory.OST_IOSDetailGroups)
+    return element.Category and get_elementid_value(element.Category.Id) == int(BuiltInCategory.OST_IOSDetailGroups)
 
 def is_revision_cloud(element):
     """Checks if the given element is a detail group.
@@ -90,7 +93,7 @@ def is_revision_cloud(element):
     Returns:
         bool: True if the element is a revision cloud, False otherwise.
     """
-    return element.Category and element.Category.Id.IntegerValue == int(BuiltInCategory.OST_RevisionClouds)
+    return element.Category and get_elementid_value(element.Category.Id) == int(BuiltInCategory.OST_RevisionClouds)
 
 def is_shared(family_instance):
     """
@@ -139,4 +142,4 @@ def is_callout_view(view):
     Returns:
         bool: True if the view is a callout, False otherwise.
     """
-    return view.GetPrimaryViewId().IntegerValue != -1
+    return get_elementid_value(view.GetPrimaryViewId()) != -1

@@ -66,7 +66,7 @@ for v in views:
         for f in filters_in_view:
             aux = []
 
-            aux.append(f.IntegerValue)              # Filter Id
+            aux.append(get_elementid_value(f))      # Filter Id
             aux.append(doc.GetElement(f).Name)      # Filter Name <string>
             aux.append(v.GetIsFilterEnabled(f))     # Filter Enable <True/False>
             aux.append(v.GetFilterVisibility(f))    # Filter Visibility <True/False>

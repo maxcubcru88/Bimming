@@ -174,7 +174,7 @@ for view in views:
         if view.IsTemplate:
             views_to_check.append(view)
 
-        elif view.ViewTemplateId == ElementId(-1):
+        elif view.ViewTemplateId == ElementId.InvalidElementId:
             views_to_check.append(view)
 
         else:

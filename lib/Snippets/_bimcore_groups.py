@@ -5,12 +5,15 @@
 #==================================================
 from Autodesk.Revit.DB import *
 from collections import defaultdict
+from pyrevit.compat import get_elementid_value_func
 
 # Variables
 #==================================================
 app   = __revit__.Application
 uidoc = __revit__.ActiveUIDocument
 doc   = __revit__.ActiveUIDocument.Document #type:Document
+
+get_elementid_value = get_elementid_value_func()  # Returns .Value (2024+) or .IntegerValue (<2024), compatible across Revit versions
 
 # Functions
 #==================================================
@@ -46,11 +49,11 @@ def collect_all_group_members(doc, group):
         member = doc.GetElement(member_id)
 
         # Include detail groups and other allowed categories
-        if member.Category and member.Category.Id.IntegerValue in allowed_categories:
+        if member.Category and get_elementid_value(member.Category.Id) in allowed_categories:
             all_members.append(member)
 
         # If the member is a detail group, recurse into it
-        if member.Category and member.Category.Id.IntegerValue == int(BuiltInCategory.OST_IOSDetailGroups):
+        if member.Category and get_elementid_value(member.Category.Id) == int(BuiltInCategory.OST_IOSDetailGroups):
             all_members.extend(collect_all_group_members(doc, member))
 
     return all_members

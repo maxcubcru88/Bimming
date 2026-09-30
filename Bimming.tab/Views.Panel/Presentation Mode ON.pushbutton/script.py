@@ -24,6 +24,7 @@ TRANSACTION_NAME = "Bimming-Presentation Mode"
 import clr
 from traceback import print_tb
 clr.AddReference('System')
+from pyrevit.compat import get_elementid_value_func
 from Snippets._bimcore_convert import *
 
 # VARIABLES
@@ -31,6 +32,8 @@ from Snippets._bimcore_convert import *
 app    = __revit__.Application
 uidoc  = __revit__.ActiveUIDocument
 doc    = __revit__.ActiveUIDocument.Document #type:Document
+
+get_elementid_value = get_elementid_value_func()  # Returns .Value (2024+) or .IntegerValue (<2024), compatible across Revit versions
 
 # MAIN
 #==================================================
@@ -57,10 +60,10 @@ except Exception:
     pass  # Not supported in this view type
 
 # 4️⃣ HIDE CAD LINKS / IMPORTS
-cad_category_ids = {}  # keyed by IntegerValue to avoid duplicate categories (multiple layers per import)
+cad_category_ids = {}  # keyed by element id value to avoid duplicate categories (multiple layers per import)
 for cad_link in FilteredElementCollector(doc, active_view.Id).OfClass(ImportInstance).WhereElementIsNotElementType():
     if cad_link.Category:
-        cad_category_ids[cad_link.Category.Id.IntegerValue] = cad_link.Category.Id
+        cad_category_ids[get_elementid_value(cad_link.Category.Id)] = cad_link.Category.Id
 
 for cat_id in cad_category_ids.values():
     try:

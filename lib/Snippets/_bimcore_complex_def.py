@@ -4,6 +4,7 @@
 #==================================================
 import sys
 from pyrevit import forms
+from pyrevit.compat import get_elementid_value_func
 from Snippets._bimcore_export import *
 from Snippets._bimcore_import import *
 from Snippets._bimcore_functions import *
@@ -16,6 +17,8 @@ from System.Collections.Generic import List
 app   = __revit__.Application
 uidoc = __revit__.ActiveUIDocument
 doc   = __revit__.ActiveUIDocument.Document #type:Document
+
+get_elementid_value = get_elementid_value_func()  # Returns .Value (2024+) or .IntegerValue (<2024), compatible across Revit versions
 
 
 def rename_types(category):
@@ -42,7 +45,7 @@ def rename_types(category):
 
         for symbol in elements_symbols:
             fam = symbol.Family
-            families_by_id[fam.Id.IntegerValue] = fam
+            families_by_id[get_elementid_value(fam.Id)] = fam
 
         # 3️⃣ Final unique families list
         elements = list(families_by_id.values())

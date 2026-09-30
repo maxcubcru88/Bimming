@@ -17,9 +17,13 @@ ALERT_NO_RULES = "Rules to rename have not been defined. Please Try Again"
 #==================================================
 from Autodesk.Revit.DB import *
 from pyrevit import forms
+from pyrevit.compat import get_elementid_value_func, get_elementid_from_value_func
 from rpw.ui.forms import (FlexForm, Label, TextBox, Separator, Button)
 
 from System.Collections.Generic import List
+
+get_elementid_value = get_elementid_value_func()            # Returns .Value (2024+) or .IntegerValue (<2024)
+get_elementid_from_value = get_elementid_from_value_func()  # Builds an ElementId from a plain int, compatible across Revit versions
 # VARIABLES
 #==================================================
 doc   = __revit__.ActiveUIDocument.Document
@@ -47,7 +51,7 @@ if not sel_views:
 # Create a .NET list of ElementIds
 element_ids = List[ElementId]()
 for view in sel_views:
-    crop_view_id = ElementId(view.Id.IntegerValue - 2)
+    crop_view_id = get_elementid_from_value(get_elementid_value(view.Id) - 2)
     element_ids.Add(crop_view_id)
 
 # Select it in the Revit UI

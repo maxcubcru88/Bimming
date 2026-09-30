@@ -5,12 +5,15 @@
 from Autodesk.Revit.DB import *
 import math
 from math import degrees, atan2
+from pyrevit.compat import get_elementid_value_func
 
 # Variables
 #==================================================
 app   = __revit__.Application
 uidoc = __revit__.ActiveUIDocument
 doc   = __revit__.ActiveUIDocument.Document #type:Document
+
+get_elementid_value = get_elementid_value_func()  # Returns .Value (2024+) or .IntegerValue (<2024), compatible across Revit versions
 
 # Reusable Snippets
 
@@ -86,7 +89,7 @@ def get_section_box(doc, view):
         section_boxes = []
         for element_id in dependent_element_ids:
             element = doc.GetElement(element_id)
-            if element and element.Category and element.Category.Id.IntegerValue == int(BuiltInCategory.OST_SectionBox):
+            if element and element.Category and get_elementid_value(element.Category.Id) == int(BuiltInCategory.OST_SectionBox):
                 section_boxes.append(element)
 
         return section_boxes
