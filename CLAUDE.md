@@ -70,3 +70,19 @@ belong in each repo's own additions to this file, not here.
 
 - Transaction name pattern: `"{ExtensionPrefix}-{Script Name}"` - use
   `"KCA-"` in KCA.extension, `"Bimming-"` in Bimming.extension.
+
+## Bimming.extension notes
+
+Extension-specific details. The sections above are shared with KCA.extension.
+These notes were recovered on 23 Oct 2026 from the XPS chats.
+
+- Personal extension. It is published to
+  `Y:\BIM\Revit AddIns\PyRevit Bimming Extension\Bimming.extension` with KCAdev's
+  "Publish Bimming". Transactions use the `Bimming-` prefix.
+- 12–13 Aug 2026: added "Presentation Mode ON/OFF" (Views panel; separate buttons
+  for on and off; the user adds the icons) and a dark/light mode switch (Misc).
+- 21 Aug 2026: "Create Workset Views Set" was renamed to `Audit\nWorksets`.
+- 30 Sep 2026: Revit 2026 compatibility pass. `.IntegerValue` was replaced with
+  `get_elementid_value(...)` and `ElementId(int)` with `get_elementid_from_value(...)`
+  (both work in 2021-2026). `Buildup` and `Type Parameter Updated` were deleted from
+  `WIP2.Panel OFF`.
